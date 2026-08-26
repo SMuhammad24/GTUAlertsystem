@@ -1,0 +1,21 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Environment files with sensitive credentials
+.env
+
+# Database file (ignored locally if desired, or tracked via GH Action)
+*.db-journal
+
+# IDE & OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

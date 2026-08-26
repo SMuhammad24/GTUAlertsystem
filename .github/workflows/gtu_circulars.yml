@@ -1,0 +1,44 @@
+name: GTU Circular Automation (Telegram Push)
+
+on:
+  schedule:
+    # Run every 15 minutes (Cron: minute hour day-of-month month day-of-week)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  check-circulars:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🚀 Scan GTU Circulars & Send Telegram Alerts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          KEYWORD_FILTER: ${{ secrets.KEYWORD_FILTER }}
+          CHECK_INTERVAL_MINUTES: 15
+        run: |
+          python main.py --check
+
+      - name: 💾 Commit & Push Database Changes (Persist state)
+        run: |
+          git config --global user.name "GTU-Bot-Automation"
+          git config --global user.email "bot@gtu-automation.local"
+          git add circulars.db
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update processed circulars database [skip ci]" && git push)
