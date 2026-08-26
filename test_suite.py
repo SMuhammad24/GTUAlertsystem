@@ -74,6 +74,29 @@ class TestGTUAutomation(unittest.TestCase):
         self.assertTrue(bool(first['date']))
         print(f"Sample circular parsed:\n  Title: {first['title']}\n  Date: {first['date']}\n  Category: {first['category']}\n  Link: {first['link']}")
 
+    def test_compliance_and_safety_rules(self):
+        """Test strict enforcement of legal & safety compliance rules."""
+        # 1. Allowed public GTU URLs should pass
+        is_safe, _ = Config.is_safe_public_url('https://www.gtu.ac.in/Circular.aspx')
+        self.assertTrue(is_safe)
+
+        # 2. Prohibited private/login/auth endpoints must be rejected
+        is_safe_login, reason = Config.is_safe_public_url('https://www.gtu.ac.in/student_login.aspx')
+        self.assertFalse(is_safe_login)
+        self.assertIn("strictly prohibited", reason)
+
+        is_safe_admin, _ = Config.is_safe_public_url('https://www.gtu.ac.in/admin/dashboard')
+        self.assertFalse(is_safe_admin)
+
+        # 3. Third-party or unknown domains must be rejected
+        is_safe_unknown, reason = Config.is_safe_public_url('https://malicious-site.com/hack.pdf')
+        self.assertFalse(is_safe_unknown)
+        self.assertIn("not in the allowed public GTU domains", reason)
+
+        # 4. Scraper initialization with unsafe URL must raise PermissionError
+        with self.assertRaises(PermissionError):
+            Scraper(url='https://www.gtu.ac.in/login')
+
 
 if __name__ == '__main__':
     unittest.main()

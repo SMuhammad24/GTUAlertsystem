@@ -109,11 +109,13 @@ def init_database_silent():
 
 
 def daemon_mode():
-    """Run continuous background monitoring loop."""
-    interval_sec = Config.CHECK_INTERVAL_MINUTES * 60
+    """Run continuous background monitoring loop with strict rate-limiting compliance."""
+    safe_interval = max(Config.CHECK_INTERVAL_MINUTES, Config.MIN_CHECK_INTERVAL_MINUTES)
+    interval_sec = safe_interval * 60
     print("=" * 60)
     print("🤖 GTU Circular Automation - Background Daemon Mode Active")
-    print(f"⏱️ Polling Interval: Every {Config.CHECK_INTERVAL_MINUTES} minutes")
+    print("⚖️ Legal & Safety Policy: Strict Public Notification Mode")
+    print(f"⏱️ Polling Interval: Every {safe_interval} minutes (Server-Safe)")
     print(f"📁 Database: {Config.DB_PATH}")
     if Config.KEYWORD_FILTER:
         print(f"🔍 Keyword Filter: {', '.join(Config.KEYWORD_FILTER)}")
@@ -130,7 +132,7 @@ def daemon_mode():
         except Exception as e:
             print(f"⚠️ Unexpected error in daemon loop: {e}")
 
-        print(f"\n😴 Sleeping for {Config.CHECK_INTERVAL_MINUTES} minutes until next check...")
+        print(f"\n😴 Sleeping for {safe_interval} minutes until next check...")
         try:
             time.sleep(interval_sec)
         except KeyboardInterrupt:

@@ -17,8 +17,23 @@
   - 📚 Academics & Syllabus
 - 🛡️ **Duplicate Prevention:** SQLite Database (`circulars.db`) duplicate check rakhta hai taaki ek hi circular baar-baar repeat na ho.
 - ☁️ **24/7 Free Cloud Hosting:** GitHub Actions workflow included hai — aapka computer band hone par bhi cloud par 24/7 free scan hota rahega!
+- ⚖️ **Legal & Safety Compliant:** Strictly monitors only public notice boards, never touches private/student login areas or CAPTCHAs, and respects GTU servers with built-in rate limits.
 
 ---
+
+## ⚖️ Legal & Safety Compliance Policy
+
+This project strictly adheres to ethical automation, rate-limiting, and web safety rules:
+
+### ✅ ALLOWED:
+1. **Public Webpages Only:** Monitor only publicly accessible GTU notification portals (`https://www.gtu.ac.in/Circular.aspx`).
+2. **Public Announcements:** Share only publicly released circular metadata (Title, Date, Public PDF Link) in our Telegram group.
+3. **Respectful Intervals:** Automated checks are conducted at reasonable, server-friendly intervals (minimum 5-15 minutes) without creating excessive server load.
+
+### 🚫 DO NOT:
+1. **No Access-Control Bypass:** Strictly does NOT bypass GTU login, student portals, authentication, or CAPTCHA.
+2. **No Private / Student Data:** Strictly does NOT collect, store, or forward any private, student-specific, or confidential information.
+3. **No Server Overload & No Bulk Crawling:** Strictly does NOT perform deep crawling, bulk asset downloads, or high-frequency requests.
 
 ## 🚀 Quick Setup Guide (Step-by-Step)
 

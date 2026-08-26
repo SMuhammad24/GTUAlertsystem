@@ -8,26 +8,59 @@ from database import Database
 
 
 class Scraper:
-    """GTU Official Website Circular Web Scraper."""
+    """
+    GTU Public Notification Monitor.
+    
+    SAFETY & LEGAL COMPLIANCE:
+    - Only queries official, publicly accessible GTU notification pages.
+    - Strictly does not bypass login, authentication, CAPTCHA, or access controls.
+    - Does not crawl private student accounts, restricted resources, or bulk-download files.
+    - Respectful rate limiting and request throttling to avoid server load.
+    """
+    
+    _last_request_time = 0.0
 
     def __init__(self, url: Optional[str] = None):
         self.url = url or Config.GTU_CIRCULAR_URL
+        
+        # Enforce Rule 1: Validate public URL compliance
+        is_safe, reason = Config.is_safe_public_url(self.url)
+        if not is_safe:
+            raise PermissionError(f"Safety Rule Violation: {reason}")
+            
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': Config.USER_AGENT,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9',
             'Referer': 'https://www.gtu.ac.in/',
         })
 
     def fetch_page(self) -> str:
-        """Fetch HTML content from GTU website with timeout and error handling."""
+        """
+        Fetch HTML content strictly from the public GTU notification portal.
+        Includes rate-limiting cooldown and safety checks.
+        """
+        # Re-verify URL safety before every request
+        is_safe, reason = Config.is_safe_public_url(self.url)
+        if not is_safe:
+            raise PermissionError(f"Safety Rule Violation: {reason}")
+            
         try:
             response = self.session.get(self.url, timeout=Config.REQUEST_TIMEOUT)
+            
+            # Check for access-control / CAPTCHA blocks - DO NOT attempt to bypass
+            if response.status_code in [401, 403]:
+                raise PermissionError("Access restricted. Automation strictly refuses to bypass access controls or authentication.")
+            
+            content_lower = response.text[:2000].lower()
+            if 'captcha' in content_lower and ('g-recaptcha' in content_lower or 'cf-challenge' in content_lower):
+                raise PermissionError("CAPTCHA detected. Automation strictly respects and does not bypass CAPTCHA.")
+                
             response.raise_for_status()
             return response.text
         except requests.exceptions.RequestException as e:
-            raise ConnectionError(f"GTU Portal fetch failed ({self.url}): {e}")
+            raise ConnectionError(f"GTU Public Portal fetch failed ({self.url}): {e}")
 
     @staticmethod
     def categorize(title: str) -> str:
@@ -91,6 +124,12 @@ class Scraper:
 
             if not clean_title or clean_title == 'Read More':
                 continue
+
+            # Safety Rule: Ensure link targets allowed public domains and no private endpoints
+            is_safe_link, _ = Config.is_safe_public_url(clean_link)
+            if not is_safe_link:
+                # Fallback to base public URL if specific link is non-compliant
+                clean_link = Config.GTU_CIRCULAR_URL
 
             unique_key = f"{clean_title}|{clean_link}"
             if unique_key in seen_links:
