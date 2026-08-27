@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GTU Automated Circular & Alert System - Presentation Deck</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-dark: #0f172a;
+            --accent: #059669;
+            --accent-light: #10b981;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --bg-slate: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #e2e8f0;
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-size: 13.5px;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 15px auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                min-height: 100vh;
+                padding: 16mm;
+            }
+        }
+
+        /* Header & Footer */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .page-header .brand {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-header .topic {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            margin-top: 20px;
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(145deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+        }
+
+        .cover-badge {
+            background: rgba(59, 130, 246, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #93c5fd;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .cover-title {
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .cover-subtitle {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 580px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+        }
+
+        .cover-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .meta-item label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #93c5fd;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .meta-item span {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .privacy-pill {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #6ee7b7;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Headings */
+        h1.slide-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p.slide-subtitle {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Cards & Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .card {
+            background: var(--bg-slate);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .badge-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .icon-blue { background: #dbeafe; color: #1e40af; }
+        .icon-green { background: #d1fae5; color: #065f46; }
+        .icon-amber { background: #fef3c7; color: #92400e; }
+        .icon-red { background: #fee2e2; color: #991b1b; }
+        .icon-purple { background: #f3e8ff; color: #6b21a8; }
+
+        ul.styled-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 8px;
+            font-size: 12.5px;
+            color: #334155;
+        }
+
+        ul.styled-list li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            top: -1px;
+            color: var(--primary-light);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* High Impact Banner / Assurance Box */
+        .assurance-box {
+            background: #f0fdf4;
+            border: 1.5px solid #22c55e;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 14px 0;
+        }
+
+        .assurance-title {
+            color: #15803d;
+            font-size: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 12px;
+        }
+
+        .table-custom th, .table-custom td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .table-custom th {
+            background: #f1f5f9;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .tag-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            display: inline-block;
+        }
+
+        .tag-success {
+            background: #dcfce7;
+            color: #15803d;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            display: inline-block;
+        }
+
+        /* Flow diagram boxes */
+        .workflow-step {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px 14px;
+            position: relative;
+            border-left: 4px solid var(--primary-light);
+            margin-bottom: 10px;
+        }
+
+        .workflow-step .step-num {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .workflow-step .step-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 2px 0 4px;
+        }
+
+        .workflow-step .step-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .speaker-hint {
+            background: #fffbeb;
+            border-left: 3px solid #f59e0b;
+            padding: 8px 12px;
+            border-radius: 0 6px 6px 0;
+            font-size: 11px;
+            color: #92400e;
+            margin-top: 14px;
+        }
+
+        .speaker-hint strong {
+            color: #78350f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1: COVER SLIDE ================= -->
+    <div class="page cover-page">
+        <div>
+            <div class="cover-badge">Academic Project Presentation</div>
+            <h1 class="cover-title">GTU Automated Circular<br>& Notification Alert System</h1>
+            <p class="cover-subtitle">Real-Time Official University Notice Broadcast with 100% Zero-Data Access & Public-Only Compliance</p>
+
+            <div class="cover-meta-grid">
+                <div class="meta-item">
+                    <label>Project Domain</label>
+                    <span>Web Automation & Cloud Alerts</span>
+                </div>
+                <div class="meta-item">
+                    <label>Technology Stack</label>
+                    <span>Python 3, Telegram API, GitHub Actions</span>
+                </div>
+                <div class="meta-item">
+                    <label>Target Audience</label>
+                    <span>GTU Students, CRs & Faculty</span>
+                </div>
+                <div class="meta-item">
+                    <label>Data Privacy</label>
+                    <span>Strictly Public Notices Only</span>
+                </div>
+            </div>
+
+            <div class="privacy-pill">
+                🔒 Guaranteed: Zero Student Private Data Access | No Logins Required
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2: PROBLEM STATEMENT & OBJECTIVES ================= -->
+    <div class="page">
+        <div class="page-header">
+            <span class="brand">🎓 GTU Alert System</span>
+            <span class="topic">Problem & Proposed Solution</span>
+        </div>
+
+        <div>
+            <h1 class="slide-title">⚠️ Problem Statement & Objective</h1>
+            <p class="slide-subtitle">Analyzing why students miss critical deadlines and how automation solves it.</p>
+
+            <div class="grid-2" style="margin-bottom: 16px;">
+                <div class="card" style="border-left: 4px solid var(--danger);">
+                    <div class="card-header">
+                        <div class="badge-icon icon-red">❌</div>
+                        <h3>The Real-World Problems</h3>
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>Missed Deadlines & Heavy Penalties:</strong> Students frequently miss exam form deadlines, remedial registrations, and fee payment windows due to lack of timely alerts.</li>
+                        <li><strong>High Friction in Daily Checking:</strong> Visiting <code>gtu.ac.in</code> multiple times daily on slow networks is cumbersome and easily forgotten.</li>
+                        <li><strong>Information Overload:</strong> GTU releases 10-20 mixed circulars daily. Finding branch-relevant notices requires tedious manual filtering.</li>
+                        <li><strong>Faculty & CR Burden:</strong> Class coordinators must manually download and forward PDFs in various WhatsApp groups.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--accent);">
+                    <div class="card-header">
+                        <div class="badge-icon icon-green">✅</div>
+                        <h3>The Automated Solution</h3>
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>Instant Push Notification:</strong> Scans GTU public board every 15 minutes and immediately broadcasts new circulars.</li>
+                        <li><strong>Direct 1-Click PDF Link:</strong> Attached direct official GTU download link so students can view the document with one click.</li>
+                        <li><strong>Priority Categorization:</strong> Distinguishes critical notices (🚨 Fee/Penalty, 📝 Timetables, 📊 Results) with clear visual icons.</li>
+                        <li><strong>24/7 Zero Maintenance:</strong> Runs automatically on the cloud (GitHub Actions / Daemon) with 0 server hosting cost.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="badge-icon icon-blue">🎯</div>
+                    <h3>Core Project Objectives</h3>
+                </div>
+                <div class="grid-3" style="margin-top: 8px;">
+                    <div style="font-size: 11.5px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <strong style="color: var(--primary);">Zero Information Delay:</strong> Reduce notification lag from hours/days down to minutes.
+                    </div>
+                    <div style="font-size: 11.5px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <strong style="color: var(--accent);">Zero Student Data Risk:</strong> Absolute safety with zero credentials or personal records accessed.
+                    </div>
+                    <div style="font-size: 11.5px; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <strong style="color: var(--warning);">Zero Repeat Spam:</strong> SQLite deduplication engine guarantees each circular is posted exactly once.
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-hint">
+                <strong>🗣️ Presenter Talking Point:</strong> "Sir/Ma'am, students often face late exam fee penalties because manual checking is inconsistent. Our bot eliminates this friction by pushing notices directly to student groups the moment GTU uploads them."
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>GTU Automation Presentation</span>
+            <span>Page 2 of 5</span>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 3: DATA PRIVACY & REASONING ================= -->
+    <div class="page">
+        <div class="page-header">
+            <span class="brand">🎓 GTU Alert System</span>
+            <span class="topic">Compliance & Data Privacy Assurance</span>
+        </div>
+
+        <div>
+            <h1 class="slide-title">🛡️ Data Privacy & Ethical Compliance</h1>
+            <p class="slide-subtitle">Explicit guarantee regarding zero student data collection and server safety.</p>
+
+            <div class="assurance-box">
+                <div class="assurance-title">
+                    <span>🔒</span> 100% Zero Student Data Guarantee
+                </div>
+                <p style="font-size: 12px; color: #166534; line-height: 1.5;">
+                    This system is purely a <strong>Public Notice Reader</strong>. It <u>never</u> interacts with any student database, marksheet system, or private college portal. It only reads what GTU has published publicly on the world wide web for all students.
+                </p>
+            </div>
+
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Area</th>
+                        <th style="width: 35%;">System Policy</th>
+                        <th style="width: 40%;">Reasoning & Justification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Student Credentials</strong></td>
+                        <td><span class="tag-danger">ZERO ACCESS</span> No logins / IDs used</td>
+                        <td>Does not ask for Enrolment No, Passwords, Names, or DOB.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internal Portals</strong></td>
+                        <td><span class="tag-danger">BLOCKED</span> Never accessed</td>
+                        <td>Strictly ignores <code>student.gtu.ac.in</code>, ERP portals, and CAPTCHAs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Extracted</strong></td>
+                        <td><span class="tag-success">PUBLIC ONLY</span> Circular Title, Date & PDF URL</td>
+                        <td>Only reads the open public table at <code>gtu.ac.in/Circular.aspx</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>University Server Load</strong></td>
+                        <td><span class="tag-success">RATE LIMITED</span> 15-min Intervals</td>
+                        <td>Lightweight HTTP requests with standard headers; 0% risk of server overload.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Student Privacy on Telegram</strong></td>
+                        <td><span class="tag-success">PROTECTED</span> Group / Channel Broadcast</td>
+                        <td>Students receive updates without having to share their phone numbers.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card" style="margin-top: 14px;">
+                <div class="card-header">
+                    <div class="badge-icon icon-purple">💡</div>
+                    <h3>Why This Architecture Was Chosen (Technical Reasoning)</h3>
+                </div>
+                <div class="grid-2" style="font-size: 12px;">
+                    <div>
+                        <strong style="color: var(--primary-dark);">Why Telegram Bot API?</strong>
+                        <p style="color: var(--text-muted); margin-top: 2px;">Provides official webhooks, high reliability, free tier without limits, and rich HTML formatting with direct links.</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--primary-dark);">Why SQLite Deduplication?</strong>
+                        <p style="color: var(--text-muted); margin-top: 2px;">Lightweight zero-dependency database keeps a permanent log of dispatched circular IDs to prevent repetitive spam.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-hint">
+                <strong>🗣️ Presenter Talking Point:</strong> "If asked about data privacy, we can confidently confirm that the bot functions just like a normal student reading the public notice board. There is zero student data stored or transmitted."
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>GTU Automation Presentation</span>
+            <span>Page 3 of 5</span>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 4: SYSTEM ARCHITECTURE & FEATURES ================= -->
+    <div class="page">
+        <div class="page-header">
+            <span class="brand">🎓 GTU Alert System</span>
+            <span class="topic">Architecture & Feature Highlights</span>
+        </div>
+
+        <div>
+            <h1 class="slide-title">⚙️ Architecture & Smart Feature Engine</h1>
+            <p class="slide-subtitle">Step-by-step pipeline from GTU website scanning to mobile delivery.</p>
+
+            <div class="grid-2" style="gap: 16px; margin-bottom: 14px;">
+                <!-- Left: Pipeline Steps -->
+                <div>
+                    <h3 style="font-size: 13px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Execution Workflow Pipeline</h3>
+                    
+                    <div class="workflow-step">
+                        <div class="step-num">Step 1 • Public Web Scraper</div>
+                        <div class="step-title">Fetch Official Circular Table</div>
+                        <div class="step-desc">Queries <code>https://www.gtu.ac.in/Circular.aspx</code> using BeautifulSoup & requests parser.</div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-num">Step 2 • Classification & Filtering</div>
+                        <div class="step-title">Analyze Keywords & Urgency</div>
+                        <div class="step-desc">Detects Fee deadlines, Exam schedules, Result alerts, and Admission notices.</div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-num">Step 3 • SQLite Deduplication</div>
+                        <div class="step-title">Filter Duplicate Records</div>
+                        <div class="step-desc">Checks <code>circulars.db</code>. If ID exists, silently skips; if new, marks for dispatch.</div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="step-num">Step 4 • Telegram Push Engine</div>
+                        <div class="step-title">Broadcast Rich Formatted Alert</div>
+                        <div class="step-desc">Formats message with category badge, title, date, and 1-click official PDF link.</div>
+                    </div>
+                </div>
+
+                <!-- Right: Smart Categories -->
+                <div>
+                    <h3 style="font-size: 13px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Smart Categorization Badges</h3>
+
+                    <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 4px solid var(--danger);">
+                        <strong style="color: var(--danger); font-size: 12.5px;">🚨 Fee & Penalty Deadlines</strong>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Regular/remedial exam fees, penalty dates, and payment extension notices.</p>
+                    </div>
+
+                    <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 4px solid var(--primary-light);">
+                        <strong style="color: var(--primary); font-size: 12.5px;">📝 Exam Schedules & Timetables</strong>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Mid-sem & End-sem timetables, hall ticket releases, and centre allocations.</p>
+                    </div>
+
+                    <div class="card" style="padding: 12px; margin-bottom: 8px; border-left: 4px solid var(--accent);">
+                        <strong style="color: var(--accent); font-size: 12.5px;">📊 Result Declarations</strong>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Instant notifications for declared regular, remedial, and recheck results.</p>
+                    </div>
+
+                    <div class="card" style="padding: 12px; border-left: 4px solid var(--warning);">
+                        <strong style="color: var(--warning); font-size: 12.5px;">🎓 Admission & Academic Circulars</strong>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Syllabus changes, academic calendar, holidays, and enrollment updates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speaker-hint">
+                <strong>🗣️ Presenter Talking Point:</strong> "Our intelligent categorization automatically tags high-urgency fee notices with alert emojis, ensuring students immediately take action before the fine deadline."
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>GTU Automation Presentation</span>
+            <span>Page 4 of 5</span>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 5: TECH STACK, BENEFITS & FAQ ================= -->
+    <div class="page">
+        <div class="page-header">
+            <span class="brand">🎓 GTU Alert System</span>
+            <span class="topic">Tech Stack, Impact & Faculty FAQ</span>
+        </div>
+
+        <div>
+            <h1 class="slide-title">🚀 Tech Stack & Faculty Defense FAQ</h1>
+            <p class="slide-subtitle">Summary of underlying technology and ready responses for defense viva.</p>
+
+            <div class="grid-3" style="margin-bottom: 14px;">
+                <div class="card" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🐍</div>
+                    <strong style="font-size: 12.5px;">Python 3.10+</strong>
+                    <p style="font-size: 11px; color: var(--text-muted);">BeautifulSoup4, Requests</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🗄️</div>
+                    <strong style="font-size: 12.5px;">SQLite3</strong>
+                    <p style="font-size: 11px; color: var(--text-muted);">Zero-config deduplication</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 12px;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">☁️</div>
+                    <strong style="font-size: 12.5px;">GitHub Actions</strong>
+                    <p style="font-size: 11px; color: var(--text-muted);">24/7 Free Cloud Cron</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom: 14px;">
+                <div class="card-header">
+                    <div class="badge-icon icon-blue">❓</div>
+                    <h3>Top Faculty Viva Questions & Defenses</h3>
+                </div>
+                <div style="font-size: 11.5px; display: flex; flex-direction: column; gap: 8px;">
+                    <div>
+                        <strong style="color: var(--primary-dark);">Q1: Will this scraper overload or crash GTU servers?</strong>
+                        <p style="color: var(--text-muted);"><em>Defense:</em> No, Sir/Ma'am. It only performs 1 standard HTTP GET request every 15 minutes with respectful rate-limiting, which consumes less traffic than a single browser page refresh.</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--primary-dark);">Q2: Is there any risk of student confidential data leak?</strong>
+                        <p style="color: var(--text-muted);"><em>Defense:</em> No. The project never interacts with user databases, enrolment portals, or logins. It purely acts as a broadcaster for already public announcements.</p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--primary-dark);">Q3: What happens if the host machine goes offline?</strong>
+                        <p style="color: var(--text-muted);"><em>Defense:</em> The bot is integrated with GitHub Actions cloud workflows, enabling 24/7 autonomous monitoring on GitHub's secure cloud servers for free.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="background: #f1f5f9;">
+                <h3 style="font-size: 13px; font-weight: 700; color: var(--primary-dark); margin-bottom: 4px;">🌟 Future Scope & Enhancements</h3>
+                <p style="font-size: 11.5px; color: var(--text-muted);">
+                    1. <strong>Branch & Semester Filtering:</strong> Allow students to subscribe specifically to their branch (e.g., Computer Engg) and semester.<br>
+                    2. <strong>AI Summary (TL;DR):</strong> Integrate lightweight local LLM to generate 1-sentence summaries of multi-page circulars.<br>
+                    3. <strong>WhatsApp Cloud API:</strong> Expanding broadcast delivery channels.
+                </p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>GTU Automation Presentation</span>
+            <span>Page 5 of 5</span>
+        </div>
+    </div>
+
+</body>
+</html>
