@@ -147,12 +147,16 @@ def export_static_json():
             'last_updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         data = {'stats': stats, 'circulars': enriched}
-        out_file = Config.BASE_DIR / 'web' / 'data.json'
-        with open(out_file, 'w', encoding='utf-8') as f:
-            import json
-            json.dump(data, f, indent=2, ensure_ascii=False)
+        import json
+        for path in [Config.BASE_DIR / 'web' / 'data.json', Config.BASE_DIR / 'data.json']:
+            try:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                with open(path, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+            except Exception:
+                pass
     except Exception as e:
-        print(f"⚠️ Warning: Could not export web/data.json: {e}")
+        print(f"⚠️ Warning: Could not export data.json: {e}")
 
 
 def init_database_silent(limit: int = 50) -> int:

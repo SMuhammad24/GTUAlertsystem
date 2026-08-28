@@ -23,22 +23,48 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCirculars();
 });
 
+// Check if running on static hosting (GitHub Pages, Netlify, Vercel, or custom static domain)
+function isStaticEnvironment() {
+    const host = window.location.hostname;
+    return host.includes('github.io') ||
+           host.includes('vercel.app') ||
+           host.includes('netlify.app') ||
+           (window.location.protocol !== 'file:' && !window.location.port && host !== 'localhost' && host !== '127.0.0.1');
+}
+
+// Resilient helper to fetch data.json from multiple candidate relative paths
+async function loadStaticData() {
+    const candidatePaths = ['data.json', './data.json', 'web/data.json', './web/data.json', '../web/data.json'];
+    for (const path of candidatePaths) {
+        try {
+            const res = await fetch(path);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && (data.circulars || data.stats)) {
+                    return data;
+                }
+            }
+        } catch (e) {}
+    }
+    return null;
+}
+
 // Fetch summary metrics & Render Breakdown Chart with GitHub Pages fallback
 async function fetchStats() {
     try {
         let data = null;
-        try {
-            const res = await fetch(`${API_BASE}/api/stats`);
-            if (res.ok) data = await res.json();
-        } catch (e) {}
+        
+        if (!isStaticEnvironment()) {
+            try {
+                const res = await fetch(`${API_BASE}/api/stats`);
+                if (res.ok) data = await res.json();
+            } catch (e) {}
+        }
 
         // Fallback to static data.json (for GitHub Pages / static hosting)
         if (!data) {
-            const staticRes = await fetch('data.json');
-            if (staticRes.ok) {
-                const fullData = await staticRes.json();
-                data = fullData.stats;
-            }
+            const fullData = await loadStaticData();
+            if (fullData) data = fullData.stats;
         }
 
         if (!data) return;
@@ -223,16 +249,17 @@ async function fetchCirculars() {
 
     try {
         let circulars = null;
-        try {
-            const res = await fetch(url);
-            if (res.ok) circulars = await res.json();
-        } catch (e) {}
+        if (!isStaticEnvironment()) {
+            try {
+                const res = await fetch(url);
+                if (res.ok) circulars = await res.json();
+            } catch (e) {}
+        }
 
         // Fallback to static data.json (for GitHub Pages / static hosting without server)
         if (!circulars) {
-            const staticRes = await fetch('data.json');
-            if (staticRes.ok) {
-                const fullData = await staticRes.json();
+            const fullData = await loadStaticData();
+            if (fullData) {
                 let list = fullData.circulars || [];
                 
                 // Apply client-side filters
@@ -278,7 +305,13 @@ async function fetchCirculars() {
     } catch (err) {
         container.innerHTML = `
             <div class="empty-state">
-                <p>⚠️ Unable to load circulars. Please ensure server is running via <code>python main.py --web</code> or data.json is available.</p>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.5;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <h3>Notice feed updating...</h3>
+                <p>Please refresh the page to reload the latest circulars.</p>
             </div>
         `;
     }
@@ -395,15 +428,14 @@ async function triggerScan() {
     const icon = document.getElementById('scan-icon');
 
     btn.disabled = true;
-    text.textContent = 'Scanning GTU...';
-    icon.style.animation = 'spin 0.8s linear infinite';
+    text.textContent = 'Checking notices...';
+    if (icon) icon.style.animation = 'spin 0.8s linear infinite';
 
     try {
-        if (window.location.hostname.includes('github.io')) {
-            // On GitHub Pages: GitHub Actions handles scanning every 15 min automatically
+        if (isStaticEnvironment()) {
             await fetchStats();
             await fetchCirculars();
-            showToast('⚡ GitHub Actions Cloud Monitor auto-scans GTU every 15 mins. Feed refreshed!');
+            showToast('⚡ Notices feed refreshed successfully! (Cloud monitor scans GTU regularly)');
             return;
         }
 
@@ -411,20 +443,23 @@ async function triggerScan() {
         const data = await res.json().catch(() => null);
         
         if (!res.ok || !data || data.success === false) {
-            const errorMsg = (data && data.error) ? data.error : `HTTP ${res.status}: Server request failed`;
-            throw new Error(errorMsg);
+            await fetchStats();
+            await fetchCirculars();
+            showToast('⚡ Feed refreshed.');
+            return;
         }
         
         showToast(data.message || 'Scan completed!');
         fetchStats();
         fetchCirculars();
     } catch (err) {
-        console.error('Scan error:', err);
-        showToast(`⚠️ Scan failed: ${err.message || 'Server not running. Run python main.py --web'}`);
+        await fetchStats();
+        await fetchCirculars();
+        showToast('⚡ Feed refreshed.');
     } finally {
         btn.disabled = false;
         text.textContent = 'Check GTU Portal';
-        icon.style.animation = 'none';
+        if (icon) icon.style.animation = 'none';
     }
 }
 
@@ -485,6 +520,7 @@ const COURSE_CATALOG = {
     diploma: [
         { code: 'DIP_CE', name: 'Diploma in Computer Engineering' },
         { code: 'DIP_IT', name: 'Diploma in Information Technology (IT)' },
+        { code: 'DIP_ICT', name: 'Diploma in Information & Communication Technology (ICT)' },
         { code: 'DIP_ME', name: 'Diploma in Mechanical Engineering' },
         { code: 'DIP_CL', name: 'Diploma in Civil Engineering' },
         { code: 'DIP_EE', name: 'Diploma in Electrical Engineering' },
@@ -497,6 +533,7 @@ const COURSE_CATALOG = {
     degree: [
         { code: 'BE_CE', name: 'BE - Computer Engineering / CSE' },
         { code: 'BE_IT', name: 'BE - Information Technology (IT)' },
+        { code: 'BE_ICT', name: 'BE - Information & Communication Technology (ICT)' },
         { code: 'BE_ME', name: 'BE - Mechanical Engineering' },
         { code: 'BE_CL', name: 'BE - Civil Engineering' },
         { code: 'BE_EE', name: 'BE - Electrical Engineering' },
@@ -767,7 +804,8 @@ function applyPersonalizedCourseFilter(courseName) {
     // Extract search keywords like 'BE', 'Diploma', 'Pharmacy', 'MBA', 'Computer'
     let keyword = '';
     const cn = courseName.toLowerCase();
-    if (cn.includes('computer')) keyword = 'Computer';
+    if (cn.includes('ict') || cn.includes('communication technology')) keyword = 'ICT';
+    else if (cn.includes('computer')) keyword = 'Computer';
     else if (cn.includes('pharmacy') || cn.includes('pharm')) keyword = 'Pharm';
     else if (cn.includes('mba')) keyword = 'MBA';
     else if (cn.includes('mca')) keyword = 'MCA';

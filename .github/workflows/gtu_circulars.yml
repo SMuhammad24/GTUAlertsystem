@@ -39,5 +39,5 @@ jobs:
         run: |
           git config --global user.name "GTU-Bot-Automation"
           git config --global user.email "bot@gtu-automation.local"
-          git add circulars.db
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update circulars database [skip ci]" && git push)
+          git add circulars.db web/data.json data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update circulars database & static feed [skip ci]" && git push)
