@@ -149,19 +149,46 @@ class Database:
         finally:
             conn.close()
 
+    @staticmethod
+    def _parse_date_for_sort(date_str: str) -> str:
+        """Helper to convert various GTU date string formats into standard YYYY-MM-DD for sorting."""
+        if not date_str:
+            return "1970-01-01"
+        clean = str(date_str).strip()
+        for fmt in ('%d-%b-%Y', '%d-%B-%Y', '%d/%m/%Y', '%d-%m-%Y', '%Y-%m-%d', '%d.%m.%Y'):
+            try:
+                return datetime.strptime(clean, fmt).strftime('%Y-%m-%d')
+            except ValueError:
+                pass
+        return clean
+
+    @classmethod
+    def _sort_circulars(cls, items: List[Dict]) -> List[Dict]:
+        """Sort circulars from latest published date to oldest, with created_at as secondary sort."""
+        return sorted(
+            items,
+            key=lambda x: (
+                cls._parse_date_for_sort(x.get('date', '')),
+                x.get('created_at', ''),
+                x.get('id', '')
+            ),
+            reverse=True
+        )
+
     def get_recent_circulars(self, limit: int = 10) -> List[Dict]:
-        """Fetch the most recently stored circulars."""
+        """Fetch the most recently published circulars, strictly sorted newest date first."""
         safe_limit = max(1, min(int(limit), 200))
         conn = self._get_connection()
         try:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM circulars ORDER BY created_at DESC, id DESC LIMIT ?", (safe_limit,))
-            return [dict(row) for row in cursor.fetchall()]
+            rows = [dict(row) for row in cursor.fetchall()]
+            return self._sort_circulars(rows)
         finally:
             conn.close()
 
     def search_circulars(self, query: str, limit: int = 10) -> List[Dict]:
-        """Search circulars by title, tags, or category."""
+        """Search circulars by title, tags, or category, sorted newest date first."""
         if not query or not query.strip():
             return self.get_recent_circulars(limit)
             
@@ -178,12 +205,13 @@ class Database:
                 ORDER BY created_at DESC 
                 LIMIT ?
             """, (search_pattern, search_pattern, search_pattern, safe_limit))
-            return [dict(row) for row in cursor.fetchall()]
+            rows = [dict(row) for row in cursor.fetchall()]
+            return self._sort_circulars(rows)
         finally:
             conn.close()
 
     def get_circulars_by_category(self, category: str, limit: int = 10) -> List[Dict]:
-        """Fetch circulars belonging to a specific category."""
+        """Fetch circulars belonging to a specific category, sorted newest date first."""
         clean_cat = sanitize_text(category, max_length=50).strip()
         search_pattern = f"%{clean_cat}%"
         safe_limit = max(1, min(int(limit), 100))
@@ -197,7 +225,8 @@ class Database:
                 ORDER BY created_at DESC 
                 LIMIT ?
             """, (search_pattern, safe_limit))
-            return [dict(row) for row in cursor.fetchall()]
+            rows = [dict(row) for row in cursor.fetchall()]
+            return self._sort_circulars(rows)
         finally:
             conn.close()
 
@@ -221,7 +250,7 @@ class Database:
             conn.close()
 
     def get_todays_circulars(self) -> List[Dict]:
-        """Fetch circulars added today."""
+        """Fetch circulars added today, sorted newest date first."""
         today_str = datetime.now().strftime('%Y-%m-%d')
         conn = self._get_connection()
         try:
@@ -231,7 +260,8 @@ class Database:
                 WHERE created_at LIKE ? 
                 ORDER BY created_at DESC
             """, (f"{today_str}%",))
-            return [dict(row) for row in cursor.fetchall()]
+            rows = [dict(row) for row in cursor.fetchall()]
+            return self._sort_circulars(rows)
         finally:
             conn.close()
 

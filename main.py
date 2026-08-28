@@ -114,10 +114,55 @@ def run_check(dry_run: bool = False, limit: int = 15) -> int:
 
         db.add_circular(c)
         sent_count += 1
-        time.sleep(1.5)
+        if tg_ok:
+            time.sleep(1.5)
 
     print(f"\n🎯 Cycle complete. {sent_count} new circulars recorded & notified.")
+    export_static_json()
     return sent_count
+
+
+def export_static_json():
+    """Export circulars and stats to web/data.json for zero-server GitHub Pages static hosting."""
+    try:
+        db = Database()
+        circulars = db.get_recent_circulars(limit=200)
+        enriched = []
+        for r in circulars:
+            tags = CircularTagger.extract_tags(r['title'])
+            deadlines = DeadlineExtractor.extract_info(r['title'])
+            item = dict(r)
+            item['tags'] = ", ".join(tags['hashtags'])
+            item['courses'] = tags['courses']
+            item['semesters'] = tags['semesters']
+            item['deadlines'] = deadlines['dates']
+            item['penalties'] = deadlines['penalties']
+            enriched.append(item)
+            
+        stats = {
+            'total': db.get_total_count(),
+            'today': len(db.get_todays_circulars()),
+            'categories': db.get_category_stats(),
+            'status': 'online',
+            'last_updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+        data = {'stats': stats, 'circulars': enriched}
+        out_file = Config.BASE_DIR / 'web' / 'data.json'
+        with open(out_file, 'w', encoding='utf-8') as f:
+            import json
+            json.dump(data, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"⚠️ Warning: Could not export web/data.json: {e}")
+
+
+def init_database_silent(limit: int = 50) -> int:
+    """
+    Initialize database silently with current GTU circulars to prevent spamming old notices on first launch.
+    """
+    print("📥 Initializing database with existing circulars (no alerts will be sent)...")
+    count = run_check(dry_run=True, limit=limit)
+    print(f"✅ Initialized {count} existing circulars in database.")
+    return count
 
 
 def generate_digest(send_telegram: bool = False) -> str:

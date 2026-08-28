@@ -1,0 +1,967 @@
+{
+  "stats": {
+    "total": 52,
+    "today": 2,
+    "categories": {
+      "Result": 36,
+      "Exam & Timetable": 11,
+      "General Circular": 3,
+      "Academics & Syllabus": 1,
+      "Admission & Enrollment": 1
+    },
+    "status": "online",
+    "last_updated": "2026-08-28 16:01:59"
+  },
+  "circulars": [
+    {
+      "id": "f3e5f6ec10b871322db27593372a8d65f7c14d66deea8eeace384cfc1ce3d9d0",
+      "title": "Notification for Result Declaration of Diploma in Engineering Sem-1 (Remedial) of Summer-2026 Examination.",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260825210705_803474.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "f1bdc1773bfb1013ee219d73fa0a216cfb00d38a520798f8b1179ea63da4ee2b",
+      "title": "Notification for result declaration of Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer- 2026",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer- 2026_739621.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "d9e13ffef890cb0ec42bf2257f353457c9a007126cdf8394cd0192aee477f5f4",
+      "title": "Specialization & Elective Subject Entry of BBA Semester 5 (Regular) and MBA Integrated Semester 5 & 7 (Regular) & Elective Subject Entry of Semester 9 (Regular) for Winter -2026 Examination",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260825134046_597900.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MBA, #Sem5, #Sem6, #Sem7, #Regular, #Winter",
+      "summary": "",
+      "courses": [
+        "MBA"
+      ],
+      "semesters": [
+        5,
+        6,
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "af1eb57614fdcc651fcd9661abec799fbd3465a3fa7bc98628b58302521aa0f5",
+      "title": "Notification for Result Declaration of Master of Pharmacy Semester - 1 (Remedial) Summer 2026 Examination",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260825_0001_261954.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MPharm, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "a38caf8937086e8b95b735d4f9d76c25245da64d9719ff7b6db38a99e0bbf092",
+      "title": "Notification for result declaration of Diploma in Pharmacy Year-1 (Regular) Recheck-Reassessment of Summer- 2026",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Diploma in Pharmacy Year-1 (Regular) Recheck-Reassessment of Summer- 2026_874649.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "18609c441da10a959277aa43b6bb34d69665a950c0f72981659c6745d4e3a0a8",
+      "title": "Extension in Elective Entry for BE, BE (Working Professional) (Regular Students) Winter-2026 Examination",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/extension of eletive_288209.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BE, #Regular, #Winter",
+      "summary": "",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "035a841d14956e490737ea3a49b518b1c7d4f0dcd4efcac5c166319b9bfa70ef",
+      "title": "Notification for Result Declaration of Diploma in Engineering Sem-5 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "25-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260825180209_188330.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem5, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        5
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "fb1e3ed9369e6eef88e92194d98b15e6d5437235cbc1f4b98e820ca8148fc63b",
+      "title": "Registration of Title for ME (Sem-3) Dissertation Phase-1 (DP-1) (Winter-2026)",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260824_11333596_801771.pdf",
+      "category": "Admission & Enrollment",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #ME, #Sem3, #Winter",
+      "summary": "",
+      "courses": [
+        "ME"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "dbe3ea6747d72a0b2bc6fe274df41e9050b26dcf02065f9717aa618d0f2d0faa",
+      "title": "Notification for Result Declaration of Diploma in Engineering Sem-2 (Regular) of Summer-2026 Examination",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260824210122_941482.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "82277061c0a3cd0817f1c85594f5d8ee78d1ee56433bb8628bb9cdacd6f01486",
+      "title": "Notification for Result Declaration of Master of Business Administration Sem-04 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MBA-4 (Remedial) Recheck-Reassessment_640072.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "6e9eb6925731519c9365117e7ca8c9dc1f492f0fd1c6cf6bf55c5632e643a66a",
+      "title": "ELECTIVE SUBJECT’S ENTRY FOR BCA SEM-5, MCA INTEGRATED SEM-5,7 & 9, M.SC (IT) INTEGRATED SEM-7 & 9 AND MCA SEM-3 FOR WINTER-2026 EXAMINATION",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Elective BCA IC CS MCA_W26_282263.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MCA, #MSc, #Sem3, #Sem5, #Sem7, #Winter",
+      "summary": "",
+      "courses": [
+        "MCA",
+        "MSc"
+      ],
+      "semesters": [
+        3,
+        5,
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "442ef29137e177163e04fb1265d79deeaecc8f7de1ea48a9f41327bced41ecf9",
+      "title": "Notification for Result Declaration of Master of Business Administration Sem-04 (Regular) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MBA-4 (Regular) Recheck-Reassessment_396345.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Regular, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "3e4e9b2eac4486901aebc266d66b71b1cb37abe458612d5bef82116cfb76811b",
+      "title": "Notification for result declaration of Bachelor of Engineering Semester - 03 Remedial (Summer 2026) Exam",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem - 3 Rem._673836.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BE, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "0ff79ce8a10dcae54a0c8a0fe649160f126c6e7108acc08e393a1a78075fefcd",
+      "title": "Elective Subject Entry of Master of Engineering for Regular Students Winter-2026 Examination",
+      "date": "24-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260824_15155383_226252.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #ME, #Regular, #Winter",
+      "summary": "",
+      "courses": [
+        "ME"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "bdc904cc1a8efd7252703e221248aa4adaa3ede8e5d64e48aa5735c7559a5948",
+      "title": "Instructions for filling the Remedial Exam Forms of Winter-2026 Examination DIPLOMA IN ENGINEERING (DE) SEM-3 TO 8 DIPLOMA IN ENGINEERING (WORKING PROFESSIONAL) SEM-3 TO 6 DIPLOMA IN ARCHITECTURE (DA) SEM-1 TO 6 DIPLOMA IN VOCATION (DV) SEM- 1 TO 6",
+      "date": "21-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260821160339_290553.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem1, #Sem2, #Sem3, #Sem4, #Sem5, #Sem6, #Sem7, #Sem8, #Remedial, #Winter",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "8b7e7f7b1cdca2f51a924b629252cdf50e718da521c305633d48fd8d129cef24",
+      "title": "Notification for Result Declaration of Diploma in Engineering Sem-2 (Remedial) of Summer-2026 Examination",
+      "date": "21-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260821221826_520779.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "7fd53639ce3f00c45306fee659be81035992f6258d318f2d9d5bf895c99b8f8b",
+      "title": "INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER-2026 EXAMINATION B.PHARM SEM-7 (REGULAR & REMEDIAL) & SEM - (REMEDIAL)",
+      "date": "21-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BPH-REG-REM-W26_SEM 7 & 8 6454_304882.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BPharm, #Sem7, #Regular, #Remedial, #Winter",
+      "summary": "",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "9bf2f8d7f97379c1028d8dc23fb74503d2a89d1b548344199bdda2b6d1e8c87e",
+      "title": "Notification for result declaration of Bachelor of Hotel Management and Catering Technology Sem - 1 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "20-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BHMCT Sem-1 RERA Notfication_726978.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MBA, #BHMCT, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MBA",
+        "BHMCT"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "36e7eefc1f3ff33be3a8af0396f3013231df02f781a46cd9ee65706a48c01aa4",
+      "title": "Elective Subjects Entry of DE, D.Voc, D.Arch and DE (Working Professional) (Regular Students) for Winter-2026 Examination",
+      "date": "20-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260820151636_571926.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #DVoc, #Regular, #Winter",
+      "summary": "",
+      "courses": [
+        "Diploma",
+        "DVoc"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "e8457957bd9f56af519a334cc2b0ad187d61fe906c333ad7987688fe9d9c30a1",
+      "title": "Notification for Result Declaration of Master of Pharmacy Semester - 2 (Remedial) Summer 2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260819_0004_225167.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MPharm, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "d5465e2f13939dd8976eb476e998eeea2d27740fc219a30c98054a39cfa1568b",
+      "title": "Notification for result declaration of Bachelor of Engineering Sem - 4 (Regular) of Summer - 2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem 4 Reg._277296.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BE, #Sem4, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "cc1f94deb8e868e6becb4c1854f05eb8bab67be377d1b7c491c2cb948c80af9d",
+      "title": "ELECTIVE SUBJECT’S ENTRY FOR B. PHARM SEMESTER-5 REGULAR (WINTER - 2026)",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Electiv BPH SEM -5 6400_845999.pdf",
+      "category": "Academics & Syllabus",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BPharm, #Sem5, #Regular, #Winter",
+      "summary": "",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        5
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "783d2e776d9d02dee6887018767aebd2145a095d4c523ecbd5b73e44270b9cf2",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-1 (Remedial) of Summer-2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260819184123_274814.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "398ace0d8b35f70166999ea7edf84359fbcff154fc5f279e28b62ac48e33e7aa",
+      "title": "Elective Subject Entry of Master of Architecture,Bachelor of Science (Honours/ Honours With Research),Master of Science (Industrial Biotechnology) and Master of Science(Integrated) Biotechnology For Regular Students Winter-2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260819_11574846_334150.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Regular, #Winter",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "2275a4fdd617ddc9ef6d41e68ccde039ddf96e9582c267f2afcd2cc96f061d9d",
+      "title": "Notification for Result Declaration of Master of Pharmacy Semester - 2 (Regular) Summer 2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260819_0003_994139.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MPharm, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "16341ea65629447b0ee4193bebff0a326e0e4869ccfb61bc81bd824f1501495f",
+      "title": "Specialization & Elective Subject Entry of Master of Science (Integrated) Biotechnology Semester 7 for Regular Students for Winter-2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260819_11520504_891766.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Sem7, #Regular, #Winter",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "0bee39364320697656359754582c3a700b8bc62fafa226c04e081127473f18b3",
+      "title": "Notification for result declaration of Bachelor of Architecture Sem - 4 (Regular) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BA Sem - 4 Reg. Recheck-Reassessment_714770.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Sem4, #Regular, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "021847f9a3068f2ebdc317e795110413e3543551a6ca2992955f5bcb8f979500",
+      "title": "Notification for result declaration of Bachelor of Architecture Sem - 3 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "19-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BA Sem - 3 Rem. Recheck-Reassessment_582453.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Sem3, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "ac984872c1e837224b0dc60109ff15ecb91ca9523e01fab4d9f2155a30d1b874",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-4 (Regular) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "18-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260818204633_2_753170.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem4, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "959358fa8e120cc1f43de2d6fdf8bb5a181a05a29f7a3d17daa95245bd663749",
+      "title": "Submission of Title for M. Pharm (Sem-III) Dissertation Phase I (DP-I) (Winter-2026)",
+      "date": "18-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img-818125955_497725.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MPharm, #Winter",
+      "summary": "",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "6f4a54e61c5d6de980d94cfca7f81cdb368b6d7a9e6cb660b5b294b331f6c0b0",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-3 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "18-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260818204616_3_219602.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem3, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "1530690242c48ce086162c8b05f2e65adf2cb7b046fb69dc80e7d8b12ef2bb56",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-6 (Regular) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "18-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260818204645_1_176651.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #Diploma, #Sem6, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        6
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "0dcf73f5015a44d881ae0f32076531c9653af24a198e010a6add810f5666882e",
+      "title": "GUIDELINES AND INSTRUCTIONS REGARDING ONLINE MARKS ENTRY FOR MBA (INTERNATIONAL BUSINESS) [DELIVERED IN ONLINE MODE] SEM-1 WINTER-2025 EXAMINATION",
+      "date": "18-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260818135114_475429.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #MBA, #Sem1, #Winter",
+      "summary": "",
+      "courses": [
+        "MBA"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "7eccaa3edf155e77165fa7b5325940b7debb85b7a21e6764d3cdcf26746fb8d4",
+      "title": "Notification for result declaration of Bachelor of Engineering Sem - 4 (Remedial) of Summer - 2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem - 4 Rem._738225.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BE, #Sem4, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "5198d7e0657245e4513a323d3c0f94e4a153e089ddaabbd3c786d77d620e5065",
+      "title": "Notification for result declaration of Bachelor of Engineering Minor Sem - 7 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MN Sem - 7 Rem. Recheck - Reassess_158630.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:17",
+      "tags": "#GTU, #BE, #Sem7, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "df769898d953c3643e885f0633a04971dba6d04d76f0e2f1bab96e43b7edd2b2",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-2 (Remedial) of Summer-2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260817202001_2_864265.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Diploma, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "909120f7c9baaa142f687d8ae3deada1177c21ea894da81dd89978860b031f9d",
+      "title": "Notification for result declaration of Bachelor of Vocation Sem - 2 (Regular) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BV Sem - 2 Reg. Recheck - Reassessment_241322.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "5867520ed96e73edf6e772e88c28e0d52c652e85992d621090926bd069b1a4b6",
+      "title": "Notification for Result Declaration of Master of Computer Applications Sem-1 (Remedial) of Summer-2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MCA Sem 1 Rem Recheck_147418.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MCA, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "52986da0e6e308db22546136244064d21d3bde4a1b8ccd42d978d6ae8c5577ce",
+      "title": "Notification for result declaration of Bachelor of Vocation Sem - 2 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BV Sem - 2 Rem. Recheck - Reassessment_964212.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "47ee68fa97272ba0e33c315f3544835ffb18299f840f28227008f666a0f52736",
+      "title": "Notification for Result Declaration of Master of Computer Applications Sem-2 (Remedial) of Summer-2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MCA Sem 2 Rem Recheck (2)_326682.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MCA, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "422638d5d1db2860ec7fd4259348ae498816a6c1ccfd49d33c0d9be1fddd555b",
+      "title": "Notification for Result Declaration of Master of Computer Applications Sem-2 (Regular) of Summer-2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MCA Sem 2 Reg Recheck_626098.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MCA, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "1f35dd74da6a46f460ac50792e7be0c9d8fef272cfe8395127f52fed606bb20f",
+      "title": "Notification for result declaration of Bachelor of Vocation Sem - 1 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BV Sem - 1 Rem. Recheck - Reassessment_174529.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "13ca36c81d5cb3a5461b796a928486e0f17cb067ccff95f6c326b36145117024",
+      "title": "Notification for Result Declaration of Diploma in Vocation Sem-2 (Regular) of Summer-2026 Examination",
+      "date": "17-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260817202018_1_521255.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Diploma, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "f92a34f19ec53df27e20d5288ce87f6b6347cfb53e2ecf2764e341f7aace1c2f",
+      "title": "Notification for result declaration of Bachelor of Hotel Management and Catering Sem - 2 (Regular) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "14-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BH Sem - 2 Reg. Recheck - Reassessment_681682.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MBA, #BHMCT, #Sem2, #Regular, #Summer",
+      "summary": "",
+      "courses": [
+        "MBA",
+        "BHMCT"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "d7f84110e2a32ee9c80d84c5507093d4f0a8adbc6c3192686f13f1b16326e433",
+      "title": "Notification for Result Declaration of Result of Doctor of Pharmacy Year- 3 (Regular) (Recheck-Re-assessment) Summer - 2026 Examination",
+      "date": "14-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260814_0007_440149.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Regular, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "ba13d2ba234d433128362f36fe73b3eeb37e4d8d194232db10ecdaaaa6083325",
+      "title": "Notification for result declaration of Bachelor of Hotel Management and Catering Sem - 3 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "14-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BH Sem - 3 Rem. Recheck - Reassessment_857767.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MBA, #BHMCT, #Sem3, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MBA",
+        "BHMCT"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "8c5c9ed2b089866858df77a6401317014cd8c39a2e5eaa713fed47d776379b30",
+      "title": "Notification for result declaration of Bachelor of Hotel Management and Catering Sem - 2 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "14-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BH Sem - 2 Rem. Recheck - Reassessment_967038.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #MBA, #BHMCT, #Sem2, #Remedial, #Summer",
+      "summary": "",
+      "courses": [
+        "MBA",
+        "BHMCT"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "801ca9d041953bf1193baf9dbd61335eb3468179b99c7d65b1224fa5db3fd133",
+      "title": "Notification for Result Declaration of Result of Doctor of Pharmacy Year- 3 (Remedial) (Recheck-Re-assessment) Summer - 2026 Examination",
+      "date": "14-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260814_0004_282935.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "e4bca20e5728334aa4a799c11ec432ce39e5a9f856d412458b34a63775052fb9",
+      "title": "GTU સાથે સંલગ્ન કોલેજો માં તા. 21 ઓગસ્ટ, 2026 ના રોજ \"વિશ્વ ઉદ્યોગસાહસિકતા દિવસ(World Entrepreneurship Day)\" ની ઉજવણી કરવા બાબત",
+      "date": "13-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/GUJARAT TECHNOLOGICAL UNIVERSITY_674464.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-28 01:58:19",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "00443fa79ea483632686c36d21586427ea7a035d3420856a8a89012eae355646",
+      "title": "Elective Entry for BE, BE (Working Professional) PDDC, B.Arch, B.Voc and BID (Regular Students) Winter-2026 Examination",
+      "date": "13-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/ElectiveEntry_Winter26_214429.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-28 01:58:19",
+      "tags": "#GTU, #BE, #BArch, #PDDC, #BVoc, #Regular, #Winter",
+      "summary": "Official examination schedule / timetable release for BE/BArch/PDDC/BVoc (Regular/Winter). Check exam dates and instructions.",
+      "courses": [
+        "BE",
+        "BArch",
+        "PDDC",
+        "BVoc"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "9526b46239e290599f61cf9307c5310d81c79025023c92dda38d00f05644666c",
+      "title": "Notification for result declaration of Bachelor of Interior Design Sem - 1 (Remedial) Recheck/ Reassessment of Summer - 2026 Examination",
+      "date": "13-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BI Sem - 1 Rem. Recheck - Reassessment_631560.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #Sem1, #Remedial, #Summer",
+      "summary": "",
+      "courses": [],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "2641478624db004df31f0ad7fea5b63dac100227e9a52b1d0d66288209882ba7",
+      "title": "University Township Initiative-reg",
+      "date": "13-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular-UGC_344236.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-26 09:27:04",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    }
+  ]
+}

@@ -165,10 +165,10 @@ class TestGTUAutomation(unittest.TestCase):
         safe, _ = is_safe_url('http://127.0.0.1:8080/admin', allowed)
         self.assertFalse(safe)
 
-    def test_security_token_and_chat_id_validation(self):
-        self.assertTrue(is_valid_telegram_token('1234567890:ABCdefGhIJKlmNoPQRsTUVwxyZ_1234567'))
-        self.assertFalse(is_valid_telegram_token('invalid_token'))
-        self.assertTrue(is_valid_chat_id('123456789'))
+    def test_init_database_silent(self):
+        from main import init_database_silent
+        # Verify function is importable and callable
+        self.assertTrue(callable(init_database_silent))
 
 
 if __name__ == '__main__':

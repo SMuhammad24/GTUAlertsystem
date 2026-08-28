@@ -1,9 +1,17 @@
 import os
+import sys
 import json
 import urllib.parse
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from typing import Dict, List, Any
+
+# Ensure UTF-8 output on Windows terminal
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 from config import Config
 from database import Database
 from tagger import CircularTagger
@@ -27,6 +35,8 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
         self.send_header('Content-Type', 'application/json; charset=utf-8')
         self.send_header('Content-Length', str(len(body)))
         self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
         self.wfile.write(body)
 
@@ -35,8 +45,18 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header('Content-Type', 'application/rss+xml; charset=utf-8')
         self.send_header('Content-Length', str(len(body)))
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        """Handle CORS preflight requests."""
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        self.send_header('Content-Length', '0')
+        self.end_headers()
 
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
@@ -46,12 +66,15 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
         # 1. API: List Circulars
         if path == '/api/circulars':
             db = Database()
-            limit = int(query_params.get('limit', ['30'])[0])
+            limit = int(query_params.get('limit', ['100'])[0])
             category = query_params.get('category', [None])[0]
             search_q = query_params.get('q', [None])[0]
+            filter_param = query_params.get('filter', [None])[0]
 
             if search_q:
                 results = db.search_circulars(search_q, limit=limit)
+            elif filter_param == 'today':
+                results = db.get_todays_circulars()
             elif category and category != 'ALL':
                 results = db.get_circulars_by_category(category, limit=limit)
             else:
@@ -151,9 +174,9 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
 
 
 def run_server(port: int = 8080, host: str = "127.0.0.1"):
-    """Start standalone web dashboard server."""
+    """Start standalone threaded web dashboard server."""
     server_address = (host, port)
-    httpd = HTTPServer(server_address, GTUWebHandler)
+    httpd = ThreadingHTTPServer(server_address, GTUWebHandler)
     print("=" * 60)
     print(f"🌐 GTU Alerts Web Dashboard is LIVE!")
     print(f"👉 Open in your browser: http://{host}:{port}")
