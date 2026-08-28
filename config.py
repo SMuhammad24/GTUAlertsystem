@@ -15,14 +15,23 @@ else:
     load_dotenv()
 
 
+from security import (
+    is_safe_url,
+    is_valid_telegram_token,
+    is_valid_chat_id,
+    mask_secret,
+    safe_db_path,
+)
+
+
 class Config:
     """
-    Application configuration loader and compliance policy validator.
+    Application configuration loader and security/compliance policy validator.
     
     LEGAL & SAFETY COMPLIANCE RULES:
     ALLOWED:
       1. Monitor only publicly accessible GTU webpages and public notifications.
-      2. Share only publicly available GTU notification info in Telegram.
+      2. Share only publicly available GTU notification info in Telegram/Discord.
       3. Check GTU at reasonable intervals without creating excessive server load.
     DO NOT:
       1. Do not bypass login, authentication, CAPTCHA, or access controls.
@@ -31,11 +40,21 @@ class Config:
     """
     
     BASE_DIR = BASE_DIR
-    DB_PATH = BASE_DIR / 'circulars.db'
+    DB_PATH = safe_db_path(BASE_DIR / 'circulars.db', BASE_DIR)
     
     # Telegram Credentials
     TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
     TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '').strip()
+
+    # Discord Credentials (Optional)
+    DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', '').strip()
+
+    # AI Integration (Optional Gemini API Key)
+    GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '').strip()
+
+    # Web Dashboard Settings
+    WEB_PORT = int(os.getenv('WEB_PORT', '8080'))
+    WEB_HOST = os.getenv('WEB_HOST', '127.0.0.1')
     
     # Public Notification URL (Only official public circular board allowed)
     GTU_CIRCULAR_URL = os.getenv('GTU_CIRCULAR_URL', 'https://www.gtu.ac.in/Circular.aspx').strip()
@@ -68,41 +87,38 @@ class Config:
         'USER_AGENT',
         'GTU-Public-Notification-Monitor/1.0 (+https://www.gtu.ac.in/Circular.aspx; Polite-Public-Notice-Reader)'
     )
-    REQUEST_TIMEOUT = 30 # seconds
+    
+    # Granular Connection Timeouts: (connect_timeout, read_timeout) in seconds
+    CONNECT_TIMEOUT = 10
+    READ_TIMEOUT = 25
+    REQUEST_TIMEOUT = (CONNECT_TIMEOUT, READ_TIMEOUT)
+    
+    # Max allowed response payload size (5 MB) to prevent DoS memory exhaustion
+    MAX_RESPONSE_BYTES = 5 * 1024 * 1024
 
     @classmethod
     def is_safe_public_url(cls, url: str) -> tuple[bool, str]:
         """
-        Verify that URL complies with safety rules:
-        - Only publicly accessible GTU notification pages allowed.
+        Verify that URL complies with security & safety rules:
+        - Rejects SSRF, localhost, private IPs, and non-whitelisted domains.
         - Rejects any login, authentication, CAPTCHA, or student-specific portals.
         """
-        if not url or not (url.startswith('http://') or url.startswith('https://')):
-            return False, "Invalid URL scheme. Only public HTTP/HTTPS allowed."
-        
-        parsed = urllib.parse.urlparse(url)
-        hostname = (parsed.hostname or '').lower()
-        
-        # Verify allowed domain
-        if not any(hostname == d or hostname.endswith('.' + d) for d in cls.ALLOWED_DOMAINS):
-            return False, f"Domain '{hostname}' is not in the allowed public GTU domains list."
-        
-        # Verify no prohibited / login / private endpoint keywords
-        path_and_query = (parsed.path + '?' + (parsed.query or '')).lower()
-        for forbidden in cls.PROHIBITED_PATH_KEYWORDS:
-            if forbidden in path_and_query:
-                return False, f"Access to private/login/auth endpoint containing '{forbidden}' is strictly prohibited."
-                
-        return True, "URL is compliant and public."
+        return is_safe_url(url, allowed_domains=cls.ALLOWED_DOMAINS)
 
     @classmethod
     def validate(cls, require_telegram: bool = True) -> tuple[bool, str]:
-        """Validate configuration settings and compliance rules."""
+        """Validate configuration settings, token formats, and compliance rules."""
         if require_telegram:
             if not cls.TELEGRAM_BOT_TOKEN:
                 return False, "TELEGRAM_BOT_TOKEN missing hai! Kripya .env file me bot token set karein."
+            if not is_valid_telegram_token(cls.TELEGRAM_BOT_TOKEN):
+                masked = mask_secret(cls.TELEGRAM_BOT_TOKEN)
+                return False, f"TELEGRAM_BOT_TOKEN format invalid hai ({masked}). Format must be like: 1234567890:ABCdef..."
             if not cls.TELEGRAM_CHAT_ID:
                 return False, "TELEGRAM_CHAT_ID missing hai! Kripya .env file me chat ID set karein."
+            if not is_valid_chat_id(cls.TELEGRAM_CHAT_ID):
+                masked_chat = mask_secret(cls.TELEGRAM_CHAT_ID)
+                return False, f"TELEGRAM_CHAT_ID format invalid hai ({masked_chat}). Format must be numeric ID or @channel."
         
         is_safe, reason = cls.is_safe_public_url(cls.GTU_CIRCULAR_URL)
         if not is_safe:

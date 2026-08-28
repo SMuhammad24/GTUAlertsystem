@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from config import Config
 from database import Database
+from security import sanitize_text, is_safe_url
 
 
 class Scraper:
@@ -15,6 +16,7 @@ class Scraper:
     - Only queries official, publicly accessible GTU notification pages.
     - Strictly does not bypass login, authentication, CAPTCHA, or access controls.
     - Does not crawl private student accounts, restricted resources, or bulk-download files.
+    - Protected against SSRF, DoS payload bombs, and malicious redirects.
     - Respectful rate limiting and request throttling to avoid server load.
     """
     
@@ -23,7 +25,7 @@ class Scraper:
     def __init__(self, url: Optional[str] = None):
         self.url = url or Config.GTU_CIRCULAR_URL
         
-        # Enforce Rule 1: Validate public URL compliance
+        # Enforce Rule 1: Validate public URL compliance & SSRF check
         is_safe, reason = Config.is_safe_public_url(self.url)
         if not is_safe:
             raise PermissionError(f"Safety Rule Violation: {reason}")
@@ -39,7 +41,7 @@ class Scraper:
     def fetch_page(self) -> str:
         """
         Fetch HTML content strictly from the public GTU notification portal.
-        Includes rate-limiting cooldown and safety checks.
+        Enforces SSL verification, streaming payload size limits (DoS defense), and SSRF checks.
         """
         # Re-verify URL safety before every request
         is_safe, reason = Config.is_safe_public_url(self.url)
@@ -47,18 +49,36 @@ class Scraper:
             raise PermissionError(f"Safety Rule Violation: {reason}")
             
         try:
-            response = self.session.get(self.url, timeout=Config.REQUEST_TIMEOUT)
+            # Use stream=True to guard against gigantic payload / decompression DoS attacks
+            response = self.session.get(
+                self.url,
+                timeout=Config.REQUEST_TIMEOUT,
+                stream=True,
+                verify=True
+            )
             
             # Check for access-control / CAPTCHA blocks - DO NOT attempt to bypass
             if response.status_code in [401, 403]:
                 raise PermissionError("Access restricted. Automation strictly refuses to bypass access controls or authentication.")
             
-            content_lower = response.text[:2000].lower()
+            # Read at most MAX_RESPONSE_BYTES to prevent memory exhaustion
+            content_chunks = []
+            bytes_read = 0
+            for chunk in response.iter_content(chunk_size=16384, decode_unicode=True):
+                if chunk:
+                    content_chunks.append(chunk)
+                    bytes_read += len(chunk.encode('utf-8', errors='ignore'))
+                    if bytes_read > Config.MAX_RESPONSE_BYTES:
+                        raise ValueError(f"Security Alert: Response size exceeded safe limit ({Config.MAX_RESPONSE_BYTES} bytes).")
+            
+            full_html = "".join(content_chunks)
+            
+            content_lower = full_html[:2000].lower()
             if 'captcha' in content_lower and ('g-recaptcha' in content_lower or 'cf-challenge' in content_lower):
                 raise PermissionError("CAPTCHA detected. Automation strictly respects and does not bypass CAPTCHA.")
                 
             response.raise_for_status()
-            return response.text
+            return full_html
         except requests.exceptions.RequestException as e:
             raise ConnectionError(f"GTU Public Portal fetch failed ({self.url}): {e}")
 
@@ -70,7 +90,7 @@ class Scraper:
             return 'Fee & Penalty'
         elif any(w in t for w in ['result', 'recheck', 'reassessment', 'marksheet', 'grade card']):
             return 'Result'
-        elif any(w in t for w in ['exam form', 'timetable', 'time table', 'examination', 'theory exam', 'practical exam', 'remedial', 'regular exam']):
+        elif any(w in t for w in ['exam', 'timetable', 'time table', 'schedule', 'examination', 'theory exam', 'practical exam', 'remedial', 'regular exam']):
             return 'Exam & Timetable'
         elif any(w in t for w in ['admission', 'enrollment', 'registration', 'merit', 'counselling', 'affiliation']):
             return 'Admission & Enrollment'
@@ -120,7 +140,8 @@ class Scraper:
 
             # Cleanup URL and Title
             clean_link = urllib.parse.urljoin(self.url, raw_link.strip())
-            clean_title = re.sub(r'\s+', ' ', title).strip()
+            clean_title = sanitize_text(re.sub(r'\s+', ' ', title), max_length=400)
+            date_clean = sanitize_text(date_str, max_length=50) or 'Recent'
 
             if not clean_title or clean_title == 'Read More':
                 continue
@@ -137,12 +158,12 @@ class Scraper:
             seen_links.add(unique_key)
 
             category = self.categorize(clean_title)
-            cid = Database.generate_id(clean_title, date_str, clean_link)
+            cid = Database.generate_id(clean_title, date_clean, clean_link)
 
             circulars.append({
                 'id': cid,
                 'title': clean_title,
-                'date': date_str,
+                'date': date_clean,
                 'link': clean_link,
                 'category': category,
                 'is_important': False
@@ -153,13 +174,18 @@ class Scraper:
             pdf_elements = soup.find_all('a', href=re.compile(r'\.pdf', re.IGNORECASE))
             for a in pdf_elements:
                 link = urllib.parse.urljoin(self.url, a.get('href', '').strip())
-                title = a.get_text(strip=True)
+                title = sanitize_text(a.get_text(strip=True), max_length=400)
                 if not title or len(title) < 5 or 'gtu logo' in title.lower():
                     continue
 
                 if link in seen_links:
                     continue
                 seen_links.add(link)
+
+                # Verify link safety
+                is_safe_link, _ = Config.is_safe_public_url(link)
+                if not is_safe_link:
+                    continue
 
                 category = self.categorize(title)
                 cid = Database.generate_id(title, 'Recent', link)

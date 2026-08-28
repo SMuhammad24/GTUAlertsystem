@@ -13,6 +13,9 @@ if hasattr(sys.stderr, 'reconfigure'):
 ENV_FILE = Path(__file__).resolve().parent / '.env'
 
 
+from security import is_valid_telegram_token, is_valid_chat_id, mask_secret
+
+
 def print_banner():
     print("=" * 65)
     print("🚀 GTU Circular Automation - Telegram Bot Setup Wizard")
@@ -22,9 +25,11 @@ def print_banner():
 
 def get_bot_info(token: str):
     """Verify bot token and get bot profile."""
+    if not is_valid_telegram_token(token):
+        return None
     url = f"https://api.telegram.org/bot{token}/getMe"
     try:
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, timeout=10, verify=True)
         data = res.json()
         if res.status_code == 200 and data.get('ok'):
             return data.get('result')
@@ -38,7 +43,7 @@ def get_recent_chat_ids(token: str):
     url = f"https://api.telegram.org/bot{token}/getUpdates"
     chats = {}
     try:
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, timeout=10, verify=True)
         data = res.json()
         if data.get('ok'):
             for update in data.get('result', []):
@@ -48,7 +53,7 @@ def get_recent_chat_ids(token: str):
                     cid = str(chat['id'])
                     title = chat.get('title') or chat.get('username') or chat.get('first_name', 'Unknown Chat')
                     ctype = chat.get('type', 'chat')
-                    chats[cid] = f"{title} (Type: {ctype}, ID: {cid})"
+                    chats[cid] = f"{title} (Type: {ctype}, ID: {mask_secret(cid)})"
     except Exception as e:
         print(f"⚠️ Error fetching updates: {e}")
     return chats
@@ -69,7 +74,7 @@ def test_telegram_message(token: str, chat_id: str):
         'parse_mode': 'HTML'
     }
     try:
-        res = requests.post(url, json=payload, timeout=15)
+        res = requests.post(url, json=payload, timeout=15, verify=True)
         return res.json()
     except Exception as e:
         return {'ok': False, 'description': str(e)}
@@ -86,7 +91,7 @@ GTU_CIRCULAR_URL=https://www.gtu.ac.in/Circular.aspx
 """
     with open(ENV_FILE, 'w', encoding='utf-8') as f:
         f.write(env_content)
-    print(f"\n💾 Saved credentials to {ENV_FILE}")
+    print(f"\n💾 Saved credentials securely to {ENV_FILE}")
 
 
 def main():
@@ -95,13 +100,17 @@ def main():
     print("📌 STEP 1: Telegram Bot Token")
     print("1. Telegram open karein aur search karein: @BotFather")
     print("2. /newbot command send karein aur bot ka name & username select karein.")
-    print("3. BotFather aapko ek API Token dega (e.g. 123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ).\n")
+    print("3. BotFather aapko ek API Token dega (e.g. 1234567890:ABCdefGhIJKlmNoPQRsTUVwxyZ_1234567).\n")
 
     token = ""
     while True:
         token = input("👉 Enter Telegram Bot Token: ").strip()
         if not token:
             print("Token khali nahi ho sakta!")
+            continue
+
+        if not is_valid_telegram_token(token):
+            print("❌ Invalid Bot Token format! Token must be like: 1234567890:ABCdefGhIJKlmNoPQRsTUVwxyZ_1234567\n")
             continue
 
         print("🔍 Verifying Token...")
@@ -137,7 +146,7 @@ def main():
         print("\n⚠️ Auto-detect me chat nahi mili (Telegram cache hone me kuch second lag sakta hai).")
         chat_id = input("👉 Enter Chat ID manually (e.g. -1001234567890 ya @username ya personal ID): ").strip()
 
-    print(f"\nSelected Chat ID: {chat_id}")
+    print(f"\nSelected Chat ID: {mask_secret(chat_id)}")
     print("📡 Sending Test Message to Telegram...")
     res = test_telegram_message(token, chat_id)
     if res.get('ok'):

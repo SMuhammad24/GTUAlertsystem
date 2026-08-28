@@ -8,14 +8,28 @@ env/
 venv/
 ENV/
 
-# Environment files with sensitive credentials
+# Environment files & Secrets Protection
 .env
+.env.*
+*.key
+*.pem
+*.cert
+*.crt
+credentials*.json
+secrets*.json
 
-# Database file (ignored locally if desired, or tracked via GH Action)
+# Logs & Runtime Dumps
+*.log
+*.log.*
+
+# SQLite WAL and journal files
 *.db-journal
+*.db-wal
+*.db-shm
 
 # IDE & OS
 .vscode/
 .idea/
 Thumbs.db
 .DS_Store
+
