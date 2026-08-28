@@ -1,18 +1,20 @@
 import sqlite3
 import hashlib
+import csv
+import io
+import json
 from datetime import datetime, date
 from pathlib import Path
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional, Any, Set
 from config import Config
 from security import safe_db_path, sanitize_text
 
 
 class Database:
-    """Secure SQLite Database manager for tracking and querying processed GTU circulars."""
+    """Secure SQLite Database manager for tracking circulars and personalized student subscriptions."""
 
     def __init__(self, db_path: Optional[Path] = None):
         target = db_path or Config.DB_PATH
-        # Enforce Path Traversal Protection
         if db_path is not None:
             self.db_path = Path(target).resolve()
         else:
@@ -23,7 +25,6 @@ class Database:
     def _get_connection(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.db_path, timeout=15.0)
         conn.row_factory = sqlite3.Row
-        # Enable WAL mode and foreign keys for durability and concurrency
         try:
             conn.execute("PRAGMA journal_mode=WAL;")
             conn.execute("PRAGMA synchronous=NORMAL;")
@@ -37,6 +38,7 @@ class Database:
         try:
             with conn:
                 cursor = conn.cursor()
+                # 1. Circulars Table
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS circulars (
                         id TEXT PRIMARY KEY,
@@ -55,13 +57,27 @@ class Database:
                 cursor.execute("CREATE INDEX IF NOT EXISTS idx_category ON circulars(category)")
                 cursor.execute("CREATE INDEX IF NOT EXISTS idx_date ON circulars(date)")
 
-                # Automatic schema migration for existing databases
+                # Schema migration for existing databases
                 cursor.execute("PRAGMA table_info(circulars)")
                 columns = [row['name'] for row in cursor.fetchall()]
                 if 'tags' not in columns:
                     cursor.execute("ALTER TABLE circulars ADD COLUMN tags TEXT DEFAULT ''")
                 if 'summary' not in columns:
                     cursor.execute("ALTER TABLE circulars ADD COLUMN summary TEXT DEFAULT ''")
+
+                # 2. Personalized Subscriptions Table
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS subscriptions (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        chat_id TEXT NOT NULL,
+                        course TEXT NOT NULL,
+                        semester INTEGER DEFAULT 0,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        UNIQUE(chat_id, course, semester)
+                    )
+                """)
+                cursor.execute("CREATE INDEX IF NOT EXISTS idx_sub_chat ON subscriptions(chat_id)")
+                cursor.execute("CREATE INDEX IF NOT EXISTS idx_sub_course ON subscriptions(course)")
         finally:
             conn.close()
 
@@ -88,10 +104,7 @@ class Database:
             conn.close()
 
     def add_circular(self, circular: Dict) -> bool:
-        """
-        Add a new circular to the database.
-        Returns True if newly inserted, False if already exists.
-        """
+        """Add a new circular to the database. Returns True if newly inserted."""
         clean_title = sanitize_text(circular.get('title', ''), max_length=400)
         clean_date = sanitize_text(circular.get('date', 'Recent'), max_length=50)
         clean_link = sanitize_text(circular.get('link', ''), max_length=1000)
@@ -221,3 +234,113 @@ class Database:
             return [dict(row) for row in cursor.fetchall()]
         finally:
             conn.close()
+
+    # -------------------------------------------------------------
+    # Personalized Subscriptions System
+    # -------------------------------------------------------------
+
+    def add_subscription(self, chat_id: str, course: str, semester: int = 0) -> bool:
+        """Subscribe a student to alerts for a specific course & semester."""
+        clean_chat = sanitize_text(str(chat_id), max_length=64)
+        clean_course = sanitize_text(course.upper(), max_length=20)
+        sem = max(0, min(int(semester), 8))
+
+        conn = self._get_connection()
+        try:
+            with conn:
+                cursor = conn.cursor()
+                cursor.execute("""
+                    INSERT OR IGNORE INTO subscriptions (chat_id, course, semester)
+                    VALUES (?, ?, ?)
+                """, (clean_chat, clean_course, sem))
+                return cursor.rowcount > 0
+        finally:
+            conn.close()
+
+    def remove_subscription(self, chat_id: str, course: str, semester: Optional[int] = None) -> int:
+        """Unsubscribe from specific or all alerts for a course."""
+        clean_chat = sanitize_text(str(chat_id), max_length=64)
+        clean_course = sanitize_text(course.upper(), max_length=20)
+
+        conn = self._get_connection()
+        try:
+            with conn:
+                cursor = conn.cursor()
+                if semester is not None:
+                    cursor.execute("""
+                        DELETE FROM subscriptions 
+                        WHERE chat_id = ? AND course = ? AND semester = ?
+                    """, (clean_chat, clean_course, int(semester)))
+                else:
+                    cursor.execute("""
+                        DELETE FROM subscriptions 
+                        WHERE chat_id = ? AND course = ?
+                    """, (clean_chat, clean_course))
+                return cursor.rowcount
+        finally:
+            conn.close()
+
+    def get_user_subscriptions(self, chat_id: str) -> List[Dict]:
+        """Fetch all active subscriptions for a user."""
+        clean_chat = sanitize_text(str(chat_id), max_length=64)
+        conn = self._get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM subscriptions WHERE chat_id = ? ORDER BY course, semester", (clean_chat,))
+            return [dict(row) for row in cursor.fetchall()]
+        finally:
+            conn.close()
+
+    def get_matching_subscribers(self, courses: List[str], semesters: List[int]) -> Set[str]:
+        """Find all subscriber chat_ids matching detected courses or semesters."""
+        if not courses and not semesters:
+            return set()
+
+        conn = self._get_connection()
+        matching_ids = set()
+        try:
+            cursor = conn.cursor()
+            for c in courses:
+                c_clean = c.upper()
+                if semesters:
+                    for s in semesters:
+                        cursor.execute("""
+                            SELECT chat_id FROM subscriptions 
+                            WHERE course = ? AND (semester = ? OR semester = 0)
+                        """, (c_clean, s))
+                        for row in cursor.fetchall():
+                            matching_ids.add(row['chat_id'])
+                else:
+                    cursor.execute("SELECT chat_id FROM subscriptions WHERE course = ?", (c_clean,))
+                    for row in cursor.fetchall():
+                        matching_ids.add(row['chat_id'])
+            return matching_ids
+        finally:
+            conn.close()
+
+    # -------------------------------------------------------------
+    # Data Export (CSV & JSON)
+    # -------------------------------------------------------------
+
+    def export_to_csv(self, limit: int = 500) -> str:
+        """Export stored circulars to CSV format string."""
+        circulars = self.get_recent_circulars(limit=limit)
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerow(['ID', 'Title', 'Date', 'Category', 'Link', 'Tags', 'Created At'])
+        for c in circulars:
+            writer.writerow([
+                c.get('id', ''),
+                c.get('title', ''),
+                c.get('date', ''),
+                c.get('category', ''),
+                c.get('link', ''),
+                c.get('tags', ''),
+                c.get('created_at', '')
+            ])
+        return output.getvalue()
+
+    def export_to_json(self, limit: int = 500) -> str:
+        """Export stored circulars to JSON format string."""
+        circulars = self.get_recent_circulars(limit=limit)
+        return json.dumps(circulars, indent=2)

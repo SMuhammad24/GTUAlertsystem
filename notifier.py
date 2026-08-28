@@ -6,10 +6,12 @@ from security import sanitize_for_html, sanitize_text, is_safe_url, mask_secret
 from tagger import CircularTagger
 from extractor import DeadlineExtractor
 from ai_summarizer import CircularSummarizer
+from calendar_sync import CalendarSync
+from translations import GujaratiTranslator
 
 
 class TelegramNotifier:
-    """Telegram Bot Notifier for sending rich, secure GTU Circular alerts."""
+    """Telegram Bot Notifier for sending rich, secure GTU Circular alerts with Google Calendar sync."""
 
     CATEGORY_EMOJIS = {
         'Fee & Penalty': '🚨 <b>FEE & PENALTY ALERT</b> 💰',
@@ -27,7 +29,7 @@ class TelegramNotifier:
         self.api_url = f"https://api.telegram.org/bot{self.bot_token}"
 
     def format_circular_message(self, circular: Dict[str, Any], include_summary: bool = True) -> str:
-        """Create a clean, feature-rich HTML-escaped Telegram message."""
+        """Create a clean, feature-rich HTML-escaped Telegram message with Calendar & Gujarati briefs."""
         raw_category = circular.get('category', 'General Circular')
         category = sanitize_text(raw_category, max_length=50)
         header_tag = self.CATEGORY_EMOJIS.get(category, '📢 <b>GTU CIRCULAR UPDATE</b> 📌')
@@ -50,6 +52,11 @@ class TelegramNotifier:
         safe_pdf_link = sanitize_for_html(pdf_link, max_length=1000)
         safe_portal_url = sanitize_for_html(Config.GTU_CIRCULAR_URL, max_length=500)
 
+        # Google Calendar Link
+        cal_date = deadline_info['dates'][0] if deadline_info.get('dates') else date_str
+        cal_url = CalendarSync.generate_google_calendar_url(raw_title, cal_date, pdf_link)
+        safe_cal_url = sanitize_for_html(cal_url, max_length=1000)
+
         # Target courses/semester badge if available
         target_parts = []
         if tags['courses']:
@@ -63,7 +70,13 @@ class TelegramNotifier:
         if include_summary:
             summary_text = CircularSummarizer.get_heuristic_summary(raw_title, category, tags, deadline_info)
             safe_summary = sanitize_for_html(summary_text, max_length=300)
-            summary_block = f"\n💡 <i>TL;DR: {safe_summary}</i>\n"
+            summary_block = f"\n💡 <i>TL;DR: {safe_summary}</i>"
+
+        # Gujarati brief for important Fee / Exam notices
+        gujarati_block = ""
+        if category in ['Fee & Penalty', 'Exam & Timetable', 'Result']:
+            gu_text = GujaratiTranslator.get_gujarati_brief(raw_title, category, tags, deadline_info)
+            gujarati_block = f"\n{gu_text}\n"
         
         msg_parts = [
             header_tag,
@@ -86,9 +99,13 @@ class TelegramNotifier:
         if summary_block:
             msg_parts.append(summary_block)
 
+        if gujarati_block:
+            msg_parts.append(gujarati_block)
+
         msg_parts.extend([
             "━━━━━━━━━━━━━━━━━━━━━",
             f"🔗 <a href=\"{safe_pdf_link}\">👉 [ CLICK HERE TO VIEW / DOWNLOAD PDF ]</a>",
+            f"📅 <a href=\"{safe_cal_url}\">➕ [ ADD TO GOOGLE CALENDAR ]</a>",
             f"🌐 <a href=\"{safe_portal_url}\">Official GTU Portal</a>",
             f"\n<code>{hashtag_str}</code>",
             f"\n<i>⚡ Automated GTU Alert Bot</i>"
@@ -140,10 +157,11 @@ class TelegramNotifier:
             "🤖 <b>GTU Automation Bot Connected!</b>\n\n"
             "✅ <i>Congratulations! Aapka Telegram Bot successfully connect ho chuka hai.</i>\n"
             "Ab jab bhi GTU website par koi naya circular ya fee/exam update aayega, direct yahan notify ho jayega.\n\n"
-            "💡 <b>Features active:</b>\n"
-            "• Smart Tagging (#BE #Diploma #Sem4)\n"
-            "• Important Date & Penalty Extractor\n"
-            "• Interactive 2-way bot commands (/latest, /search)\n\n"
+            "💡 <b>Advanced Features:</b>\n"
+            "• 📅 1-Click Google Calendar reminders\n"
+            "• 🎯 Personalized subscriptions (/subscribe BE 6)\n"
+            "• 🏷️ Branch & Sem tagging (#BE #Sem4)\n"
+            "• 🇮🇳 Gujarati brief translations\n\n"
             "⚡ <i>Stay updated & avoid late fee penalties!</i>"
         )
         return self.send_message(test_msg)

@@ -1,0 +1,21 @@
+{
+  "name": "GTU Alerts & Circulars Portal",
+  "short_name": "GTU Alerts",
+  "description": "Real-time Gujarat Technological University official circulars, exam schedules, and fee notifications tracker.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "https://www.gtu.ac.in/images/gtu_logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://www.gtu.ac.in/images/gtu_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

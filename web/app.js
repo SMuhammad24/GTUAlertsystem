@@ -1,16 +1,23 @@
-// GTU Circulars Portal - Interactive Frontend Logic
+// GTU Circulars Portal - Interactive Frontend Logic with Charts & PWA
 
 let allCirculars = [];
 let currentCategory = 'ALL';
 let searchQuery = '';
 let searchTimeout = null;
 
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchStats();
     fetchCirculars();
 });
 
-// Fetch summary metrics
+// Fetch summary metrics & Render Breakdown Chart
 async function fetchStats() {
     try {
         const res = await fetch('/api/stats');
@@ -20,14 +27,58 @@ async function fetchStats() {
         document.getElementById('stat-total').textContent = data.total || 0;
         document.getElementById('stat-today').textContent = data.today || 0;
         
-        const feeCount = (data.categories && data.categories['Fee & Penalty']) || 0;
-        const examCount = (data.categories && (data.categories['Exam & Timetable'] || data.categories['Exam'])) || 0;
+        const categories = data.categories || {};
+        const feeCount = categories['Fee & Penalty'] || 0;
+        const examCount = categories['Exam & Timetable'] || categories['Exam'] || 0;
         
         document.getElementById('stat-fees').textContent = feeCount;
         document.getElementById('stat-exams').textContent = examCount;
+
+        renderCategoryChart(categories, data.total || 1);
     } catch (err) {
         console.error('Error fetching stats:', err);
     }
+}
+
+// Render visual Category Distribution Bar
+function renderCategoryChart(categories, total) {
+    const bar = document.getElementById('category-bar');
+    const legend = document.getElementById('category-legend');
+    if (!bar || !legend) return;
+
+    const colors = {
+        'Fee & Penalty': '#f43f5e',
+        'Exam & Timetable': '#38bdf8',
+        'Result': '#10b981',
+        'Admission & Enrollment': '#f59e0b',
+        'Academics & Syllabus': '#a855f7',
+        'General Circular': '#6b7280'
+    };
+
+    let barHtml = '';
+    let legendHtml = '';
+
+    const entries = Object.entries(categories);
+    if (entries.length === 0) {
+        bar.innerHTML = '<div class="bar-segment" style="width: 100%; background: #6366f1;"></div>';
+        return;
+    }
+
+    entries.forEach(([cat, count]) => {
+        const pct = Math.max(2, Math.round((count / total) * 100));
+        const color = colors[cat] || '#6366f1';
+        
+        barHtml += `<div class="bar-segment" style="width: ${pct}%; background: ${color};" title="${cat}: ${count} (${pct}%)"></div>`;
+        legendHtml += `
+            <div class="legend-item">
+                <span class="legend-dot" style="background: ${color};"></span>
+                <span>${escapeHtml(cat)} (${count})</span>
+            </div>
+        `;
+    });
+
+    bar.innerHTML = barHtml;
+    legend.innerHTML = legendHtml;
 }
 
 // Fetch Circulars list with query parameters
@@ -54,7 +105,7 @@ async function fetchCirculars() {
     } catch (err) {
         container.innerHTML = `
             <div class="empty-state">
-                <p>⚠️ Unable to load circulars. Please ensure server is running.</p>
+                <p>⚠️ Unable to load circulars. Please ensure server is running via <code>python main.py --web</code></p>
             </div>
         `;
     }
@@ -69,6 +120,12 @@ function getCategoryClass(cat) {
     if (c.includes('admission') || c.includes('enrollment')) return 'admission';
     if (c.includes('academic') || c.includes('syllabus')) return 'academics';
     return 'general';
+}
+
+function getCalendarUrl(title, dateStr, link) {
+    const eventTitle = encodeURIComponent(`GTU Notice: ${title.slice(0, 60)}`);
+    const details = encodeURIComponent(`${title}\n\nPDF Link: ${link}`);
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&details=${details}&location=GTU`;
 }
 
 function renderCirculars(list) {
@@ -100,6 +157,8 @@ function renderCirculars(list) {
             deadlineHtml = `<div class="deadline-highlight">⏰ Key Dates: ${escapeHtml(c.deadlines.join(', '))}</div>`;
         }
 
+        const calUrl = getCalendarUrl(c.title, c.date, c.link);
+
         return `
             <div class="circular-card">
                 <div class="circular-main">
@@ -114,10 +173,14 @@ function renderCirculars(list) {
                     ${tagHtml}
                     ${deadlineHtml}
                 </div>
-                <div class="card-action-btn">
+                <div class="card-actions-group">
                     <a href="${escapeHtml(c.link)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                        <span>View PDF</span>
+                        <span>PDF</span>
+                    </a>
+                    <a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" title="Add to Google Calendar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span>+ Cal</span>
                     </a>
                 </div>
             </div>
@@ -184,6 +247,36 @@ async function triggerScan() {
         btn.disabled = false;
         text.textContent = 'Check GTU Portal';
         icon.style.animation = 'none';
+    }
+}
+
+// Export CSV
+function exportData(type) {
+    if (!allCirculars || allCirculars.length === 0) {
+        showToast('No data available to export.');
+        return;
+    }
+
+    if (type === 'csv') {
+        const headers = ['ID', 'Title', 'Date', 'Category', 'Link', 'Tags'];
+        const rows = allCirculars.map(c => [
+            `"${(c.id || '').replace(/"/g, '""')}"`,
+            `"${(c.title || '').replace(/"/g, '""')}"`,
+            `"${c.date || ''}"`,
+            `"${c.category || ''}"`,
+            `"${c.link || ''}"`,
+            `"${c.tags || ''}"`
+        ]);
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', `gtu_circulars_${new Date().toISOString().slice(0, 10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('📥 CSV downloaded successfully!');
     }
 }
 

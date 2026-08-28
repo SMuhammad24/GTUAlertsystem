@@ -6,14 +6,16 @@ from database import Database
 from notifier import TelegramNotifier
 from tagger import CircularTagger
 from extractor import DeadlineExtractor
+from voice_bulletin import VoiceBulletin
 from security import sanitize_for_html, sanitize_text, mask_secret
 
 
 class InteractiveTelegramBot:
     """
     Interactive 2-Way Telegram Bot listener for GTU Circulars.
-    Handles student commands (/start, /latest, /search, /exams, /results, /fees, /stats, /digest, /help)
-    using server-safe Telegram long-polling.
+    Handles student commands:
+      /start, /help, /latest, /search, /exams, /results, /fees, /stats, /digest
+      /subscribe <course> [sem], /unsubscribe <course> [sem], /mysubscriptions, /voice
     """
 
     def __init__(self, bot_token: Optional[str] = None):
@@ -29,22 +31,78 @@ class InteractiveTelegramBot:
         if not parts:
             return ""
         
-        cmd = parts[0].lower().split('@')[0]  # strip bot username if present (e.g. /latest@bot)
+        cmd = parts[0].lower().split('@')[0]
         args = parts[1:] if len(parts) > 1 else []
 
         if cmd in ['/start', '/help']:
             return (
                 "🤖 <b>Welcome to GTU Circular Automation Bot!</b>\n\n"
-                "Aap yahan GTU ke sare official circulars, exam updates aur fee deadlines dekh sakte hain.\n\n"
-                "📌 <b>Available Commands:</b>\n"
-                "🔹 <code>/latest [n]</code> - Dekhein pichle 5 ya N naye circulars\n"
-                "🔹 <code>/search &lt;keyword&gt;</code> - Circulars search karein (e.g. <code>/search fee</code>)\n"
-                "🔹 <code>/exams</code> - Recent Exam & Timetable updates\n"
-                "🔹 <code>/results</code> - Recent Results & Rechecking circulars\n"
-                "🔹 <code>/fees</code> - Fee & Penalty notifications\n"
-                "🔹 <code>/stats</code> - Database aur tracking statistics\n"
-                "🔹 <code>/digest</code> - Aaj ke circulars aur active deadlines\n\n"
-                "⚡ <i>Auto-alerts active for new GTU notifications!</i>"
+                "Aap yahan GTU ke official circulars, exam timetables, results aur fee deadlines dekh sakte hain.\n\n"
+                "📌 <b>Commands Menu:</b>\n"
+                "🔹 <code>/latest [n]</code> - Pichle 5 ya N naye circulars\n"
+                "🔹 <code>/search &lt;query&gt;</code> - Instant search (e.g. <code>/search fee</code>)\n"
+                "🔹 <code>/exams</code> - Exam & Timetable updates\n"
+                "🔹 <code>/results</code> - Result declarations\n"
+                "🔹 <code>/fees</code> - Fee & Penalty notices\n"
+                "🔹 <code>/stats</code> - Database statistics\n"
+                "🔹 <code>/digest</code> - Daily morning bulletin\n"
+                "🔹 <code>/voice</code> - 30-sec audio news bulletin\n\n"
+                "🎯 <b>Personalized Subscriptions (Zero Spam):</b>\n"
+                "🔹 <code>/subscribe BE 6</code> - Sirf BE Sem 6 alerts paayein\n"
+                "🔹 <code>/subscribe Diploma</code> - Diploma ke alerts paayein\n"
+                "🔹 <code>/mysubscriptions</code> - Apni active subscriptions dekhein\n"
+                "🔹 <code>/unsubscribe BE 6</code> - Unsubscribe karein\n\n"
+                "⚡ <i>Auto-alerts & Google Calendar reminders active!</i>"
+            )
+
+        elif cmd == '/subscribe':
+            if not args:
+                return (
+                    "⚠️ <b>Usage:</b> <code>/subscribe &lt;Course&gt; [Semester]</code>\n"
+                    "Examples:\n"
+                    "• <code>/subscribe BE 6</code>\n"
+                    "• <code>/subscribe Diploma 4</code>\n"
+                    "• <code>/subscribe MBA</code>\n"
+                    "• <code>/subscribe BPharm 2</code>"
+                )
+            course = args[0].upper()
+            sem = int(args[1]) if len(args) > 1 and args[1].isdigit() else 0
+            
+            ok = self.db.add_subscription(chat_id, course, sem)
+            sem_str = f" Sem {sem}" if sem > 0 else " (All Semesters)"
+            if ok:
+                return f"✅ <b>Subscribed successfully!</b>\nAapko <b>{course}{sem_str}</b> ke circular aane par direct personalized alert milega."
+            else:
+                return f"ℹ️ Aap pehle se hi <b>{course}{sem_str}</b> ke liye subscribed hain."
+
+        elif cmd == '/unsubscribe':
+            if not args:
+                return "⚠️ <b>Usage:</b> <code>/unsubscribe &lt;Course&gt; [Semester]</code>\nExample: <code>/unsubscribe BE 6</code>"
+            course = args[0].upper()
+            sem = int(args[1]) if len(args) > 1 and args[1].isdigit() else None
+            count = self.db.remove_subscription(chat_id, course, sem)
+            if count > 0:
+                return f"✅ <b>Unsubscribed!</b> {course} ke alerts hata diye gaye hain."
+            return f"ℹ️ {course} ki koi active subscription nahi mili."
+
+        elif cmd == '/mysubscriptions':
+            subs = self.db.get_user_subscriptions(chat_id)
+            if not subs:
+                return "ℹ️ Aapne abhi koi specific course subscribe nahi kiya hai.\nSubscribe karne ke liye likhein: <code>/subscribe BE 6</code>"
+            lines = ["🎯 <b>Aapki Active Subscriptions:</b>\n"]
+            for idx, s in enumerate(subs, 1):
+                sem_str = f"Sem {s['semester']}" if s['semester'] > 0 else "All Semesters"
+                lines.append(f"{idx}. <b>{s['course']}</b> ({sem_str})")
+            lines.append("\nUnsubscribe karne ke liye: <code>/unsubscribe &lt;Course&gt;</code>")
+            return "\n".join(lines)
+
+        elif cmd == '/voice':
+            circulars = self.db.get_todays_circulars() or self.db.get_recent_circulars(limit=3)
+            script = VoiceBulletin.generate_bulletin_script(circulars)
+            return (
+                "🎙️ <b>GTU Daily 30-Second Voice News Script:</b>\n\n"
+                f"<i>\"{sanitize_for_html(script, max_length=500)}\"</i>\n\n"
+                "💡 <i>Audio synthesis active.</i>"
             )
 
         elif cmd == '/latest':
@@ -134,13 +192,8 @@ class InteractiveTelegramBot:
             return "\n".join(lines)
 
         elif cmd == '/digest':
-            todays = self.db.get_todays_circulars()
-            if not todays:
-                # Fallback to recent 5 if none today
-                todays = self.db.get_recent_circulars(limit=5)
-                header = "📋 <b>GTU Circulars Digest (Recent Updates):</b>\n"
-            else:
-                header = f"📋 <b>Today's GTU Circulars Digest ({len(todays)} new):</b>\n"
+            todays = self.db.get_todays_circulars() or self.db.get_recent_circulars(limit=5)
+            header = f"📋 <b>GTU Circulars Digest ({len(todays)} updates):</b>\n"
 
             lines = [header]
             for idx, c in enumerate(todays[:5], 1):
@@ -192,7 +245,7 @@ class InteractiveTelegramBot:
     def start_polling(self):
         """Start infinite interactive polling loop."""
         print("🤖 Interactive Telegram Bot Listener started...")
-        print("💡 Supported commands: /start, /latest, /search <kw>, /exams, /results, /fees, /stats, /digest")
+        print("💡 Supported: /start, /subscribe, /unsubscribe, /mysubscriptions, /voice, /latest, /search, /stats")
         while True:
             try:
                 self.poll_once()
@@ -200,5 +253,5 @@ class InteractiveTelegramBot:
             except KeyboardInterrupt:
                 print("\n👋 Bot listener stopped.")
                 break
-            except Exception as e:
+            except Exception:
                 time.sleep(3.0)
