@@ -7,10 +7,12 @@ __pycache__/
 env/
 venv/
 ENV/
+.venv/
 
 # Environment files & Secrets Protection
 .env
 .env.*
+!.env.example
 *.key
 *.pem
 *.cert
@@ -27,9 +29,21 @@ secrets*.json
 *.db-wal
 *.db-shm
 
+# Voice & Media Cache
+cache/
+*.mp3
+
+# Tests & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
 # IDE & OS
 .vscode/
 .idea/
 Thumbs.db
+ehthumbs.db
 .DS_Store
-
+*.lnk
+desktop.ini
+$RECYCLE.BIN/
