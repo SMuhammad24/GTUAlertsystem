@@ -1,18 +1,54 @@
 {
   "stats": {
-    "total": 68,
-    "today": 16,
+    "total": 70,
+    "today": 18,
     "categories": {
-      "Result": 51,
+      "Result": 53,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 08:08:03"
+    "last_updated": "2026-08-29 09:08:08"
   },
   "circulars": [
+    {
+      "id": "0ac8c798e17c30d387d5b0ed4defa00feb97abf9ca17c5a8cbcfa678fa207a52",
+      "title": "Notification for Result Declaration of NCC Diploma in Engineering Sem-1 (Remedial) of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260829143946_908810.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:08:07",
+      "tags": "#GTU, #Diploma, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "70c3d307e8161876c75498caac777a0975cb3c079439d0f56d44c62d11da52a2",
+      "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-1 (Remedial) of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260829144005_371056.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:08:04",
+      "tags": "#GTU, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "bc7e1df74e78c7b2f2446aa022457d893f25ef882b50ac124936ad244e061ac8",
       "title": "Reopening of Registration/Exemption of MOOC(s) through Student Portal for the Students who have Completed MOOC(s) offered by GTU in January -2026 and July-2026",
