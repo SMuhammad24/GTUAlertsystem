@@ -47,3 +47,7 @@ ehthumbs.db
 *.lnk
 desktop.ini
 $RECYCLE.BIN/
+
+# Office temporary lock files
+~$*
+*.tmp

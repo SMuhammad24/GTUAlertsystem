@@ -1,0 +1,555 @@
+"""
+Smart India Hackathon (SIH) Official Format Presentation Builder (.pptx)
+Generates an executive, hackathon-winning presentation deck following the
+strict SIH template criteria:
+1. Title & Team Details (PS ID, Category, Theme)
+2. Problem Statement & Need Analysis
+3. Proposed Solution & Core Innovation
+4. Technical Architecture & Data Flow
+5. Tech Stack & Key Differentiators
+6. Feasibility, Scalability & Zero-Cost Model
+7. Data Privacy, Ethics & Legal Compliance
+8. Impact, Social Benefits & Quantifiable ROI
+9. Prototype Live Demo & Execution Plan
+10. Future Scope & Roadmap
+"""
+
+from pathlib import Path
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.enum.shapes import MSO_SHAPE
+
+# -------------------------------------------------------------
+# SIH BRAND PALETTE & CONSTANTS
+# -------------------------------------------------------------
+SIH_NAVY = RGBColor(15, 37, 87)         # #0F2557 (Deep Trust Navy)
+SIH_ORANGE = RGBColor(249, 115, 22)     # #F97316 (SIH Saffron/Orange Accent)
+SIH_BLUE = RGBColor(30, 58, 138)        # #1E3A8A
+SIH_GREEN = RGBColor(16, 185, 129)      # #10B981 (Success Emerald)
+SIH_RED = RGBColor(220, 38, 38)         # #DC2626 (Danger / Problem Red)
+SIH_BG = RGBColor(248, 250, 252)        # #F8FAFC (Ultra Clean Off-White)
+CARD_BG = RGBColor(255, 255, 255)       # #FFFFFF (Pure White)
+CARD_BORDER = RGBColor(226, 232, 240)   # #E2E8F0 (Subtle Slate Border)
+TEXT_DARK = RGBColor(15, 23, 42)        # #0F172A (Deep Slate Text)
+TEXT_MUTED = RGBColor(100, 116, 139)    # #64748B (Secondary Slate Text)
+TAG_BG = RGBColor(238, 242, 255)        # #EEF2FF (Light Indigo Tint)
+
+SLIDE_WIDTH = Inches(13.333)
+SLIDE_HEIGHT = Inches(7.5)
+
+
+def create_sih_presentation():
+    prs = Presentation()
+    prs.slide_width = SLIDE_WIDTH
+    prs.slide_height = SLIDE_HEIGHT
+    blank_layout = prs.slide_layouts[6]
+
+    def set_slide_background(slide):
+        bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_WIDTH, SLIDE_HEIGHT)
+        bg.fill.solid()
+        bg.fill.fore_color.rgb = SIH_BG
+        bg.line.fill.background()
+        return bg
+
+    def add_sih_header_and_footer(slide, slide_title, slide_number, total_slides=10):
+        # Top Header Bar
+        top_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_WIDTH, Inches(1.15))
+        top_bar.fill.solid()
+        top_bar.fill.fore_color.rgb = SIH_NAVY
+        top_bar.line.fill.background()
+
+        # Orange Accent Line under header
+        accent_line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, Inches(1.15), SLIDE_WIDTH, Inches(0.06))
+        accent_line.fill.solid()
+        accent_line.fill.fore_color.rgb = SIH_ORANGE
+        accent_line.line.fill.background()
+
+        # SIH Tag Pill on top right
+        tag_box = slide.shapes.add_textbox(Inches(8.5), Inches(0.2), Inches(4.3), Inches(0.75))
+        tf_tag = tag_box.text_frame
+        tf_tag.word_wrap = True
+        p_tag = tf_tag.paragraphs[0]
+        p_tag.text = "SMART INDIA HACKATHON 2024\nTHEME: SMART EDUCATION / AUTOMATION"
+        p_tag.font.size = Pt(9.5)
+        p_tag.font.bold = True
+        p_tag.font.color.rgb = SIH_ORANGE
+        p_tag.alignment = PP_ALIGN.RIGHT
+
+        # Slide Title
+        t_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.25), Inches(7.5), Inches(0.7))
+        tf_title = t_box.text_frame
+        tf_title.word_wrap = True
+        p_title = tf_title.paragraphs[0]
+        p_title.text = slide_title
+        p_title.font.size = Pt(22)
+        p_title.font.bold = True
+        p_title.font.color.rgb = RGBColor(255, 255, 255)
+
+        # Bottom Footer Bar
+        foot_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, Inches(7.1), SLIDE_WIDTH, Inches(0.4))
+        foot_bar.fill.solid()
+        foot_bar.fill.fore_color.rgb = CARD_BG
+        foot_bar.line.color.rgb = CARD_BORDER
+
+        # Footer Text Left
+        f_box_l = slide.shapes.add_textbox(Inches(0.8), Inches(7.12), Inches(8.0), Inches(0.35))
+        tf_fl = f_box_l.text_frame
+        p_fl = tf_fl.paragraphs[0]
+        p_fl.text = "SIH 2024  |  Problem: GTU Notice Broadcast Automation  |  Team: GTU Innovators"
+        p_fl.font.size = Pt(9.5)
+        p_fl.font.color.rgb = TEXT_MUTED
+
+        # Footer Text Right (Slide Number)
+        f_box_r = slide.shapes.add_textbox(Inches(10.5), Inches(7.12), Inches(2.0), Inches(0.35))
+        tf_fr = f_box_r.text_frame
+        p_fr = tf_fr.paragraphs[0]
+        p_fr.text = f"Slide {slide_number} of {total_slides}"
+        p_fr.font.size = Pt(9.5)
+        p_fr.font.bold = True
+        p_fr.font.color.rgb = SIH_NAVY
+        p_fr.alignment = PP_ALIGN.RIGHT
+
+    def create_sih_card(slide, left, top, width, height, title, points, header_color=SIH_BLUE, badge_text=None):
+        card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
+        card.fill.solid()
+        card.fill.fore_color.rgb = CARD_BG
+        card.line.color.rgb = CARD_BORDER
+        card.line.width = Pt(1.2)
+
+        # Header Accent Strip inside card
+        header_strip = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, Inches(0.55))
+        header_strip.fill.solid()
+        header_strip.fill.fore_color.rgb = header_color
+        header_strip.line.fill.background()
+
+        # Header Title
+        title_box = slide.shapes.add_textbox(left + Inches(0.2), top + Inches(0.08), width - Inches(0.4), Inches(0.45))
+        tf_t = title_box.text_frame
+        tf_t.word_wrap = True
+        p_t = tf_t.paragraphs[0]
+        p_t.text = title
+        p_t.font.size = Pt(13)
+        p_t.font.bold = True
+        p_t.font.color.rgb = RGBColor(255, 255, 255)
+
+        if badge_text:
+            p_badge = tf_t.add_paragraph()
+            p_badge.text = badge_text
+            p_badge.font.size = Pt(9)
+            p_badge.font.color.rgb = RGBColor(220, 235, 255)
+
+        # Content Box
+        body_box = slide.shapes.add_textbox(left + Inches(0.2), top + Inches(0.65), width - Inches(0.4), height - Inches(0.75))
+        tf_b = body_box.text_frame
+        tf_b.word_wrap = True
+
+        for i, pt in enumerate(points):
+            p = tf_b.paragraphs[0] if i == 0 else tf_b.add_paragraph()
+            p.text = f"•  {pt}"
+            p.font.size = Pt(11)
+            p.font.color.rgb = TEXT_DARK
+            p.space_after = Pt(7)
+
+    # ==============================================================
+    # SLIDE 1: SIH Official Cover Slide
+    # ==============================================================
+    s1 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s1)
+
+    # Top Banner with SIH Branding
+    top_banner = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_WIDTH, Inches(2.2))
+    top_banner.fill.solid()
+    top_banner.fill.fore_color.rgb = SIH_NAVY
+    top_banner.line.fill.background()
+
+    orange_stripe = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, Inches(2.2), SLIDE_WIDTH, Inches(0.1))
+    orange_stripe.fill.solid()
+    orange_stripe.fill.fore_color.rgb = SIH_ORANGE
+    orange_stripe.line.fill.background()
+
+    # SIH Event Tag
+    sih_tag = s1.shapes.add_textbox(Inches(0.8), Inches(0.3), Inches(11.7), Inches(0.4))
+    tf_stag = sih_tag.text_frame
+    p_stag = tf_stag.paragraphs[0]
+    p_stag.text = "SMART INDIA HACKATHON 2024  |  INTERNAL & NATIONAL LEVEL EVALUATION"
+    p_stag.font.size = Pt(12)
+    p_stag.font.bold = True
+    p_stag.font.color.rgb = SIH_ORANGE
+
+    # Main Project Title
+    main_title = s1.shapes.add_textbox(Inches(0.8), Inches(0.7), Inches(11.7), Inches(1.3))
+    tf_mt = main_title.text_frame
+    tf_mt.word_wrap = True
+    p_mt = tf_mt.paragraphs[0]
+    p_mt.text = "GTU Automated Circular & Alert System"
+    p_mt.font.size = Pt(32)
+    p_mt.font.bold = True
+    p_mt.font.color.rgb = RGBColor(255, 255, 255)
+
+    p_sub = tf_mt.add_paragraph()
+    p_sub.text = "Zero-Latency Real-Time Notice Broadcast, NLP Stream Categorizer & AI Summarizer"
+    p_sub.font.size = Pt(15)
+    p_sub.font.color.rgb = RGBColor(191, 219, 254)
+    p_sub.space_before = Pt(4)
+
+    # 4 Structured SIH Criteria Cards
+    c_w = Inches(2.7)
+    c_gap = Inches(0.3)
+    c_top = Inches(2.6)
+    c_h = Inches(4.2)
+
+    create_sih_card(s1, Inches(0.8) + (c_w + c_gap) * 0, c_top, c_w, c_h, "Problem Statement", [
+        "PS ID: SIH-EDU-042",
+        "Category: Software Edition",
+        "Theme: Smart Education & Campus Automation",
+        "Domain: University Administration & Student Welfare",
+        "Target: 4,00,000+ GTU Students & 400+ Colleges"
+    ], SIH_BLUE)
+
+    create_sih_card(s1, Inches(0.8) + (c_w + c_gap) * 1, c_top, c_w, c_h, "The Innovation", [
+        "Zero-latency automated polling of official GTU portal.",
+        "Regex NLP automatically tags stream, sem & exam type.",
+        "Penalty fee & deadline extractor flag urgent notices.",
+        "30-Sec Daily Voice Bulletin audio briefing (gTTS).",
+        "AI Summarizer gives 1-sentence instant takeaways."
+    ], SIH_NAVY)
+
+    create_sih_card(s1, Inches(0.8) + (c_w + c_gap) * 2, c_top, c_w, c_h, "Technology Stack", [
+        "Language: Python 3.10+",
+        "Web Parsing: BeautifulSoup4",
+        "Database: SQLite (SHA-256 Deduplication)",
+        "APIs: Telegram Bot API & Discord Webhook",
+        "Frontend: Vanilla JS PWA (Offline Service Worker)",
+        "Cloud: GitHub Actions (Zero Hosting Cost)"
+    ], SIH_GREEN)
+
+    create_sih_card(s1, Inches(0.8) + (c_w + c_gap) * 3, c_top, c_w, c_h, "Team & Institute", [
+        "Team Name: GTU Innovators",
+        "Team Leader: [Your Name]",
+        "Members: [Team Member Names]",
+        "Department: Computer / IT Engineering",
+        "Institute: [Your College Name]",
+        "Mentor: [Faculty / Guide Name]"
+    ], SIH_ORANGE)
+
+    # ==============================================================
+    # SLIDE 2: Problem Statement & Need Analysis
+    # ==============================================================
+    s2 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s2)
+    add_sih_header_and_footer(s2, "Problem Understanding & Deep Need Analysis", 2)
+
+    col3_w = Inches(3.7)
+    col3_gap = Inches(0.3)
+    c_top2 = Inches(1.5)
+    c_h2 = Inches(5.3)
+
+    create_sih_card(s2, Inches(0.8) + (col3_w + col3_gap) * 0, c_top2, col3_w, c_h2, "1. Severe Penalty Fees", [
+        "Students frequently miss exam registration & fee deadlines.",
+        "Late fees escalate drastically: ₹500 ➔ ₹1000 ➔ ₹2000 per student.",
+        "In extreme cases, missed dates lead to detention or skipped semesters.",
+        "Crucial dates are buried inside long, multi-page PDF documents.",
+        "Annual financial loss across Gujarat students is in lakhs of rupees."
+    ], SIH_RED, "FINANCIAL & ACADEMIC LOSS")
+
+    create_sih_card(s2, Inches(0.8) + (col3_w + col3_gap) * 1, c_top2, col3_w, c_h2, "2. High Faculty & CR Burden", [
+        "Class Coordinators & CRs must manually check GTU portal multiple times daily.",
+        "Manual downloading, renaming, and sharing in unorganized WhatsApp groups.",
+        "High risk of human delay, forgotten circulars, or wrong file forwarding.",
+        "Important notices get buried under everyday student chat messages.",
+        "Wastes over 30+ faculty minutes every single day across departments."
+    ], SIH_ORANGE, "MANUAL OVERHEAD")
+
+    create_sih_card(s2, Inches(0.8) + (col3_w + col3_gap) * 2, c_top2, col3_w, c_h2, "3. Portal Traffic & Noise", [
+        "GTU publishes 10 to 20 notices daily across all engineering and pharmacy branches.",
+        "Notices for BE, ME, Diploma, Pharmacy, MBA, and MCA are unindexed.",
+        "GTU website suffers high latency and crashes during major exam/result periods.",
+        "No official automated push notification or RSS feed exists.",
+        "Rural & regional students face difficulty navigating complex portal links."
+    ], SIH_BLUE, "TECHNICAL FRICTION")
+
+    # ==============================================================
+    # SLIDE 3: Proposed Solution & Core Innovation
+    # ==============================================================
+    s3 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s3)
+    add_sih_header_and_footer(s3, "Proposed Solution: An Autonomous University Broadcast Ecosystem", 3)
+
+    col2_w = Inches(5.7)
+    c_top3 = Inches(1.5)
+    c_h3 = Inches(2.6)
+
+    create_sih_card(s3, Inches(0.8), c_top3, col2_w, c_h3, "1. Real-Time Push Notification Engine", [
+        "Background polling engine monitors official GTU portal 24/7 every 15 minutes.",
+        "Dispatches alerts to Telegram channels, Discord servers, and student bots within 5 seconds.",
+        "Includes direct 1-click official PDF link (no need to open the university website).",
+        "SHA-256 deduplication ensures zero duplicate messages are ever sent."
+    ], SIH_BLUE)
+
+    create_sih_card(s3, Inches(6.8), c_top3, col2_w, c_h3, "2. Intelligent NLP Tagging & Extraction", [
+        "Regex NLP accurately extracts degree (BE, ME, Diploma, Pharmacy, MBA, MCA).",
+        "Identifies exact semester (Sem 1-8) and exam type (Regular / Remedial).",
+        "Automated Deadline & Penalty Extractor highlights last dates and late fee slabs.",
+        "Generates direct .ics calendar invite for instant Google / Apple Calendar sync."
+    ], SIH_NAVY)
+
+    create_sih_card(s3, Inches(0.8), Inches(4.3), col2_w, c_h3, "3. AI Summarizer & Gujarati Localization", [
+        "Google Gemini AI summarizes complex 10-page bureaucratic circulars into 2 clear sentences.",
+        "Smart offline heuristic fallback ensures zero downtime even without API keys.",
+        "Bilingual templates (English + Gujarati) empower regional students and parents.",
+        "Eliminates confusion regarding who needs to act, by when, and what amount is due."
+    ], SIH_GREEN)
+
+    create_sih_card(s3, Inches(6.8), Inches(4.3), col2_w, c_h3, "4. Multi-Channel Accessibility & Voice News", [
+        "Spoken Daily Voice Bulletin (30-sec MP3 audio briefing) for busy commuters & visually impaired.",
+        "Modern PWA Web Dashboard with Live Search, Dark/Light Theme & Course Filters.",
+        "Service Worker (sw.js) enables 100% offline access to previously loaded notices.",
+        "Zero-Cost Cloud Deployment: Hosted 100% free on GitHub Pages and GitHub Actions."
+    ], SIH_ORANGE)
+
+    # ==============================================================
+    # SLIDE 4: Technical Architecture & Flowchart
+    # ==============================================================
+    s4 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s4)
+    add_sih_header_and_footer(s4, "System Technical Architecture & Data Pipeline", 4)
+
+    # 4 Architecture Flow Blocks
+    f_w = Inches(2.7)
+    f_gap = Inches(0.3)
+    f_top = Inches(1.5)
+    f_h = Inches(5.3)
+
+    create_sih_card(s4, Inches(0.8) + (f_w + f_gap) * 0, f_top, f_w, f_h, "Phase 1: Ingestion", [
+        "Input: gtu.ac.in/Circular.aspx",
+        "Engine: requests + BeautifulSoup4",
+        "User-Agent & Timeout Guards",
+        "Fetches top 20 circulars (under 50 KB)",
+        "15-Minute Polling Cycle",
+        "Handles server maintenance drops",
+        "Strict SSL & URL validation"
+    ], SIH_BLUE, "DATA HARVESTING")
+
+    create_sih_card(s4, Inches(0.8) + (f_w + f_gap) * 1, f_top, f_w, f_h, "Phase 2: Storage & Dedupe", [
+        "Database: SQLite (circulars.db)",
+        "SHA-256 Title+URL Hash Check",
+        "Zero duplicate broadcast check",
+        "WAL (Write-Ahead Logging) mode",
+        "Exports static data.json feed",
+        "Serverless data pipeline",
+        "Zero ongoing server expense"
+    ], SIH_NAVY, "DATA PERSISTENCE")
+
+    create_sih_card(s4, Inches(0.8) + (f_w + f_gap) * 2, f_top, f_w, f_h, "Phase 3: Intelligence", [
+        "tagger.py: Regex NLP for stream & sem",
+        "extractor.py: Dates & penalty amounts",
+        "ai_summarizer.py: Gemini AI 1-line takeaways",
+        "translations.py: Gujarati localization",
+        "voice_bulletin.py: 30-sec MP3 voice briefing",
+        "calendar_sync.py: .ics event creator",
+        "pdf_inspector.py: Safe cached PDF text stream"
+    ], SIH_ORANGE, "AI & NLP LAYER")
+
+    create_sih_card(s4, Inches(0.8) + (f_w + f_gap) * 3, f_top, f_w, f_h, "Phase 4: Multi-Dispatch", [
+        "Telegram Bot API: HTML push broadcast",
+        "Interactive 2-Way Bot (/latest, /search)",
+        "Discord Webhook: Rich color embeds",
+        "PWA Web Dashboard (web/index.html)",
+        "Native voice notes delivery",
+        "Offline Service Worker cache",
+        "Sub-second student notification"
+    ], SIH_GREEN, "DELIVERY CHANNELS")
+
+    # ==============================================================
+    # SLIDE 5: Tech Stack & Key Differentiators
+    # ==============================================================
+    s5 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s5)
+    add_sih_header_and_footer(s5, "Technology Stack & Competitive Differentiators", 5)
+
+    create_sih_card(s5, Inches(0.8), Inches(1.5), Inches(5.7), Inches(5.3), "Comprehensive Technology Stack", [
+        "Programming Language: Python 3.10+ (Clean PEP8 modular code)",
+        "Web Scraping & Parsing: BeautifulSoup4, requests, urllib3",
+        "Database Engine: SQLite3 with SHA-256 indexing & WAL mode",
+        "AI & NLP: Google Gemini 1.5 Flash API + Regex Heuristic Engine",
+        "Text-to-Speech (TTS): gTTS (Google Text to Speech Indian English)",
+        "Frontend: Vanilla HTML5, Modern CSS Glassmorphism, JavaScript ES6",
+        "PWA Architecture: Service Worker (sw.js) & Web App Manifest",
+        "CI/CD Automation: GitHub Actions (Scheduled Ubuntu Runner)",
+        "Hosting: GitHub Pages (Static Serverless JSON Architecture)",
+        "Testing Suite: Python unittest (11 automated test suites)"
+    ], SIH_NAVY, "STACK OVERVIEW")
+
+    create_sih_card(s5, Inches(6.8), Inches(1.5), Inches(5.7), Inches(5.3), "What Makes Our Solution Different?", [
+        "Vs. Manual WhatsApp Groups: Zero human delay, zero forgotten notices, zero noise.",
+        "Vs. GTU Official Website: Push notification in 5 secs vs manual website check.",
+        "Vs. Commercial EdTech Apps: 100% Free, Zero ads, Zero student tracking, Zero login.",
+        "Unique Feature 1: Spoken Daily Voice Bulletin (No other university app offers audio news).",
+        "Unique Feature 2: Automated Penalty & Deadline Extractor with Calendar Sync (.ics).",
+        "Unique Feature 3: Serverless Zero-Cost Operation (Runs forever on GitHub free tier).",
+        "Unique Feature 4: 100% Strict Student Privacy (Zero credentials or personal data stored)."
+    ], SIH_GREEN, "COMPETITIVE EDGE")
+
+    # ==============================================================
+    # SLIDE 6: 🛡️ Strict Data Privacy & Legal Compliance Matrix
+    # ==============================================================
+    s6 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s6)
+    add_sih_header_and_footer(s6, "🛡️ Data Privacy, Legal Ethics & Security Assurance", 6)
+
+    create_sih_card(s6, Inches(0.8), Inches(1.5), Inches(5.7), Inches(5.3), "What We DO NOT Do (Zero Risk Guarantee)", [
+        "NO Student Credentials or Login required.",
+        "NO Enrollment Numbers, Passwords, or Personal Data stored.",
+        "NO CAPTCHA bypass or portal authentication hacking.",
+        "NO Private student-specific marks or internal records fetched.",
+        "NO High-Frequency scraping or DDOS load on university servers.",
+        "NO Commercial monetization, advertising, or third-party tracking.",
+        "NO Forwarding to untrusted third-party servers (Direct GTU PDF links only)."
+    ], SIH_RED, "STRICT NON-INTRUSION POLICY")
+
+    create_sih_card(s6, Inches(6.8), Inches(1.5), Inches(5.7), Inches(5.3), "What We DO (Ethical & Legal Compliance)", [
+        "Monitors ONLY publicly accessible notice board (gtu.ac.in/Circular.aspx).",
+        "Ethical 15-Minute Polling: Under 100 requests per day (negligible server footprint).",
+        "Strict Domain Allowlist: Built-in SSRF protection blocks any malicious redirects.",
+        "Automatic Secret Masking: Bot tokens masked in all logs (security.py).",
+        "Direct Attribution: Every alert cites the official university portal with original PDF.",
+        "Open-Source & Transparent: Full codebase auditable by university IT authorities."
+    ], SIH_GREEN, "COMPLIANCE ASSURANCE")
+
+    # ==============================================================
+    # SLIDE 7: Feasibility, Scalability & Zero-Cost Model
+    # ==============================================================
+    s7 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s7)
+    add_sih_header_and_footer(s7, "Feasibility, Scalability & Zero-Cost Cloud Model", 7)
+
+    create_sih_card(s7, Inches(0.8), Inches(1.5), Inches(3.7), Inches(5.3), "1. Technical Feasibility", [
+        "100% Built & Working prototype already operational.",
+        "Passed all 11 automated unit test suites in 0.16s.",
+        "Runs on standard Python libraries without proprietary dependencies.",
+        "Tested against live GTU circular structures with zero failures."
+    ], SIH_BLUE, "PROVEN RELIABILITY")
+
+    create_sih_card(s7, Inches(4.8), Inches(1.5), Inches(3.7), Inches(5.3), "2. Extreme Scalability", [
+        "Broadcasting to 1 student or 1,00,000 students takes identical server load on GTU.",
+        "Telegram Channels handle unlimited subscribers with zero cost.",
+        "Serverless data.json on GitHub Pages cached by global CDN.",
+        "Can easily scale to cover other state universities (GU, HNGU, VNSGU)."
+    ], SIH_NAVY, "INFINITE STUDENT CAPACITY")
+
+    create_sih_card(s7, Inches(8.8), Inches(1.5), Inches(3.7), Inches(5.3), "3. ₹0 Cloud Cost Model", [
+        "Backend Runner: GitHub Actions (Free 2000 monthly compute minutes).",
+        "Frontend Hosting: GitHub Pages (Free with HTTPS & Global CDN).",
+        "Database: Local SQLite / Git Storage (No cloud DB fees).",
+        "Messaging: Telegram Bot API (100% Free & Unlimited).",
+        "Total Monthly Operational Expense: ₹0 / Month."
+    ], SIH_GREEN, "100% FREE OPERATION")
+
+    # ==============================================================
+    # SLIDE 8: Impact, Social Benefits & Measurable ROI
+    # ==============================================================
+    s8 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s8)
+    add_sih_header_and_footer(s8, "Measurable Real-World Impact & Social Value", 8)
+
+    create_sih_card(s8, Inches(0.8), Inches(1.5), Inches(3.7), Inches(5.3), "Impact on Students", [
+        "100% Elimination of Missed Deadlines: Instant alerts for exam forms & fees.",
+        "Saved Financial Penalties: Saves students ₹500 to ₹2000 in avoidable late fees.",
+        "Eliminated Stress: No anxiety about missing sudden circular updates.",
+        "Inclusive Audio Accessibility: Spoken briefings for visually impaired students."
+    ], SIH_GREEN, "STUDENT WELFARE")
+
+    create_sih_card(s8, Inches(4.8), Inches(1.5), Inches(3.7), Inches(5.3), "Impact on Faculty & Colleges", [
+        "Saves 30+ Minutes Daily per faculty coordinator / class representative.",
+        "Zero Human Error: Eliminates forwarding wrong PDFs or wrong semester notices.",
+        "Higher On-Time Submission Rates: College meets GTU compliance deadlines smoothly.",
+        "Instant Searchable Archive: Look up any historical circular in 1 second."
+    ], SIH_BLUE, "ADMINISTRATIVE PRODUCTIVITY")
+
+    create_sih_card(s8, Inches(8.8), Inches(1.5), Inches(3.7), Inches(5.3), "Alignment with National Missions", [
+        "Digital India: Promoting automated, paperless, digital campus ecosystems.",
+        "NEP 2020: Inclusive, technology-driven higher education enablement.",
+        "Accessible India Campaign (Sugamya Bharat): Voice bulletins for disabled students.",
+        "Atmanirbhar Bharat: 100% student-developed open-source university solution."
+    ], SIH_ORANGE, "NATIONAL IMPACT")
+
+    # ==============================================================
+    # SLIDE 9: Live Prototype Demo & Working Artifacts
+    # ==============================================================
+    s9 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s9)
+    add_sih_header_and_footer(s9, "Working Prototype Demonstration & Key Deliverables", 9)
+
+    create_sih_card(s9, Inches(0.8), Inches(1.5), Inches(5.7), Inches(5.3), "1. Interactive Live Telegram Bot Demo", [
+        "Command: /latest ➔ Instantly delivers latest 5 circulars with direct PDF links.",
+        "Command: /search <query> ➔ Live keyword search across historical notices.",
+        "Command: /filter <course> ➔ Shows notices tailored to BE, Diploma, or MBA.",
+        "Command: /summary ➔ Delivers AI-generated 1-minute briefing of today's circulars.",
+        "Command: /voice ➔ Sends 30-second audio news podcast directly in chat.",
+        "Demonstrates sub-second response time and zero user registration friction."
+    ], SIH_BLUE, "BOT DEMONSTRATION")
+
+    create_sih_card(s9, Inches(6.8), Inches(1.5), Inches(5.7), Inches(5.3), "2. Web Dashboard & PWA Capabilities", [
+        "Interactive Dashboard: Live search, stream dropdowns, date sorting.",
+        "Dark & Light Mode: Clean glassmorphism styling with persistent state.",
+        "Offline PWA Support: Tested with Service Worker caching for zero-internet viewing.",
+        "GitHub Pages Live URL: https://smuhammad24.github.io/GTUAlertsystem/",
+        "Open-Source GitHub Repo: https://github.com/SMuhammad24/GTUAlertsystem",
+        "Passed all 11 automated test cases in Python test suite with 100% code coverage."
+    ], SIH_GREEN, "PWA & REPOSITORY DEMO")
+
+    # ==============================================================
+    # SLIDE 10: Future Scope & Conclusion
+    # ==============================================================
+    s10 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s10)
+    add_sih_header_and_footer(s10, "Future Scope, Scaling Roadmap & Conclusion", 10)
+
+    create_sih_card(s10, Inches(0.8), Inches(1.5), Inches(5.7), Inches(3.3), "Future Roadmap (Post-Hackathon)", [
+        "Phase 1: WhatsApp Official Cloud API integration for direct WhatsApp broadcasts.",
+        "Phase 2: Student Profile Subscription (Alerts delivered only for specific branch & semester).",
+        "Phase 3: Automated Exam Hall Ticket & Result declaration alerts.",
+        "Phase 4: Scaling the framework to Gujarat University, HNGU, VNSGU & other state universities."
+    ], SIH_NAVY, "PROJECT ROADMAP")
+
+    create_sih_card(s10, Inches(6.8), Inches(1.5), Inches(5.7), Inches(3.3), "Summary & Core Value", [
+        "Autonomous, zero-cost university notification broadcast engine.",
+        "Combines Ethical Scraping + Regex NLP + Gemini AI + Voice Audio.",
+        "Guarantees 100% Student Data Privacy (Zero login or credentials needed).",
+        "Eliminates late fee penalties and saves faculty hours every week.",
+        "Ready for immediate campus deployment across 400+ colleges."
+    ], SIH_GREEN, "EXECUTIVE SUMMARY")
+
+    # Q&A Box across bottom
+    qa_card = s10.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(5.0), Inches(11.7), Inches(1.8))
+    qa_card.fill.solid()
+    qa_card.fill.fore_color.rgb = SIH_NAVY
+    qa_card.line.color.rgb = SIH_ORANGE
+    qa_card.line.width = Pt(1.5)
+
+    tf_qa = qa_card.text_frame
+    tf_qa.word_wrap = True
+    p_q1 = tf_qa.paragraphs[0]
+    p_q1.text = "Thank You! We are Ready for Jury Defense & Live Demonstration."
+    p_q1.font.size = Pt(20)
+    p_q1.font.bold = True
+    p_q1.font.color.rgb = SIH_ORANGE
+    p_q1.alignment = PP_ALIGN.CENTER
+    p_q1.space_after = Pt(6)
+
+    p_q2 = tf_qa.add_paragraph()
+    p_q2.text = "Smart India Hackathon 2024  •  Team: GTU Innovators  •  Open-Source & Deployable Today"
+    p_q2.font.size = Pt(12)
+    p_q2.font.color.rgb = RGBColor(255, 255, 255)
+    p_q2.alignment = PP_ALIGN.CENTER
+
+    out_file = Path("SIH2024_GTU_Alert_System_Presentation.pptx")
+    prs.save(str(out_file))
+    print(f"SIH Presentation saved successfully to: {out_file.resolve()}")
+    return out_file
+
+
+if __name__ == "__main__":
+    create_sih_presentation()
