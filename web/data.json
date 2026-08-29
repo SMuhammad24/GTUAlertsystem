@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 67,
-    "today": 15,
+    "total": 68,
+    "today": 16,
     "categories": {
       "Result": 51,
       "Exam & Timetable": 11,
       "General Circular": 3,
-      "Academics & Syllabus": 1,
-      "Admission & Enrollment": 1
+      "Admission & Enrollment": 2,
+      "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 07:38:07"
+    "last_updated": "2026-08-29 08:08:03"
   },
   "circulars": [
+    {
+      "id": "bc7e1df74e78c7b2f2446aa022457d893f25ef882b50ac124936ad244e061ac8",
+      "title": "Reopening of Registration/Exemption of MOOC(s) through Student Portal for the Students who have Completed MOOC(s) offered by GTU in January -2026 and July-2026",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular-Extention Date of MOOCs_641897.pdf",
+      "category": "Admission & Enrollment",
+      "is_important": 0,
+      "created_at": "2026-08-29 08:08:02",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Notice concerning admission, student enrollment, or registration procedure.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "2bd0a89c5f6b1e91862837030a266e1c0564c4c3f963b241d1499fbdfb7267ee",
       "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-1 (Remedial) of Summer-2026 Examination",
