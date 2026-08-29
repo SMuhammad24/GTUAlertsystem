@@ -1,18 +1,37 @@
 {
   "stats": {
-    "total": 70,
-    "today": 18,
+    "total": 71,
+    "today": 19,
     "categories": {
-      "Result": 53,
+      "Result": 54,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 09:08:08"
+    "last_updated": "2026-08-29 09:23:18"
   },
   "circulars": [
+    {
+      "id": "f76bd3d3bef66ac9736c50b0ce604c0e5920bed56360fda149684480b0564b20",
+      "title": "Notification for Result Declaration of NCC Diploma in Engineering Sem-2 (Regular) of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260829144005_143833.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:23:16",
+      "tags": "#GTU, #Diploma, #Sem2, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Sem 2 (Regular/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "0ac8c798e17c30d387d5b0ed4defa00feb97abf9ca17c5a8cbcfa678fa207a52",
       "title": "Notification for Result Declaration of NCC Diploma in Engineering Sem-1 (Remedial) of Summer-2026 Examination",
