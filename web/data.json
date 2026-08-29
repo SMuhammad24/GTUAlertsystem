@@ -1,18 +1,52 @@
 {
   "stats": {
-    "total": 64,
-    "today": 12,
+    "total": 66,
+    "today": 14,
     "categories": {
-      "Result": 48,
+      "Result": 50,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Academics & Syllabus": 1,
       "Admission & Enrollment": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 06:38:12"
+    "last_updated": "2026-08-29 07:07:56"
   },
   "circulars": [
+    {
+      "id": "c252b8c930e3c1bcc9e14fa855eebbd7c3a9ddd5825946db29ac4259f8a6c000",
+      "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-2 (Regular) of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MA-2 (Regular)_290017.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 07:07:54",
+      "tags": "#GTU, #Sem2, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 2 (Regular/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "c91a1be9b7988b9f69984bd9d906d27a874ae485dc8e29eae24994c10601d571",
+      "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-2 (Remedial) of Summer-2026 Examination.",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MA-2 (Remedial)_666513.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 07:07:52",
+      "tags": "#GTU, #Sem2, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 2 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "59254112b3d79274307199266ebdb32d20766dcea487a02bfb2ebdef1f2d47c2",
       "title": "Notification for Result Declaration of NCC Diploma in Engineering Sem-1 (Remedial) of Summer-2026 Examination",
