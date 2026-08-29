@@ -1,16 +1,16 @@
 {
   "stats": {
-    "total": 53,
-    "today": 1,
+    "total": 62,
+    "today": 10,
     "categories": {
-      "Result": 37,
+      "Result": 46,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Academics & Syllabus": 1,
       "Admission & Enrollment": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 05:53:06"
+    "last_updated": "2026-08-29 06:09:26"
   },
   "circulars": [
     {
@@ -27,6 +27,167 @@
         "Diploma"
       ],
       "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "95923fa73373b33c6cdbaced883aa63edfd091ae53702312f7252a152948d672",
+      "title": "Notification for result declaration of Diploma in Pharmacy Year-1 (Regular) Recheck-Reassessment of Summer- 2026",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Diploma in Pharmacy Year-1 (Regular) Recheck-Reassessment of Summer-2026_242881.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:25",
+      "tags": "#GTU, #Diploma, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Regular/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "f76f40cea979997f0fdb9861388b69c0175aea4288a7c31dee7ff177171c4bce",
+      "title": "Notification for result declaration of Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer- 2026",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer-2026_168479.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:22",
+      "tags": "#GTU, #Diploma, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "beb6eb98fb5cfdec32a5eed0d0a414885975c454311c5e8560654c926390e21a",
+      "title": "Notification for Result Declaration of Master of Science (Integrated) Information Technology Sem- 3 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Cs sem 3 rem S 26_714593.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:21",
+      "tags": "#GTU, #Sem3, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 3 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "2db85511c5735c15101ebcfa132d6dfb0906b206dd6806324421ab96748c5ebf",
+      "title": "Notification for Result Declaration of Master of Science (Integrated) Information Technology Sem- 4 (Regular) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/CS sem 4 reg-s 26_228185.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:19",
+      "tags": "#GTU, #Sem4, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 4 (Regular/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "e0cb9ab4dd8aec18b25fe7220a51527c6c51e0d8fa230998809dd377c8092e8c",
+      "title": "Notification for Result Declaration of Master of Science (Integrated) Information Technology Sem- 4 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Cs sem 4 rem_S26_569893.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:17",
+      "tags": "#GTU, #Sem4, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 4 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "b07f1531f7bde47337791fe145524c8573e568916e42b35ecd9e0e201690f369",
+      "title": "Notification for Result Declaration of Master of Computer Applications (Integrated) Sem-1 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IC SEM Sem 1 Remedial_278632.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:15",
+      "tags": "#GTU, #MCA, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "a105f42f4be05f69959770559aa9022dc3fb08cd42740dc971b1106a70a5cbe7",
+      "title": "Notification for Result Declaration of Master of Computer Applications (Integrated) Sem-2 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IC SEM Sem 2 Remedial_840226.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:12",
+      "tags": "#GTU, #MCA, #Sem2, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 2 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "94df7abcfba0c0b0625a48dd3592809332f1b587c9e2f7fe1db56d42f522197a",
+      "title": "Notification for Result Declaration of Master of Computer Applications (Integrated) Sem-2 (Regular) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IC SEM 2 Regular_201503.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:10",
+      "tags": "#GTU, #MCA, #Sem2, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 2 (Regular/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "7e68056f1acbfb4c69fbefdae66e16988e6ff913f5a4d1f1b073a47987c3a277",
+      "title": "Notification for Result Declaration of Master of Computer Applications (Integrated) Sem-3 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "27-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IC SEM 3 Remedial_371350.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 06:09:08",
+      "tags": "#GTU, #MCA, #Sem3, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 3 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        3
+      ],
       "deadlines": [],
       "penalties": []
     },
