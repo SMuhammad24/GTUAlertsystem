@@ -1,18 +1,35 @@
 {
   "stats": {
-    "total": 52,
-    "today": 2,
+    "total": 53,
+    "today": 1,
     "categories": {
-      "Result": 36,
+      "Result": 37,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Academics & Syllabus": 1,
       "Admission & Enrollment": 1
     },
     "status": "online",
-    "last_updated": "2026-08-28 16:23:35"
+    "last_updated": "2026-08-29 05:53:06"
   },
   "circulars": [
+    {
+      "id": "be625a47cc3d93ee45793bdc9610e499c4c47626d298d18d71c983be4771de6d",
+      "title": "Notification for result declaration of Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer- 2026",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Diploma in Pharmacy Year-1 (Remedial) Recheck-Reassessment of Summer-2026_822422.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 05:53:05",
+      "tags": "#GTU, #Diploma, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f3e5f6ec10b871322db27593372a8d65f7c14d66deea8eeace384cfc1ce3d9d0",
       "title": "Notification for Result Declaration of Diploma in Engineering Sem-1 (Remedial) of Summer-2026 Examination.",
