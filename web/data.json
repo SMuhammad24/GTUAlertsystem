@@ -1,18 +1,35 @@
 {
   "stats": {
-    "total": 66,
-    "today": 14,
+    "total": 67,
+    "today": 15,
     "categories": {
-      "Result": 50,
+      "Result": 51,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Academics & Syllabus": 1,
       "Admission & Enrollment": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 07:07:56"
+    "last_updated": "2026-08-29 07:38:07"
   },
   "circulars": [
+    {
+      "id": "2bd0a89c5f6b1e91862837030a266e1c0564c4c3f963b241d1499fbdfb7267ee",
+      "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-1 (Remedial) of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MA-1 (Remedial)_163110.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 07:38:06",
+      "tags": "#GTU, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "c252b8c930e3c1bcc9e14fa855eebbd7c3a9ddd5825946db29ac4259f8a6c000",
       "title": "Notification for Result Declaration of Master of Business Administration Integrated Sem-2 (Regular) of Summer-2026 Examination",
