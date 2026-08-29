@@ -1,18 +1,48 @@
 {
   "stats": {
-    "total": 74,
-    "today": 22,
+    "total": 76,
+    "today": 24,
     "categories": {
-      "Result": 57,
+      "Result": 59,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 09:52:59"
+    "last_updated": "2026-08-29 12:23:32"
   },
   "circulars": [
+    {
+      "id": "90a6ba86a09eac2cb9ac3bcce7c250d1b3f8ea3888a0f79d8b378f49ff42aa63",
+      "title": "Notification for Result Declaration of Bachelor of Business Administration Sem-02 (Regular) Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BB-2 (Regular)_423702.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 12:23:31",
+      "tags": "#GTU, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Regular/Summer. Check online result portal.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "22362eedc67ff0030ccd3d064d642bacf386852933df12721cd48f67efabf81e",
+      "title": "Notification for Result Declaration of Bachelor of Business Administration Sem-02 (Remedial) Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BB-2 (Remedial)_819206.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 12:23:29",
+      "tags": "#GTU, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Remedial/Summer. Check online result portal.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "6d272094524a568446e9cabfe43d5cdd7e688260f90860d465a1d67b701f179f",
       "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-2 (Remedial) Summer 2026 Examination",
