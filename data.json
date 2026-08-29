@@ -1,18 +1,37 @@
 {
   "stats": {
-    "total": 71,
-    "today": 19,
+    "total": 72,
+    "today": 20,
     "categories": {
-      "Result": 54,
+      "Result": 55,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 09:23:18"
+    "last_updated": "2026-08-29 09:37:48"
   },
   "circulars": [
+    {
+      "id": "6447b0dfb565f5feea354c919f1a76c71b3dbcac906d904b68d4eecd02a7d53d",
+      "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-1 (Remedial) Summer 2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260829_0003_303104.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:37:46",
+      "tags": "#GTU, #BPharm, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BPharm (Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f76bd3d3bef66ac9736c50b0ce604c0e5920bed56360fda149684480b0564b20",
       "title": "Notification for Result Declaration of NCC Diploma in Engineering Sem-2 (Regular) of Summer-2026 Examination",
