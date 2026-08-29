@@ -1,18 +1,56 @@
 {
   "stats": {
-    "total": 72,
-    "today": 20,
+    "total": 74,
+    "today": 22,
     "categories": {
-      "Result": 55,
+      "Result": 57,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-29 09:37:48"
+    "last_updated": "2026-08-29 09:52:59"
   },
   "circulars": [
+    {
+      "id": "6d272094524a568446e9cabfe43d5cdd7e688260f90860d465a1d67b701f179f",
+      "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-2 (Remedial) Summer 2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260829_0002_754361.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:52:57",
+      "tags": "#GTU, #BPharm, #Sem2, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BPharm (Sem 2 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "8add038fe0a83edd7e081e382575d915cca50ec291b857d440fd548d02ac5aa1",
+      "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-2 (Regular) Summer 2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260829_0001_472983.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-29 09:52:55",
+      "tags": "#GTU, #BPharm, #Sem2, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BPharm (Sem 2 (Regular/Summer). Check online result portal.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "6447b0dfb565f5feea354c919f1a76c71b3dbcac906d904b68d4eecd02a7d53d",
       "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-1 (Remedial) Summer 2026 Examination",
