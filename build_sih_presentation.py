@@ -560,7 +560,7 @@ def create_presentation():
     p_q2.font.color.rgb = RGBColor(255, 255, 255)
     p_q2.alignment = PP_ALIGN.CENTER
 
-    out_file = Path("SIH2024_GTU_Alert_System_Presentation.pptx")
+    out_file = Path("PPT_GTU_Alert_System_Presentation.pptx")
     prs.save(str(out_file))
     print(f"Presentation saved successfully to: {out_file.resolve()}")
     return out_file
