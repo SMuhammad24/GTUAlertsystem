@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 import urllib.parse
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
@@ -111,6 +112,71 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
         # 3. API: Health Check
         elif path == '/api/health':
             self._send_json({'status': 'healthy', 'uptime': 'active', 'timestamp': str(Path(Config.DB_PATH).exists())})
+            return
+
+        # 3.5 API: AI Q&A Assistant Endpoint
+        elif path == '/api/ai/ask':
+            query = query_params.get('q', [''])[0].strip()
+            if not query:
+                self._send_json({'answer': 'Please provide a question query parameter ?q=...', 'circular': None})
+                return
+
+            db = Database()
+            circulars = db.get_recent_circulars(limit=75)
+            q_lower = query.lower()
+            tokens = [t for t in re.sub(r'[^a-zA-Z0-9\s]', ' ', q_lower).split() if len(t) > 1]
+
+            best_match = None
+            best_score = -1
+
+            for c in circulars:
+                score = 0
+                title_lower = c['title'].lower()
+                for tok in tokens:
+                    if tok in title_lower:
+                        score += 10
+                if 'me' in q_lower and ('me ' in title_lower or 'me(' in title_lower):
+                    score += 25
+                if 'diploma' in q_lower and 'diploma' in title_lower:
+                    score += 25
+                if 'pharmacy' in q_lower and 'pharm' in title_lower:
+                    score += 25
+                if 'dissertation' in q_lower and 'dissertation' in title_lower:
+                    score += 30
+                if 'result' in q_lower and ('result' in title_lower or c.get('category') == 'Result'):
+                    score += 15
+                if score > best_score:
+                    best_score = score
+                    best_match = c
+
+            if best_match and best_score >= 8:
+                tags = CircularTagger.extract_tags(best_match['title'])
+                deadlines = DeadlineExtractor.extract_info(best_match['title'])
+                
+                from ai_summarizer import CircularSummarizer
+                summary = CircularSummarizer.get_ai_summary(
+                    best_match['title'],
+                    best_match.get('category', 'General'),
+                    tags,
+                    deadlines
+                )
+                
+                dates = deadlines.get('dates', [])
+                if dates:
+                    ans = f"Based on official GTU circular <strong>\"{best_match['title']}\"</strong>, key dates/deadlines are: <span class=\"ai-highlight-pill\">📅 {', '.join(dates)}</span>. (Published on {best_match.get('date', 'Recent')}).<br><span style='color: #475569; font-size: 0.88rem; display: inline-block; margin-top: 4px;'>💡 <em>{summary}</em></span>"
+                else:
+                    ans = f"Found official notification <strong>\"{best_match['title']}\"</strong> released on <span class=\"ai-highlight-pill\">📢 {best_match.get('date', 'Recent')}</span>.<br><span style='color: #475569; font-size: 0.88rem; display: inline-block; margin-top: 4px;'>💡 <em>{summary}</em></span>"
+                
+                item = dict(best_match)
+                item['deadlines'] = dates
+                item['tags'] = ", ".join(tags['hashtags'])
+                item['ai_summary'] = summary
+                self._send_json({'answer': ans, 'circular': item})
+            else:
+                self._send_json({
+                    'answer': f"No direct circular found for '<em>{query}</em>'. Try asking about ME Dissertation, Pharmacy Rechecking, or Diploma Results.",
+                    'circular': None
+                })
             return
 
         # 4. RSS Feed: /feed.xml or /rss.xml

@@ -297,18 +297,18 @@ def create_presentation():
         "Generates .ics calendar invite for Google & Apple Calendar sync."
     ], COLOR_NAVY, font_size=12, space_after=6)
 
-    create_card(s3, Inches(0.65), c_top3_r2, col2_w, c_h3, "3. AI Summarizer & Gujarati Localization", [
-        "Google Gemini AI summarizes complex notices into 2 clear sentences.",
-        "Smart offline heuristic fallback ensures 100% zero downtime.",
+    create_card(s3, Inches(0.65), c_top3_r2, col2_w, c_h3, "3. 'Ask GTU AI' & Multilingual Intelligence", [
+        "Google Gemini AI + Semantic Q&A for natural language queries.",
+        "Ask GTU AI: Answers 'When is ME deadline?' or 'Pharmacy recheck'.",
         "Bilingual templates (English + Gujarati) for regional students & parents.",
-        "Instantly highlights who needs to act, deadline date, and fee amount."
+        "Instantly highlights action required, deadline date, and fee amount."
     ], COLOR_GREEN, font_size=12, space_after=6)
 
-    create_card(s3, Inches(0.65) + col2_w + col2_gap, c_top3_r2, col2_w, c_h3, "4. Multi-Channel Accessibility & Voice News", [
-        "Daily Voice Bulletin (30-sec MP3 audio briefing) for busy commuters.",
+    create_card(s3, Inches(0.65) + col2_w + col2_gap, c_top3_r2, col2_w, c_h3, "4. Multi-Channel Accessibility & Live Web Dashboard", [
+        "Ask GTU AI Assistant with one-click suggestion chips on Web.",
+        "Daily Voice Bulletin (30-sec MP3 audio briefing) for commuters.",
         "Modern PWA Web Dashboard with Live Search & Stream Filters.",
-        "Offline Service Worker cache allows viewing without internet.",
-        "Zero-Cost Cloud Deployment via GitHub Pages & GitHub Actions."
+        "Zero-Cost 24/7 Cloud Deployment via GitHub Pages & GitHub Actions."
     ], COLOR_ORANGE, font_size=12, space_after=6)
 
     # ==============================================================
@@ -346,19 +346,19 @@ def create_presentation():
     create_card(s4, Inches(0.65) + (f_w + f_gap) * 2, f_top, f_w, f_h, "Phase 3: Intelligence", [
         "tagger.py: Regex NLP for stream & sem",
         "extractor.py: Dates & penalty amounts",
+        "Ask GTU AI: Semantic search & Q&A engine",
         "ai_summarizer.py: Gemini AI 1-line takeaways",
         "translations.py: Gujarati localization",
         "voice_bulletin.py: 30-sec MP3 voice briefing",
-        "calendar_sync.py: .ics event creator",
-        "pdf_inspector.py: Safe cached text stream"
+        "calendar_sync.py: .ics event creator"
     ], COLOR_ORANGE, "AI & NLP LAYER", font_size=12, space_after=10)
 
     create_card(s4, Inches(0.65) + (f_w + f_gap) * 3, f_top, f_w, f_h, "Phase 4: Multi-Dispatch", [
         "Telegram Bot API: HTML push broadcast",
-        "Interactive 2-Way Bot (/latest, /search)",
+        "Interactive Bot (/ask, /latest, /search)",
+        "Web AI Assistant (Client Semantic Q&A)",
         "Discord Webhook: Rich color embeds",
         "PWA Web Dashboard (web/index.html)",
-        "Native voice notes delivery",
         "Offline Service Worker cache",
         "Sub-second student notification"
     ], COLOR_GREEN, "DELIVERY CHANNELS", font_size=12, space_after=10)
@@ -374,12 +374,12 @@ def create_presentation():
         "Programming Language: Python 3.10+ (Clean PEP8 modular code)",
         "Web Scraping & Parsing: BeautifulSoup4, requests, urllib3",
         "Database Engine: SQLite3 with SHA-256 indexing & WAL mode",
-        "AI & NLP: Google Gemini 1.5 Flash API + Regex Heuristic Engine",
+        "AI & NLP: Google Gemini 1.5 Flash + Client-Side Semantic Q&A",
         "Text-to-Speech (TTS): gTTS (Google Text to Speech Indian English)",
         "Frontend: Vanilla HTML5, Modern CSS Glassmorphism, JavaScript ES6",
         "PWA Architecture: Service Worker (sw.js) & Web App Manifest",
-        "CI/CD Automation: GitHub Actions (Scheduled Ubuntu Runner)",
-        "Hosting: GitHub Pages (Static Serverless JSON Architecture)",
+        "CI/CD Automation: GitHub Actions (Scheduled 15-Min Cloud Runner)",
+        "Hosting: GitHub Pages (24/7 Zero-Cost Serverless Cloud)",
         "Testing Suite: Python unittest (11 automated test suites passed)"
     ], COLOR_NAVY, "STACK OVERVIEW", font_size=12.5, space_after=8)
 
@@ -387,12 +387,13 @@ def create_presentation():
         "Vs. Manual WhatsApp Groups: Zero human delay, zero forgotten notices, zero noise.",
         "Vs. GTU Official Website: Push notification in 5 secs vs manual website check.",
         "Vs. Commercial EdTech Apps: 100% Free, Zero ads, Zero student tracking, Zero login.",
-        "Unique Feature 1: Spoken Daily Voice Bulletin (audio news for accessibility).",
-        "Unique Feature 2: Automated Penalty & Deadline Extractor with Calendar Sync (.ics).",
-        "Unique Feature 3: Serverless Zero-Cost Operation (Runs forever on GitHub free tier).",
-        "Unique Feature 4: 100% Strict Student Privacy (Zero credentials or personal data stored).",
-        "Unique Feature 5: Offline PWA works without active internet connectivity."
-    ], COLOR_GREEN, "COMPETITIVE EDGE", font_size=12.5, space_after=8)
+        "Unique Feature 1: 'Ask GTU AI' natural language Q&A (Web & Telegram).",
+        "Unique Feature 2: 24/7 Cloud Autonomous Operation (Zero PC dependency).",
+        "Unique Feature 3: Spoken Daily Voice Bulletin (audio news for accessibility).",
+        "Unique Feature 4: Automated Penalty & Deadline Extractor with Calendar Sync.",
+        "Unique Feature 5: 100% Strict Student Privacy (Zero credentials stored).",
+        "Unique Feature 6: Offline PWA works without active internet connectivity."
+    ], COLOR_GREEN, "COMPETITIVE EDGE", font_size=12.5, space_after=7)
 
     # ==============================================================
     # SLIDE 6: 🛡️ Strict Data Privacy & Legal Compliance Matrix
@@ -495,18 +496,18 @@ def create_presentation():
     add_header_and_footer(s9, "Working Prototype Demonstration & Key Deliverables", 9)
 
     create_card(s9, Inches(0.65), Inches(1.35), Inches(5.88), Inches(5.6), "1. Interactive Live Telegram Bot Demo", [
+        "Command: /ask <query> ➔ Ask GTU AI natural language Q&A engine.",
         "Command: /latest ➔ Instantly delivers latest 5 circulars with direct PDF links.",
         "Command: /search <query> ➔ Live keyword search across historical notices.",
-        "Command: /filter <course> ➔ Shows notices tailored to BE, Diploma, or MBA.",
-        "Command: /summary ➔ Delivers AI-generated 1-minute briefing of today's circulars.",
+        "Command: /subscribe <course> ➔ Tailored stream alerts (BE, Diploma, MBA).",
         "Command: /voice ➔ Sends 30-second audio news podcast directly in chat.",
-        "Demonstrates sub-second response time and zero user registration friction.",
+        "Sub-second response time and zero user registration friction.",
         "Group Broadcast: Successfully tested in active student broadcast channel."
     ], COLOR_BLUE, "BOT DEMONSTRATION", font_size=12.5, space_after=10)
 
     create_card(s9, Inches(0.65) + Inches(5.88) + Inches(0.24), Inches(1.35), Inches(5.88), Inches(5.6), "2. Web Dashboard & PWA Capabilities", [
+        "✨ Ask GTU AI Assistant: Interactive Q&A bar with instant citations & +Cal sync.",
         "Interactive Dashboard: Live search, stream dropdowns, date sorting.",
-        "Dark & Light Mode: Clean glassmorphism styling with persistent state.",
         "Offline PWA Support: Tested with Service Worker caching for zero-internet viewing.",
         "GitHub Pages Live URL: https://smuhammad24.github.io/GTUAlertsystem/",
         "Open-Source GitHub Repo: https://github.com/SMuhammad24/GTUAlertsystem",

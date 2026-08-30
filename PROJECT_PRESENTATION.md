@@ -156,33 +156,35 @@ Guided by   : [Prof. / Dr. Guide's Name]
 ### 🔹 SLIDE 7: Key Features
 
 #### Slide Content:
-- **⚡ Real-Time Push Alerts:** 15-minute sync interval for quick awareness.
-- **🏷️ Smart Category Detection:**
+- **🤖 "Ask GTU AI" Natural Language Assistant:** Students direct question pooch sakte hain (e.g. *"ME dissertation deadline kab hai?"*, *"Pharmacy rechecking updates"*) on Web & Telegram (`/ask`).
+- **⚡ Real-Time Push Alerts:** 15-minute scheduled cloud sync for instant awareness.
+- **🏷️ Smart Category & Stream Detection:**
   - 🚨 **Fee & Penalty Alerts** (Highlighted with warning indicators)
   - 📝 **Exam Timetables & Hall Tickets**
   - 📊 **Result Announcements**
-  - 🎓 **Admission & Enrollment Notices**
-  - 📚 **Academic & Syllabus Updates**
-- **📄 1-Click Direct Download:** Message ke andar direct GTU server ka download link attached hota hai.
-- **☁️ Cloud-Ready (GitHub Actions):** Computer band hone par bhi 24/7 background me cloud se execute hota hai.
+  - 🎓 **Stream Detection** (BE, ME, Diploma, Pharmacy, MBA)
+- **🎙️ 30-Second Spoken Voice Bulletin:** Daily audio news briefing for busy commuters.
+- **📄 1-Click Direct Download & +Calendar Sync:** Direct official PDF link + Google Calendar `.ics` event sync.
+- **☁️ 24/7 Cloud-Native (GitHub Actions & GitHub Pages):** Laptop band hone par bhi 24/7 cloud se execute hota hai with zero hosting cost.
 
 #### 🗣️ Speaker Notes:
-> *"System har circular ke keyword ko dekh kar use automatically highlight karta hai — jaise agar Fee ka circular hai toh warning icon ke sath aata hai taaki student ka dhyan turant jaaye aur penalty na lage."*
+> *"Sir/Ma'am, system me naya 'Ask GTU AI' assistant add kiya gaya hai jahan students normal English ya Hinglish me sawal pooch kar direct deadline aur official verified circular pa sakte hain. Iske alawa voice bulletins, live web dashboard, aur 24/7 zero-cost GitHub cloud execution bhi operational hai."*
 
 ---
 
 ### 🔹 SLIDE 8: Technology Stack
 
 #### Slide Content:
-- **Programming Language:** Python 3.10+
+- **Core Language:** Python 3.10+ (Clean modular PEP8 architecture)
 - **Web Scraping / HTTP:** `requests`, `beautifulsoup4`, `lxml`
-- **Database Engine:** `SQLite3` (Zero-configuration, lightweight relational database)
-- **Notification Interface:** `python-telegram-bot` / Telegram Bot API
-- **Configuration & Security:** `python-dotenv` (API keys stored securely in `.env`)
-- **Cloud Automation / CI-CD:** `GitHub Actions` (Free 24/7 Cloud Cron Scheduler)
+- **Database Engine:** `SQLite3` (Zero-config, fast SHA-256 deduplicated relational store)
+- **AI & NLP Engine:** Google Gemini 1.5 Flash API + Client-Side Semantic Q&A Retrieval
+- **Frontend & PWA:** Vanilla HTML5, Glassmorphism CSS, JavaScript ES6, Service Worker
+- **Notification Interfaces:** Telegram Bot API (`/ask`, `/latest`, `/search`), Discord Webhook
+- **Cloud Infrastructure:** GitHub Actions (24/7 Cron Runner) + GitHub Pages (24/7 Live Hosting)
 
 #### 🗣️ Speaker Notes:
-> *"Humne Python ko core language chuna hai because of its robust scraping and automation libraries. SQLite use kiya hai fast local querying ke liye, aur GitHub Actions cloud cron use kiya hai taaki hosting ka 1 rupee bhi kharch na ho."*
+> *"Humne modern, lightweight stack chuna hai: Python for scraping and backend logic, Gemini and client-side semantic search for the 'Ask GTU AI' assistant, aur GitHub Actions + Pages taaki poora system bina kisi server cost ke 24/7 cloud par live chale."*
 
 ---
 

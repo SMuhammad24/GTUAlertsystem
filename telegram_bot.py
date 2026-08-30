@@ -1,6 +1,14 @@
+import sys
 import time
 import requests
+from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Any
+
+# Ensure UTF-8 output on Windows terminal
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from config import Config
 from database import Database
 from notifier import TelegramNotifier
@@ -39,6 +47,7 @@ class InteractiveTelegramBot:
                 "🤖 <b>Welcome to GTU Circular Automation Bot!</b>\n\n"
                 "Aap yahan GTU ke official circulars, exam timetables, results aur fee deadlines dekh sakte hain.\n\n"
                 "📌 <b>Commands Menu:</b>\n"
+                "🔹 <code>/ask &lt;sawal&gt;</code> - 🤖 Ask GTU AI Assistant (Natural Language Q&amp;A)\n"
                 "🔹 <code>/latest [n]</code> - Pichle 5 ya N naye circulars\n"
                 "🔹 <code>/search &lt;query&gt;</code> - Instant search (e.g. <code>/search fee</code>)\n"
                 "🔹 <code>/exams</code> - Exam & Timetable updates\n"
@@ -104,6 +113,72 @@ class InteractiveTelegramBot:
                 f"<i>\"{sanitize_for_html(script, max_length=500)}\"</i>\n\n"
                 "💡 <i>Audio synthesis active.</i>"
             )
+
+        elif cmd == '/ask':
+            if not args:
+                return (
+                    "🤖 <b>Ask GTU AI Assistant</b>\n\n"
+                    "Aap mujhse GTU circulars ya deadlines ke baare mein natural language mein pooch sakte hain!\n"
+                    "<b>Usage:</b> <code>/ask &lt;aapka sawal&gt;</code>\n\n"
+                    "<b>Examples:</b>\n"
+                    "• <code>/ask when is the ME dissertation deadline?</code>\n"
+                    "• <code>/ask Pharmacy recheck result updates</code>\n"
+                    "• <code>/ask show exam fee penalty</code>"
+                )
+            query = " ".join(args).strip()
+            circulars = self.db.get_recent_circulars(limit=75)
+            q_lower = query.lower()
+            tokens = [t for t in q_lower.replace('?', '').replace('!', '').split() if len(t) > 1]
+
+            best_c = None
+            best_score = -1
+            for c in circulars:
+                score = 0
+                title_lower = c['title'].lower()
+                for tok in tokens:
+                    if tok in title_lower:
+                        score += 10
+                if 'me' in q_lower and ('me ' in title_lower or 'me(' in title_lower):
+                    score += 25
+                if 'diploma' in q_lower and 'diploma' in title_lower:
+                    score += 25
+                if 'pharmacy' in q_lower and 'pharm' in title_lower:
+                    score += 25
+                if 'dissertation' in q_lower and 'dissertation' in title_lower:
+                    score += 30
+                if 'result' in q_lower and ('result' in title_lower or c.get('category') == 'Result'):
+                    score += 15
+                if score > best_score:
+                    best_score = score
+                    best_c = c
+
+            if best_c and best_score >= 8:
+                tags = CircularTagger.extract_tags(best_c['title'])
+                deadlines = DeadlineExtractor.extract_info(best_c['title'])
+                from ai_summarizer import CircularSummarizer
+                summary = CircularSummarizer.get_ai_summary(
+                    best_c['title'],
+                    best_c.get('category', 'General'),
+                    tags,
+                    deadlines
+                )
+                dates = deadlines.get('dates', [])
+                dates_str = f"\n⏰ <b>Key Dates / Deadline:</b> <code>{', '.join(dates)}</code>" if dates else ""
+
+                return (
+                    f"🤖 <b>GTU AI Verified Answer:</b>\n\n"
+                    f"📄 <b>Official Notice:</b>\n<a href=\"{best_c['link']}\">{sanitize_for_html(best_c['title'])}</a>\n\n"
+                    f"📅 <b>Published:</b> {best_c.get('date', 'Recent')}"
+                    f"{dates_str}\n\n"
+                    f"💡 <b>AI Summary:</b>\n{sanitize_for_html(summary)}\n\n"
+                    f"🔗 <a href=\"{best_c['link']}\">Click here to open Official PDF</a>"
+                )
+            else:
+                return (
+                    f"🤖 <b>GTU AI Assistant:</b>\n\n"
+                    f"Mujhe aapke sawal (<i>\"{sanitize_for_html(query)}\"</i>) ke liye direct circular nahi mila.\n"
+                    f"Aap <code>/latest</code> se recent circulars dekh sakte hain ya keyword se <code>/search</code> kar sakte hain."
+                )
 
         elif cmd == '/latest':
             limit = 5

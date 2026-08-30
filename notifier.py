@@ -138,6 +138,12 @@ class TelegramNotifier:
                 response = requests.post(endpoint, json=payload, timeout=Config.REQUEST_TIMEOUT, verify=True)
                 if response.status_code == 200:
                     return True, "Message sent after retry"
+            elif res_data.get('parameters', {}).get('migrate_to_chat_id'):
+                new_chat_id = str(res_data['parameters']['migrate_to_chat_id'])
+                payload['chat_id'] = new_chat_id
+                response = requests.post(endpoint, json=payload, timeout=Config.REQUEST_TIMEOUT, verify=True)
+                if response.status_code == 200:
+                    return True, f"Message sent after migration to {new_chat_id}"
             
             raw_err = res_data.get('description', 'Unknown Telegram Error')
             redacted_err = raw_err.replace(self.bot_token, mask_secret(self.bot_token))

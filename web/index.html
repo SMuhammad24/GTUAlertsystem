@@ -184,6 +184,52 @@
             <div class="category-legend" id="category-legend"></div>
         </section>
 
+        <!-- ✨ Ask GTU AI Assistant Section -->
+        <section class="ai-assistant-section" id="ai-assistant-section">
+            <div class="ai-card">
+                <div class="ai-header">
+                    <div class="ai-title-wrap">
+                        <span class="ai-badge-pulse">✨ AI ASSISTANT</span>
+                        <h3 class="ai-title">Ask GTU AI <span class="ai-subtitle-badge">Smart Q&amp;A</span></h3>
+                    </div>
+                    <p class="ai-desc">Ask natural questions about exam dates, results, remedial forms, deadlines, or circulars.</p>
+                </div>
+
+                <div class="ai-input-wrapper">
+                    <div class="ai-input-box">
+                        <span class="ai-search-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </span>
+                        <input type="text" id="ai-query-input" placeholder="e.g. When is the ME dissertation last date? Or show Pharmacy recheck result" onkeydown="handleAiInputKey(event)">
+                        <button class="btn btn-ai-ask" id="btn-ai-ask" onclick="submitAiQuery()">
+                            <span>Ask AI</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Quick Suggestion Prompt Chips -->
+                    <div class="ai-chips-wrapper">
+                        <span class="ai-chips-label">💡 Try asking:</span>
+                        <button class="ai-chip" onclick="askPresetQuery('When is the ME dissertation deadline?')">🎓 ME Dissertation Deadline</button>
+                        <button class="ai-chip" onclick="askPresetQuery('Pharmacy rechecking results status')">💊 Pharmacy Recheck Results</button>
+                        <button class="ai-chip" onclick="askPresetQuery('Any exam fee or penalty notices?')">🚨 Exam Fee &amp; Penalty</button>
+                        <button class="ai-chip" onclick="askPresetQuery('What are today\'s latest notices?')">⚡ Latest Today</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic AI Response Container -->
+                <div class="ai-response-container" id="ai-response-container" style="display: none;">
+                    <div class="ai-response-card" id="ai-response-card"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Search and Filter Controls -->
         <section class="control-panel">
             <div class="search-box">

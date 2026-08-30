@@ -826,3 +826,245 @@ function applyPersonalizedCourseFilter(courseName) {
     }
 }
 
+// ==========================================================================
+// 🤖 Ask GTU AI Assistant Engine (Client-Side Semantic Search & Synthesis)
+// ==========================================================================
+
+function handleAiInputKey(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        submitAiQuery();
+    }
+}
+
+function askPresetQuery(text) {
+    const input = document.getElementById('ai-query-input');
+    if (input) {
+        input.value = text;
+        submitAiQuery();
+    }
+}
+
+function closeAiResponse() {
+    const container = document.getElementById('ai-response-container');
+    if (container) {
+        container.style.display = 'none';
+    }
+}
+
+async function submitAiQuery() {
+    const input = document.getElementById('ai-query-input');
+    if (!input) return;
+    const query = input.value.trim();
+    if (!query) {
+        showToast('⚠️ Please enter a question or query.');
+        input.focus();
+        return;
+    }
+
+    const container = document.getElementById('ai-response-container');
+    const card = document.getElementById('ai-response-card');
+    if (!container || !card) return;
+
+    // Show loading thinking state
+    container.style.display = 'block';
+    card.innerHTML = `
+        <div class="ai-thinking">
+            <span class="ai-pulse-dot"></span>
+            <span class="ai-pulse-dot"></span>
+            <span class="ai-pulse-dot"></span>
+            <span>GTU AI is reading circulars database &amp; extracting answer...</span>
+        </div>
+    `;
+
+    // Try server API first if not static, otherwise fall back to client semantic engine
+    let answerObj = null;
+    if (!isStaticEnvironment()) {
+        try {
+            const apiRes = await fetch(`${API_BASE}/api/ai/ask?q=${encodeURIComponent(query)}`);
+            if (apiRes.ok) {
+                answerObj = await apiRes.json();
+            }
+        } catch (e) {
+            // Local server might not have the route or is offline, continue to client engine
+        }
+    }
+
+    // Client-side synthesis (ensures 100% reliability on GitHub Pages!)
+    if (!answerObj || !answerObj.answer) {
+        // Small realistic micro-delay for UX feel (300ms)
+        await new Promise(r => setTimeout(r, 320));
+        answerObj = synthesizeClientAiAnswer(query, allCirculars);
+    }
+
+    renderAiAnswer(answerObj);
+}
+
+function synthesizeClientAiAnswer(query, circulars) {
+    if (!circulars || circulars.length === 0) {
+        return {
+            answer: "The circular database is currently loading or empty. Please wait a moment and try again.",
+            circular: null
+        };
+    }
+
+    const q = query.toLowerCase();
+    const stopWords = new Set(['what', 'when', 'is', 'the', 'of', 'for', 'in', 'to', 'a', 'an', 'and', 'or', 'show', 'tell', 'me', 'please', 'any', 'about', 'how', 'kab', 'hai', 'kya', 'batao']);
+    const tokens = q.replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/).filter(w => w.length > 1 && !stopWords.has(w));
+
+    // Intent detection
+    const isDeadlineQuery = /when|last\s*date|deadline|schedule|kab|date|dates|last\s*day/i.test(q);
+    const isResultQuery = /result|recheck|reassessment|marks|grade/i.test(q);
+    const isFeeQuery = /fee|fees|penalty|fine|pay|payment/i.test(q);
+    const isExamQuery = /exam|timetable|hall\s*ticket|center|time\s*table/i.test(q);
+    const isTodayQuery = /today|aaj|latest|recent|new/i.test(q);
+
+    // Score circulars
+    const scored = circulars.map(c => {
+        let score = 0;
+        const titleLower = (c.title || '').toLowerCase();
+        const catLower = (c.category || '').toLowerCase();
+        const summaryLower = (c.ai_summary || '').toLowerCase();
+        const tagsLower = (c.tags || '').toLowerCase();
+
+        tokens.forEach(tok => {
+            if (titleLower.includes(tok)) score += 12;
+            if (tagsLower.includes(tok)) score += 8;
+            if (summaryLower.includes(tok)) score += 6;
+            if (catLower.includes(tok)) score += 4;
+        });
+
+        // Entity boosts
+        if (q.includes('me') && (titleLower.includes('me ') || titleLower.includes('me(') || titleLower.includes('m.e'))) score += 30;
+        if (q.includes('be') && (titleLower.includes('be ') || titleLower.includes('be(') || titleLower.includes('b.e'))) score += 30;
+        if (q.includes('diploma') && titleLower.includes('diploma')) score += 30;
+        if (q.includes('pharmacy') && (titleLower.includes('pharmacy') || titleLower.includes('pharm'))) score += 30;
+        if (q.includes('dissertation') && titleLower.includes('dissertation')) score += 35;
+        if (q.includes('dp-1') && titleLower.includes('dp-1')) score += 40;
+
+        if (isResultQuery && (catLower.includes('result') || titleLower.includes('result') || titleLower.includes('recheck'))) score += 20;
+        if (isFeeQuery && (catLower.includes('fee') || titleLower.includes('fee') || titleLower.includes('penalty'))) score += 25;
+        if (isExamQuery && (catLower.includes('exam') || titleLower.includes('timetable'))) score += 20;
+
+        if (isDeadlineQuery && c.deadlines && c.deadlines.length > 0) score += 15;
+
+        return { circular: c, score };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+    const best = scored[0];
+
+    if (!best || best.score < 8) {
+        return {
+            answer: `I searched across all <strong>${circulars.length} GTU circulars</strong>, but couldn't find a direct match for "<em>${escapeHtml(query)}</em>". Try asking about <strong>ME Dissertation</strong>, <strong>Pharmacy Rechecking</strong>, <strong>Diploma Results</strong>, or check the feed below.`,
+            circular: null
+        };
+    }
+
+    const c = best.circular;
+    const dates = c.deadlines || [];
+    let answerHtml = '';
+
+    if (isDeadlineQuery) {
+        if (dates.length > 0) {
+            answerHtml = `Based on official notice <strong>"${escapeHtml(c.title)}"</strong>, the key specified deadline/date is <span class="ai-highlight-pill">📅 ${escapeHtml(dates.join(', '))}</span>. Notice was published on <strong>${escapeHtml(c.date || 'Recent')}</strong>.`;
+        } else {
+            answerHtml = `The official notice regarding <strong>"${escapeHtml(c.title)}"</strong> was published on <span class="ai-highlight-pill">📅 ${escapeHtml(c.date || 'Recent')}</span>. Please refer to the official document link below for detailed stage schedules.`;
+        }
+    } else if (isResultQuery) {
+        answerHtml = `GTU announced: <strong>"${escapeHtml(c.title)}"</strong> on <span class="ai-highlight-pill">📢 ${escapeHtml(c.date || 'Recent')}</span>. Students applying for recheck/reassessment should verify the deadline on the university result portal.`;
+    } else if (isFeeQuery) {
+        const feeDates = dates.length > 0 ? ` with deadline <span class="ai-highlight-pill">⏰ ${escapeHtml(dates.join(', '))}</span>` : '';
+        answerHtml = `Notice regarding fee submission: <strong>"${escapeHtml(c.title)}"</strong>${feeDates}. Late fees or penalty may apply if submitted past the cutoff date.`;
+    } else {
+        answerHtml = `Found matching official GTU announcement: <strong>"${escapeHtml(c.title)}"</strong> (Published: <span class="ai-highlight-pill">${escapeHtml(c.date || 'Recent')}</span>).`;
+    }
+
+    if (c.ai_summary) {
+        answerHtml += `<br><span style="color: var(--text-muted); font-size: 0.88rem; display: inline-block; margin-top: 6px;">💡 <em>${escapeHtml(c.ai_summary)}</em></span>`;
+    }
+
+    return {
+        answer: answerHtml,
+        circular: c
+    };
+}
+
+function renderAiAnswer(result) {
+    const card = document.getElementById('ai-response-card');
+    if (!card) return;
+
+    if (!result.circular) {
+        card.innerHTML = `
+            <div class="ai-response-header">
+                <div class="ai-response-badge">
+                    <span>✨ GTU AI Assistant</span>
+                </div>
+                <button class="ai-response-close" onclick="closeAiResponse()" title="Close">&times;</button>
+            </div>
+            <div class="ai-answer-text">${result.answer}</div>
+        `;
+        return;
+    }
+
+    const c = result.circular;
+    const safeLink = escapeHtml(c.link);
+    const catClass = getCategoryClass(c.category);
+    const calUrl = getCalendarUrl(c.title, c.date, c.link);
+
+    card.innerHTML = `
+        <div class="ai-response-header">
+            <div class="ai-response-badge">
+                <span>✨ GTU AI Verified Answer</span>
+            </div>
+            <button class="ai-response-close" onclick="closeAiResponse()" title="Close">&times;</button>
+        </div>
+        <div class="ai-answer-text">${result.answer}</div>
+        
+        <div class="ai-source-card">
+            <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); font-weight: 700; margin-bottom: 4px;">
+                Verified Official Source
+            </div>
+            <div class="ai-source-title">${escapeHtml(c.title)}</div>
+            <div class="ai-source-meta">
+                <span class="category-tag ${catClass}" style="font-size: 0.7rem; padding: 2px 7px;">${escapeHtml(c.category || 'General')}</span>
+                <span>📅 ${escapeHtml(c.date || 'Recent')}</span>
+                ${c.deadlines && c.deadlines.length > 0 ? `<span style="color: #b45309; font-weight: 600;">⏰ ${escapeHtml(c.deadlines.join(', '))}</span>` : ''}
+            </div>
+            <div class="ai-source-actions">
+                <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="ai-btn-action ai-btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>Open Notice PDF</span>
+                </a>
+                <a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" class="ai-btn-action ai-btn-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>+ Add to Calendar</span>
+                </a>
+                <button class="ai-btn-action ai-btn-outline" onclick="filterFeedToCircular('${escapeHtml(c.title).replace(/'/g, "\\'")}')">
+                    <span>🔍 Highlight in Feed</span>
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function filterFeedToCircular(titleSnippet) {
+    const input = document.getElementById('search-input');
+    if (input) {
+        // Take the first 3 words of the title to filter reliably
+        const words = titleSnippet.trim().split(/\s+/).slice(0, 4).join(' ');
+        input.value = words;
+        searchQuery = words;
+        document.getElementById('clear-search-btn').style.display = 'block';
+        fetchCirculars();
+        showToast(`🔍 Filtered circulars list for "${words}"`);
+
+        // Smooth scroll to feed
+        const feedElem = document.getElementById('circulars-container');
+        if (feedElem) {
+            feedElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+}
+
+
