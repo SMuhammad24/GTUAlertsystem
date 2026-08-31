@@ -1,18 +1,35 @@
 {
   "stats": {
-    "total": 88,
-    "today": 12,
+    "total": 89,
+    "today": 13,
     "categories": {
-      "Result": 69,
+      "Result": 70,
       "Exam & Timetable": 12,
       "General Circular": 4,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-31 06:53:07"
+    "last_updated": "2026-08-31 07:23:10"
   },
   "circulars": [
+    {
+      "id": "562f79262d70d25e2755ca3f10f921d3a1a1231e839f39333dafded0aeb92e37",
+      "title": "Notification for Result Declaration of Master of Business Administration Sem-2 (Remedial) of Summer-2026 Examination",
+      "date": "31-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MBA Sem-02 (Rem) S-26 Exam_739865.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-31 07:23:08",
+      "tags": "#GTU, #Sem2, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 2 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        2
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f60f4deab00a51e6b6f0aede1abad4882298ece1a1abee976cfecf77fb86f510",
       "title": "GUIDELINES FOR STUDENTS AND CONCERNED INSTITUTES FOR AICTE–MITACS GLOBALINK RESEARCH INTERNSHIP (GRI) 2027",
