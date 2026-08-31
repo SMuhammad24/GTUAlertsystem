@@ -294,15 +294,16 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
         return rss_xml
 
 
-def run_server(port: int = 8080, host: str = "127.0.0.1"):
+def run_server(port: int = 8080, host: str = "0.0.0.0"):
     """Start standalone threaded web dashboard server."""
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, GTUWebHandler)
     print("=" * 60)
     print(f"🌐 GTU Alerts Web Dashboard is LIVE!")
-    print(f"👉 Open in your browser: http://{host}:{port}")
-    print(f"📡 REST API: http://{host}:{port}/api/circulars")
-    print(f"📰 RSS Feed: http://{host}:{port}/feed.xml")
+    print(f"👉 Local:   http://localhost:{port} (or http://127.0.0.1:{port})")
+    print(f"👉 Network: http://0.0.0.0:{port}")
+    print(f"📡 REST API: http://localhost:{port}/api/circulars")
+    print(f"📰 RSS Feed: http://localhost:{port}/feed.xml")
     print("=" * 60)
     try:
         httpd.serve_forever()
@@ -313,4 +314,5 @@ def run_server(port: int = 8080, host: str = "127.0.0.1"):
 
 if __name__ == '__main__':
     port = int(os.getenv('WEB_PORT', '8080'))
-    run_server(port=port)
+    host = os.getenv('WEB_HOST', '0.0.0.0')
+    run_server(port=port, host=host)
