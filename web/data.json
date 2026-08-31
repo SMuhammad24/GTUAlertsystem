@@ -1,18 +1,70 @@
 {
   "stats": {
-    "total": 85,
-    "today": 9,
+    "total": 88,
+    "today": 12,
     "categories": {
-      "Result": 68,
-      "Exam & Timetable": 11,
-      "General Circular": 3,
+      "Result": 69,
+      "Exam & Timetable": 12,
+      "General Circular": 4,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-31 06:38:25"
+    "last_updated": "2026-08-31 06:53:07"
   },
   "circulars": [
+    {
+      "id": "f60f4deab00a51e6b6f0aede1abad4882298ece1a1abee976cfecf77fb86f510",
+      "title": "GUIDELINES FOR STUDENTS AND CONCERNED INSTITUTES FOR AICTE–MITACS GLOBALINK RESEARCH INTERNSHIP (GRI) 2027",
+      "date": "31-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/GUIDELINES FOR STUDENTS AND CONCERNED INSTITUTES FOR AICTE–MITACS GLOBALINK RESEARCH INTERNSHIP (GRI) 2027_165360.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-31 06:53:06",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "600d6913eee0722ea2b911fe5466c56920679d1c919d44c341d69553299f5baf",
+      "title": "INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER-2026 EXAMINATION M.PHARM SEM -3 & 4 [REGULAR/REMEDIAL/LESS-50/TERM EXTENSION STUDENTS]",
+      "date": "31-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/M.Pharm Sem-3 & 4_637105.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-08-31 06:53:04",
+      "tags": "#GTU, #MPharm, #Sem3, #Sem4, #Regular, #Remedial, #Winter",
+      "summary": "Official examination schedule / timetable release for MPharm (Sem 3, 4 (Regular/Remedial/Winter). Check exam dates and instructions.",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [
+        3,
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "4bf37f6ae8ab900d9fab473f2a627b5cb3a0346654501b5dd10ecd2af91d2f8d",
+      "title": "Notification for Result Declaration of Master of Science (Integrated) Information Technology Sem- 1 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/CS sem 1 REM REASSESSMENT_270848.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-31 06:53:01",
+      "tags": "#GTU, #Sem1, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Sem 1 (Remedial/Summer). Check online result portal.",
+      "courses": [],
+      "semesters": [
+        1
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "d3490996a5f2106394e6d0c43c7a7211c09db43ca323c779d85eebf82b921e9d",
       "title": "Notification for Result Declaration of Master of Science (Integrated) Information Technology Sem- 2 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
