@@ -1,18 +1,56 @@
 {
   "stats": {
-    "total": 79,
-    "today": 3,
+    "total": 81,
+    "today": 5,
     "categories": {
-      "Result": 62,
+      "Result": 64,
       "Exam & Timetable": 11,
       "General Circular": 3,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-31 05:23:24"
+    "last_updated": "2026-08-31 05:53:23"
   },
   "circulars": [
+    {
+      "id": "8688daea464d9f7cff8d0a48976fb17a1e24b547059523cc65313cb4cc187f3b",
+      "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-6 (Remedial) (Recheck/Re-Reassessment) Summer 2026 Examination.",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260829_0006_935984.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-31 05:53:21",
+      "tags": "#GTU, #BPharm, #Sem6, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BPharm (Sem 6 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        6
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "fe544fc9f9f2673b21f0b8fb0cccc03d778d0461a9a428793f200a644690e1fe",
+      "title": "Notification for Result Declaration of Bachelor of Pharmacy Semester-6 (Regular) (Recheck/Re-Reassessment) Summer 2026 Examination.",
+      "date": "29-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/IMG_20260829_0005_981423.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-08-31 05:53:19",
+      "tags": "#GTU, #BPharm, #Sem6, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BPharm (Sem 6 (Regular/Summer). Check online result portal.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        6
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "7bdfb39bab1345a9267e31030ea1aa67b3e509033c18001dd29740aa85212628",
       "title": "Notification for Result Declaration of Master of Computer Applications Sem- 1 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
