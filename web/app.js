@@ -583,9 +583,7 @@ function selectStream(stream) {
 }
 
 function selectChannel(channel) {
-    currentVerifyChannel = channel;
-    document.getElementById('channel-email').classList.toggle('active', channel === 'email');
-    document.getElementById('channel-mobile').classList.toggle('active', channel === 'mobile');
+    currentVerifyChannel = 'email';
 }
 
 function populateCourseDropdown(stream) {
@@ -596,51 +594,87 @@ function populateCourseDropdown(stream) {
     select.innerHTML = list.map(c => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join('');
 }
 
-function handleSendOtp(e) {
+async function handleSendOtp(e) {
     e.preventDefault();
     const name = document.getElementById('student-name').value.trim();
     const email = document.getElementById('student-email').value.trim();
-    const mobile = document.getElementById('student-mobile').value.trim();
+    const mobileInput = document.getElementById('student-mobile');
+    const mobile = mobileInput ? mobileInput.value.trim() : '';
     const courseSelect = document.getElementById('student-course');
     const courseName = courseSelect ? courseSelect.value : '';
 
-    if (!name || !email || !mobile) {
-        showToast('⚠️ Please fill in all details.');
+    if (!name || !email) {
+        showToast('⚠️ Please enter your name and email address.');
         return;
     }
 
-    // Generate random 4-digit code (e.g., 4821)
-    generatedOtp = String(Math.floor(1000 + Math.random() * 9000));
     pendingUserData = {
         name,
         email,
         mobile,
         stream: currentStream,
         courseName,
-        channel: currentVerifyChannel
+        channel: 'email'
     };
 
-    // Update Step 2 text & test banner
-    const destText = currentVerifyChannel === 'email' 
-        ? `Code sent to ${email}` 
-        : `SMS sent to +91 ${mobile}`;
-    
-    document.getElementById('otp-destination-text').textContent = destText;
-    document.getElementById('display-demo-code').textContent = generatedOtp;
-
-    // Show Step 2
-    document.getElementById('modal-step-info').style.display = 'none';
-    document.getElementById('modal-step-otp').style.display = 'block';
-
-    // Reset OTP boxes
-    for (let i = 1; i <= 4; i++) {
-        const box = document.getElementById(`otp-${i}`);
-        if (box) box.value = '';
+    const submitBtn = document.querySelector('#student-form button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Get 4-Digit Verification Code';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '⏳ Sending Code to Email...';
     }
-    const firstBox = document.getElementById('otp-1');
-    if (firstBox) firstBox.focus();
 
-    showToast(`📩 4-Digit Verification Code: ${generatedOtp}`);
+    try {
+        const resp = await fetch('/api/auth/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name, channel: 'email' })
+        });
+        const res = await resp.json();
+
+        if (res.success) {
+            generatedOtp = res.otp_code || '1234';
+            const destText = res.email_sent 
+                ? `✅ Verification email sent to ${email}` 
+                : `Code sent to ${email}`;
+            
+            document.getElementById('otp-destination-text').textContent = destText;
+            document.getElementById('display-demo-code').textContent = generatedOtp;
+
+            // Show Step 2
+            document.getElementById('modal-step-info').style.display = 'none';
+            document.getElementById('modal-step-otp').style.display = 'block';
+
+            // Reset OTP boxes
+            for (let i = 1; i <= 4; i++) {
+                const box = document.getElementById(`otp-${i}`);
+                if (box) box.value = '';
+            }
+            const firstBox = document.getElementById('otp-1');
+            if (firstBox) firstBox.focus();
+
+            if (res.email_sent) {
+                showToast(`📧 OTP successfully sent to your inbox: ${email}`);
+            } else {
+                showToast(`📩 Verification Code: ${generatedOtp}`);
+            }
+        } else {
+            showToast(`⚠️ ${res.error || 'Failed to send OTP'}`);
+        }
+    } catch (err) {
+        // Offline / fallback behavior
+        generatedOtp = String(Math.floor(1000 + Math.random() * 9000));
+        document.getElementById('otp-destination-text').textContent = `Code sent to ${email}`;
+        document.getElementById('display-demo-code').textContent = generatedOtp;
+        document.getElementById('modal-step-info').style.display = 'none';
+        document.getElementById('modal-step-otp').style.display = 'block';
+        showToast(`📩 Demo Verification Code: ${generatedOtp}`);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
+    }
 }
 
 function goToStep1() {
@@ -648,7 +682,27 @@ function goToStep1() {
     document.getElementById('modal-step-info').style.display = 'block';
 }
 
-function resendOtp() {
+async function resendOtp() {
+    if (!pendingUserData) return;
+    try {
+        const resp = await fetch('/api/auth/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: pendingUserData.email,
+                name: pendingUserData.name,
+                channel: pendingUserData.channel
+            })
+        });
+        const res = await resp.json();
+        if (res.success) {
+            generatedOtp = res.otp_code || String(Math.floor(1000 + Math.random() * 9000));
+            document.getElementById('display-demo-code').textContent = generatedOtp;
+            showToast(res.email_sent ? `📧 New code sent to ${pendingUserData.email}!` : `🔄 New Verification Code: ${generatedOtp}`);
+            return;
+        }
+    } catch (e) {}
+
     generatedOtp = String(Math.floor(1000 + Math.random() * 9000));
     document.getElementById('display-demo-code').textContent = generatedOtp;
     showToast(`🔄 New Verification Code: ${generatedOtp}`);
@@ -689,7 +743,7 @@ function setupOtpInputs() {
     });
 }
 
-function handleVerifyOtp(e) {
+async function handleVerifyOtp(e) {
     e.preventDefault();
     const o1 = document.getElementById('otp-1').value.trim();
     const o2 = document.getElementById('otp-2').value.trim();
@@ -697,7 +751,49 @@ function handleVerifyOtp(e) {
     const o4 = document.getElementById('otp-4').value.trim();
     const entered = `${o1}${o2}${o3}${o4}`;
 
-    if (entered !== generatedOtp && entered !== '1234') {
+    if (entered.length < 4) {
+        showToast('⚠️ Please enter the complete 4-digit code.');
+        return;
+    }
+
+    const verifyBtn = document.getElementById('btn-verify-otp');
+    const origText = verifyBtn ? verifyBtn.innerHTML : 'Verify & Continue';
+    if (verifyBtn) {
+        verifyBtn.disabled = true;
+        verifyBtn.innerHTML = '⏳ Verifying...';
+    }
+
+    let isValid = (entered === generatedOtp || entered === '1234');
+
+    try {
+        if (pendingUserData && pendingUserData.email) {
+            const resp = await fetch('/api/auth/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: pendingUserData.email, otp: entered })
+            });
+            const res = await resp.json();
+            if (res.success) {
+                isValid = true;
+            } else if (!isValid) {
+                showToast(`❌ ${res.error || 'Invalid code'}`);
+                if (verifyBtn) {
+                    verifyBtn.disabled = false;
+                    verifyBtn.innerHTML = origText;
+                }
+                return;
+            }
+        }
+    } catch (err) {
+        // Fall back to client-side validation
+    } finally {
+        if (verifyBtn) {
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = origText;
+        }
+    }
+
+    if (!isValid) {
         showToast('❌ Invalid 4-digit code. Please enter the correct code shown on screen.');
         return;
     }

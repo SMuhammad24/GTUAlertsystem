@@ -170,6 +170,20 @@ class TestGTUAutomation(unittest.TestCase):
         # Verify function is importable and callable
         self.assertTrue(callable(init_database_silent))
 
+    def test_otp_service(self):
+        from otp_service import OTPService
+        otp = OTPService.generate_otp('student@gtu.ac.in')
+        self.assertEqual(len(otp), 4)
+        self.assertTrue(otp.isdigit())
+
+        # Test verification success
+        verified, _ = OTPService.verify_otp('student@gtu.ac.in', otp)
+        self.assertTrue(verified)
+
+        # Test demo fallback code
+        demo_ok, _ = OTPService.verify_otp('any@gtu.ac.in', '1234')
+        self.assertTrue(demo_ok)
+
 
 if __name__ == '__main__':
     unittest.main()

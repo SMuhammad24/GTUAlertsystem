@@ -6,4 +6,5 @@ python-dotenv>=1.0.0
 # Optional / Extended Features
 # gtts>=2.5.0          # Daily voice audio briefing (voice_bulletin.py)
 # reportlab>=4.0.0     # PDF presentation deck generator (generate_presentation_pdf.py)
+# python-pptx>=0.6.21  # PPTX presentation generator (build_presentation.py)
 # pypdf>=4.0.0         # Deep PDF circular text extraction (pdf_inspector.py)

@@ -56,6 +56,12 @@ class Config:
     WEB_PORT = int(os.getenv('WEB_PORT', '8080'))
     WEB_HOST = os.getenv('WEB_HOST', '127.0.0.1')
     
+    # SMTP / Email OTP Configuration
+    SMTP_EMAIL = os.getenv('SMTP_EMAIL', '').strip()
+    SMTP_PASSWORD = os.getenv('SMTP_PASSWORD', '').strip()
+    SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com').strip()
+    SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
+    
     # Public Notification URL (Only official public circular board allowed)
     GTU_CIRCULAR_URL = os.getenv('GTU_CIRCULAR_URL', 'https://www.gtu.ac.in/Circular.aspx').strip()
     

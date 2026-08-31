@@ -1,8 +1,8 @@
 """
 GTU Automated Circular & Alert System - Official Presentation Deck Builder (.pptx)
-Generates an executive, university-standard presentation deck with:
-- Zero SIH branding/logos (100% clean university project format)
-- Perfectly balanced typography (no overflowing text on any slide)
+Generates an executive, university-standard academic presentation deck with:
+- Clean university project format & official academic typography
+- Perfectly balanced layout (no overflowing text on any slide)
 - Full-bleed, optimal card space utilization
 """
 
@@ -57,7 +57,7 @@ def create_presentation():
         accent_line.fill.fore_color.rgb = COLOR_ORANGE
         accent_line.line.fill.background()
 
-        # University / Department Tag on top right (Zero SIH)
+        # University / Department Tag on top right
         tag_box = slide.shapes.add_textbox(Inches(7.8), Inches(0.18), Inches(4.9), Inches(0.85))
         tf_tag = tag_box.text_frame
         tf_tag.word_wrap = True
@@ -84,7 +84,7 @@ def create_presentation():
         foot_bar.fill.fore_color.rgb = CARD_BG
         foot_bar.line.color.rgb = CARD_BORDER
 
-        # Footer Text Left (Clean Project Details, Zero SIH)
+        # Footer Text Left
         f_box_l = slide.shapes.add_textbox(Inches(0.65), Inches(7.12), Inches(8.8), Inches(0.35))
         tf_fl = f_box_l.text_frame
         p_fl = tf_fl.paragraphs[0]
@@ -149,7 +149,7 @@ def create_presentation():
             p.space_after = Pt(space_after)
 
     # ==============================================================
-    # SLIDE 1: Official Cover Slide (Zero SIH)
+    # SLIDE 1: Official Cover Slide
     # ==============================================================
     s1 = prs.slides.add_slide(blank_layout)
     set_slide_background(s1)
@@ -165,7 +165,7 @@ def create_presentation():
     orange_stripe.fill.fore_color.rgb = COLOR_ORANGE
     orange_stripe.line.fill.background()
 
-    # Event / Defense Tag
+    # Academic Presentation Tag
     dept_tag = s1.shapes.add_textbox(Inches(0.65), Inches(0.25), Inches(12.0), Inches(0.4))
     tf_dtag = dept_tag.text_frame
     p_dtag = tf_dtag.paragraphs[0]
@@ -270,7 +270,7 @@ def create_presentation():
     ], COLOR_BLUE, "TECHNICAL FRICTION & UNINDEXED CHAOS", font_size=12.5, space_after=10)
 
     # ==============================================================
-    # SLIDE 3: Proposed Solution & Core Innovation (NO OVERFLOW FIX)
+    # SLIDE 3: Proposed Solution & Core Innovation
     # ==============================================================
     s3 = prs.slides.add_slide(blank_layout)
     set_slide_background(s3)
@@ -282,7 +282,6 @@ def create_presentation():
     c_top3_r2 = Inches(4.18)
     c_h3 = Inches(2.78)
 
-    # Concise, punchy bullet points to comfortably fit within 2.78 inches height
     create_card(s3, Inches(0.65), c_top3_r1, col2_w, c_h3, "1. Real-Time Push Notification Engine", [
         "24/7 automated background polling of official GTU portal.",
         "Instant alerts delivered to Telegram & Discord within 5 seconds.",

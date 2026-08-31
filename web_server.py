@@ -208,6 +208,61 @@ class GTUWebHandler(SimpleHTTPRequestHandler):
                 self._send_json({'success': False, 'error': str(e)}, status=500)
             return
 
+        # Student Auth: Send OTP
+        elif path == '/api/auth/send-otp':
+            try:
+                content_length = int(self.headers.get('Content-Length', 0))
+                body = self.rfile.read(content_length).decode('utf-8') if content_length > 0 else '{}'
+                data = json.loads(body)
+                email = data.get('email', '').strip()
+                name = data.get('name', 'Student').strip()
+                channel = data.get('channel', 'email')
+
+                if not email:
+                    self._send_json({'success': False, 'error': 'Valid email is required.'}, status=400)
+                    return
+
+                from otp_service import OTPService
+                otp = OTPService.generate_otp(email)
+                
+                email_sent = False
+                status_msg = ""
+                if channel == 'email':
+                    email_sent, status_msg = OTPService.send_otp_email(email, otp, student_name=name)
+
+                self._send_json({
+                    'success': True,
+                    'email_sent': email_sent,
+                    'otp_code': otp,  # Included for seamless developer testing/fallback
+                    'message': f"Verification code sent to {email}!" if email_sent else f"Generated OTP: {otp} ({status_msg})"
+                })
+            except Exception as e:
+                self._send_json({'success': False, 'error': str(e)}, status=500)
+            return
+
+        # Student Auth: Verify OTP
+        elif path == '/api/auth/verify-otp':
+            try:
+                content_length = int(self.headers.get('Content-Length', 0))
+                body = self.rfile.read(content_length).decode('utf-8') if content_length > 0 else '{}'
+                data = json.loads(body)
+                email = data.get('email', '').strip()
+                otp = data.get('otp', '').strip()
+
+                if not email or not otp:
+                    self._send_json({'success': False, 'error': 'Email and OTP are required.'}, status=400)
+                    return
+
+                from otp_service import OTPService
+                verified, msg = OTPService.verify_otp(email, otp)
+                if verified:
+                    self._send_json({'success': True, 'message': msg})
+                else:
+                    self._send_json({'success': False, 'error': msg}, status=400)
+            except Exception as e:
+                self._send_json({'success': False, 'error': str(e)}, status=500)
+            return
+
         self.send_error(404, "Endpoint not found")
 
     def _generate_rss(self, circulars: List[Dict]) -> str:

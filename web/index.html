@@ -321,11 +321,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="student-mobile">Mobile Number</label>
+                                <label for="student-mobile">Mobile Number <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(Optional)</span></label>
                                 <div class="input-field-wrapper">
                                     <span class="mobile-prefix">+91</span>
                                     <input type="tel" id="student-mobile" placeholder="9876543210" pattern="[0-9]{10}"
-                                        maxlength="10" required>
+                                        maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -381,19 +381,6 @@
                                     </option>
                                     <option value="Other Diploma Courses">Other Diploma Courses</option>
                                 </select>
-                            </div>
-                        </div>
-
-                        <!-- Verification Channel Selection: Email vs Mobile -->
-                        <div class="form-group">
-                            <label>Send 4-Digit Code via</label>
-                            <div class="verify-channel-group">
-                                <div class="channel-option active" id="channel-email" onclick="selectChannel('email')">
-                                    <span>📧 Email Verification</span>
-                                </div>
-                                <div class="channel-option" id="channel-mobile" onclick="selectChannel('mobile')">
-                                    <span>📱 Mobile SMS</span>
-                                </div>
                             </div>
                         </div>
 
