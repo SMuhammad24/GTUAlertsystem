@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 89,
-    "today": 13,
+    "total": 90,
+    "today": 14,
     "categories": {
       "Result": 70,
       "Exam & Timetable": 12,
-      "General Circular": 4,
+      "General Circular": 5,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-31 07:23:10"
+    "last_updated": "2026-08-31 07:38:01"
   },
   "circulars": [
+    {
+      "id": "331f5992046a8abd0b2d324f35adbb9af550a0bc104b966289748af861ce8153",
+      "title": "Invitation for EoI – Expert/Trainer/Mentor in Semiconductor Technology",
+      "date": "31-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular - inviting Expression of Interest(EOI) from Experts-Trainers-Mentor in Semiconductor Technology_811365.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-31 07:38:00",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "562f79262d70d25e2755ca3f10f921d3a1a1231e839f39333dafded0aeb92e37",
       "title": "Notification for Result Declaration of Master of Business Administration Sem-2 (Remedial) of Summer-2026 Examination",
