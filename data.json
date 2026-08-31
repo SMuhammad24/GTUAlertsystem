@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 91,
-    "today": 15,
+    "total": 92,
+    "today": 16,
     "categories": {
       "Result": 70,
       "Exam & Timetable": 12,
-      "General Circular": 6,
+      "General Circular": 7,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-08-31 08:53:00"
+    "last_updated": "2026-08-31 12:09:13"
   },
   "circulars": [
+    {
+      "id": "1a19489c4ae15e4676e4ed81b75afda0787a2a50e49229b92bff9eb87edff6f5",
+      "title": "Government to Government Institute Transfer Order A.Y. 2026-27",
+      "date": "31-Aug-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/govt inst transfer order_761994.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-08-31 12:09:11",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "75ba09b621af989baed0aa9a12b26982939f7096abc9cef36ed4fb951c069297",
       "title": "ROBOFEST-GUJARAT 6.0 – Engineering the Future | Invitation for Student Participation",
