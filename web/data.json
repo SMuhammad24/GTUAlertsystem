@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 98,
-    "today": 5,
+    "total": 99,
+    "today": 6,
     "categories": {
       "Result": 74,
       "Exam & Timetable": 13,
-      "General Circular": 8,
+      "General Circular": 9,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-01 11:55:27"
+    "last_updated": "2026-09-01 13:15:28"
   },
   "circulars": [
+    {
+      "id": "13b6ae5b6f0174423cc18128adb21bb6d1fde028220b22b09e9bf1ef5861993b",
+      "title": "UFM of Dummy student Sonwane Mayank Ashokbhai for WINTER-2025",
+      "date": "01-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/O-W-No 6714 Dtd 01-09-26 Dummy Student UFM Circular W-25_916562.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-01 13:15:26",
+      "tags": "#GTU, #Winter",
+      "summary": "Official notification released by Gujarat Technological University for Winter.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "7237f6f82a148c40cb61cffe79182a397103c75454ee18a04c5a5105e1b0fb65",
       "title": "Sponsorship of maximum 40 students (per academic year) for India Semiconductor Workforce Development Program (ISWDP) offered by IISC-Bengaluru in association with Synopsys and Samsung",
