@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 97,
-    "today": 4,
+    "total": 98,
+    "today": 5,
     "categories": {
       "Result": 74,
       "Exam & Timetable": 13,
-      "General Circular": 7,
+      "General Circular": 8,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-01 09:44:23"
+    "last_updated": "2026-09-01 11:55:27"
   },
   "circulars": [
+    {
+      "id": "7237f6f82a148c40cb61cffe79182a397103c75454ee18a04c5a5105e1b0fb65",
+      "title": "Sponsorship of maximum 40 students (per academic year) for India Semiconductor Workforce Development Program (ISWDP) offered by IISC-Bengaluru in association with Synopsys and Samsung",
+      "date": "01-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/ISWDP Circular_209474.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-01 11:55:25",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "bcddddaa4ef98d853008414992e8cad32d5eb3fbb4697eea4ce78d6a8e0de108",
       "title": "Notification for result declaration of Bachelor of Engineering Minor Semester - 04 Remedial (Summer 2026) Exam",
