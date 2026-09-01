@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gtu-alerts-portal
+    runtime: python
+    rootDir: gtu_web_service
+    buildCommand: pip install -r requirements.txt
+    startCommand: python web_server.py
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: EMAIL_SENDER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
