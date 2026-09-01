@@ -57,8 +57,8 @@ class Config:
     WEB_HOST = os.getenv('WEB_HOST', '127.0.0.1')
     
     # SMTP / Email OTP Configuration
-    SMTP_EMAIL = os.getenv('SMTP_EMAIL', '').strip()
-    SMTP_PASSWORD = os.getenv('SMTP_PASSWORD', '').strip()
+    SMTP_EMAIL = (os.getenv('EMAIL_SENDER') or os.getenv('SMTP_EMAIL') or '').strip()
+    SMTP_PASSWORD = (os.getenv('EMAIL_PASSWORD') or os.getenv('SMTP_PASSWORD') or '').strip()
     SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com').strip()
     SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
     

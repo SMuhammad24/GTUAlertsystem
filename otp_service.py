@@ -58,13 +58,34 @@ class OTPService:
         """
         Send a beautifully styled HTML OTP email via Gmail SMTP.
         """
-        smtp_email = getattr(Config, 'SMTP_EMAIL', '').strip()
-        smtp_pass = getattr(Config, 'SMTP_PASSWORD', '').strip().replace(' ', '')
-        smtp_server = getattr(Config, 'SMTP_SERVER', 'smtp.gmail.com')
-        smtp_port = getattr(Config, 'SMTP_PORT', 587)
+        smtp_email = (
+            os.getenv('EMAIL_SENDER')
+            or os.getenv('SMTP_EMAIL')
+            or getattr(Config, 'SMTP_EMAIL', '')
+            or ''
+        ).strip()
+        smtp_pass = (
+            os.getenv('EMAIL_PASSWORD')
+            or os.getenv('SMTP_PASSWORD')
+            or getattr(Config, 'SMTP_PASSWORD', '')
+            or ''
+        ).strip().replace(' ', '')
+        smtp_server = (
+            os.getenv('SMTP_SERVER')
+            or getattr(Config, 'SMTP_SERVER', '')
+            or 'smtp.gmail.com'
+        ).strip()
+        smtp_port = int(
+            os.getenv('SMTP_PORT')
+            or getattr(Config, 'SMTP_PORT', None)
+            or 587
+        )
+
+        print(f"[OTP Service] Attempting to send OTP email to '{to_email}' via sender '{smtp_email}' (has_pass={bool(smtp_pass)})")
 
         if not smtp_email or not smtp_pass:
-            return False, "SMTP email or password is not configured in .env."
+            print(f"[OTP Service] ERROR: Missing SMTP credentials. Please configure EMAIL_SENDER and EMAIL_PASSWORD.")
+            return False, "SMTP email or password is not configured."
 
         subject = f"GTU Alerts: Your Verification Code is {otp}"
         
