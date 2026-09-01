@@ -1,18 +1,35 @@
 {
   "stats": {
-    "total": 96,
-    "today": 3,
+    "total": 97,
+    "today": 4,
     "categories": {
-      "Result": 73,
+      "Result": 74,
       "Exam & Timetable": 13,
       "General Circular": 7,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-01 09:19:32"
+    "last_updated": "2026-09-01 09:44:23"
   },
   "circulars": [
+    {
+      "id": "bcddddaa4ef98d853008414992e8cad32d5eb3fbb4697eea4ce78d6a8e0de108",
+      "title": "Notification for result declaration of Bachelor of Engineering Minor Semester - 04 Remedial (Summer 2026) Exam",
+      "date": "01-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE MN Sem - 4 Rem._936680.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-01 09:44:22",
+      "tags": "#GTU, #BE, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BE (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "e25ca005b27f2161a694d7e8515f24c487cb484d0b7efcd0767f1fb5b93d5d4c",
       "title": "Notification for result declaration of Bachelor of Engineering Minor Semester - 04 Regular (Summer 2026) Exam",
