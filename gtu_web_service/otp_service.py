@@ -1,3 +1,4 @@
+import os
 import smtplib
 import time
 import random
