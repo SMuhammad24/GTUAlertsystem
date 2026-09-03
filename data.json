@@ -1,18 +1,56 @@
 {
   "stats": {
-    "total": 102,
-    "today": 1,
+    "total": 104,
+    "today": 3,
     "categories": {
-      "Result": 76,
+      "Result": 78,
       "Exam & Timetable": 13,
       "General Circular": 10,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-03 09:20:08"
+    "last_updated": "2026-09-03 10:54:33"
   },
   "circulars": [
+    {
+      "id": "e42088115b90d894e8d6ba50f03931cccf180dbdb41c1ce7fd75aee7f88fd3e9",
+      "title": "Notification for Result Declaration of Bachelor of Computer Applications Sem- 3 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "03-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BCA 3 REM RECHECK S26_227296.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-03 10:54:31",
+      "tags": "#GTU, #MCA, #Sem3, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 3 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "b24598c43e91c2e6cd5d0c4c70c2562da6fbca52f36f9877665aca915a566a26",
+      "title": "Notification for Result Declaration of Bachelor of Computer Applications Sem- 4 (Regular) Recheck/Reassessment of Summer-2026 Examinati",
+      "date": "03-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BCA 4 REG RECHECK S26_841052.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-03 10:54:29",
+      "tags": "#GTU, #MCA, #Sem4, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for MCA (Sem 4 (Regular/Summer). Check online result portal.",
+      "courses": [
+        "MCA"
+      ],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "9611bba3cf52e1ec9bd09f85f103fe5fa407822b5d406d1335864c2ead4ad2b6",
       "title": "Notification for Result Declaration of Master of Business Administration Sem-03 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
