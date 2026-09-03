@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 101,
-    "today": 2,
+    "total": 102,
+    "today": 1,
     "categories": {
-      "Result": 75,
+      "Result": 76,
       "Exam & Timetable": 13,
       "General Circular": 10,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-02 11:16:15"
+    "last_updated": "2026-09-03 09:20:08"
   },
   "circulars": [
+    {
+      "id": "9611bba3cf52e1ec9bd09f85f103fe5fa407822b5d406d1335864c2ead4ad2b6",
+      "title": "Notification for Result Declaration of Master of Business Administration Sem-03 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "03-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/MBA-3 (Remedial) Recheck-Reassessment_319799.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-03 09:20:07",
+      "tags": "#GTU, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Remedial/Summer. Check online result portal.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "bd72edfd768e998058b24e3f37ff852cfbe48e3c0b55a04b9435277a49171b76",
       "title": "Notification for Result Declaration of Diploma in Engineering Sem-1 (Regular) of Summer-2026 Examination",
