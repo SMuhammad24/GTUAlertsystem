@@ -27,21 +27,23 @@
 
 ---
 
-### 🔹 SLIDE 1: Title & Introduction
+### 🔹 SLIDE 1: Title & Introduction (First Year Project)
 
 #### Slide Content:
 ```
                GTU AUTOMATED CIRCULAR & ALERT SYSTEM
         "Real-Time Official University Notice Broadcast System"
+        (FIRST YEAR PROJECT PRESENTATION & ACADEMIC DEFENSE)
 
-Presented by: [Your Name / Team Members]
-Department  : [e.g., Computer Engineering / Information Technology]
-Institute   : [Your College Name]
-Guided by   : [Prof. / Dr. Guide's Name]
+Team Leader : Muhammad Sambhyana (Lead Developer & System Architect)
+Team Members: Saad Mansuri, Zakwan Nawab, Sunny Gondaliya, Prit Patel,
+              Ved Patel, Shivans Tiwari, Anmol Varma, Khushi Gohil
+Department  : Department of Computer / IT Engineering
+Institute   : Gujarat Technological University Affiliated College
 ```
 
 #### 🗣️ Speaker Notes (Aapko Ma'am/Sir ko kya bolna hai):
-> *"Respected Sir/Ma'am, good morning/afternoon. Aaj main hamara project present karne ja raha hoon jiska naam hai **'GTU Automated Circular & Alert System'**. Yeh project GTU ki official website se aane wale zaruri notices, circulars aur exam updates ko bina kisi delay ke students tak pahunchane ka ek smart aur completely automated system hai."*
+> *"Respected Sir/Ma'am, good morning/afternoon. Aaj main aur meri team hamara First Year project present karne ja rahe hain jiska naam hai **'GTU Automated Circular & Alert System'**. Main Team Leader Muhammad Sambhyana, aur mere sath hamare team members Saad Mansuri, Zakwan Nawab, Sunny Gondaliya, Prit Patel, Ved Patel, Shivans Tiwari, Anmol Varma aur Khushi Gohil hain. Yeh project GTU ki official website se aane wale zaruri notices, circulars aur exam updates ko bina kisi delay ke students tak pahunchane ka ek smart aur completely automated system hai."*
 
 ---
 

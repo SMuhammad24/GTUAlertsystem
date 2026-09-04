@@ -169,7 +169,7 @@ def create_presentation():
     dept_tag = s1.shapes.add_textbox(Inches(0.65), Inches(0.25), Inches(12.0), Inches(0.4))
     tf_dtag = dept_tag.text_frame
     p_dtag = tf_dtag.paragraphs[0]
-    p_dtag.text = "FINAL YEAR CAPSTONE PROJECT DEFENSE  |  ACADEMIC PRESENTATION"
+    p_dtag.text = "FIRST YEAR PROJECT PRESENTATION  |  ACADEMIC DEFENSE"
     p_dtag.font.size = Pt(12.5)
     p_dtag.font.bold = True
     p_dtag.font.color.rgb = COLOR_ORANGE
@@ -190,45 +190,41 @@ def create_presentation():
     p_sub.font.color.rgb = RGBColor(191, 219, 254)
     p_sub.space_before = Pt(4)
 
-    # 4 Cards spanning full horizontal width
-    c_w = Inches(2.82)
-    c_gap = Inches(0.24)
+    # 3 Cards on First Slide focusing on Leadership & All Team Members
+    c1_w = Inches(4.3)
+    c2_w = Inches(3.7)
+    c3_w = Inches(3.7)
+    c_gap = Inches(0.2)
     c_top = Inches(2.35)
     c_h = Inches(4.6)
 
-    create_card(s1, Inches(0.65) + (c_w + c_gap) * 0, c_top, c_w, c_h, "Project Overview", [
-        "Project Type: Full-Stack & Cloud System",
-        "Domain: University Automation & NLP",
-        "Focus: Student Welfare & Notification AI",
-        "Target Base: 4,00,000+ GTU Students",
-        "Coverage: 400+ Affiliated Engineering, Pharmacy & Management Colleges"
-    ], COLOR_BLUE, font_size=12, space_after=9)
-
-    create_card(s1, Inches(0.65) + (c_w + c_gap) * 1, c_top, c_w, c_h, "Key Innovations", [
-        "Zero-latency automated polling of GTU portal.",
-        "Regex NLP automatically tags stream, sem & exam.",
-        "Penalty fee & deadline extractor flag urgent alerts.",
-        "30-Sec Daily Voice Bulletin audio briefing (gTTS).",
-        "Gemini AI delivers 1-sentence instant takeaways."
-    ], COLOR_NAVY, font_size=12, space_after=9)
-
-    create_card(s1, Inches(0.65) + (c_w + c_gap) * 2, c_top, c_w, c_h, "Technology Stack", [
-        "Language: Python 3.10+",
-        "Web Scraping: BeautifulSoup4 & requests",
-        "Database: SQLite (SHA-256 Deduplication)",
-        "APIs: Telegram Bot API & Discord Webhook",
-        "Frontend: Vanilla JS PWA (Offline Cache)",
-        "Automation: GitHub Actions (Zero Cost)"
-    ], COLOR_GREEN, font_size=12, space_after=9)
-
-    create_card(s1, Inches(0.65) + (c_w + c_gap) * 3, c_top, c_w, c_h, "Team & Institute", [
-        "Team Name: GTU Innovators",
-        "Team Leader: [Your Name]",
-        "Members: [Team Member Names]",
+    create_card(s1, Inches(0.65), c_top, c1_w, c_h, "Project Leadership & Details", [
+        "Project Scope: First Year Project",
+        "Team Leader: Muhammad Sambhyana",
         "Department: Computer / IT Engineering",
-        "Institute: [Your College Name]",
-        "Project Guide: [Faculty / Guide Name]"
-    ], COLOR_ORANGE, font_size=12, space_after=9)
+        "Domain: University Automation & NLP Cloud System",
+        "Target Base: 4,00,000+ GTU Students",
+        "Coverage: 400+ Affiliated GTU Colleges",
+        "Platform: Telegram, Web PWA, Discord & Voice"
+    ], COLOR_NAVY, badge_text="LEADERSHIP & DOMAIN", font_size=12, space_after=9)
+
+    create_card(s1, Inches(0.65) + c1_w + c_gap, c_top, c2_w, c_h, "Team Members (Part 1)", [
+        "Saad Mansuri",
+        "Zakwan Nawab",
+        "Sunny Gondaliya",
+        "Prit Patel",
+        "Role: Core Developer & NLP Contributor",
+        "Role: Scraping & Notification Engine"
+    ], COLOR_BLUE, badge_text="PROJECT TEAM MEMBERS", font_size=13, space_after=12)
+
+    create_card(s1, Inches(0.65) + c1_w + c_gap + c2_w + c_gap, c_top, c3_w, c_h, "Team Members (Part 2)", [
+        "Ved Patel",
+        "Shivans Tiwari",
+        "Anmol Varma",
+        "Khushi Gohil",
+        "Role: Web Dashboard & PWA Frontend",
+        "Role: Research, Testing & Quality Assurance"
+    ], COLOR_ORANGE, badge_text="PROJECT TEAM MEMBERS", font_size=13, space_after=12)
 
     # ==============================================================
     # SLIDE 2: Problem Statement & Need Analysis
@@ -554,7 +550,7 @@ def create_presentation():
     p_q1.space_after = Pt(8)
 
     p_q2 = tf_qa.add_paragraph()
-    p_q2.text = "GTU Automated Alert System  •  Team: GTU Innovators  •  Open-Source & Deployable Today"
+    p_q2.text = "GTU Automated Alert System  •  Team Leader: Muhammad Sambhyana  •  First Year Engineering Project"
     p_q2.font.size = Pt(13)
     p_q2.font.color.rgb = RGBColor(255, 255, 255)
     p_q2.alignment = PP_ALIGN.CENTER

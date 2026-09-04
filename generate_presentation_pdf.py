@@ -128,14 +128,14 @@ def build_pdf(filename="GTU_Project_Presentation.pdf"):
     story = []
 
     # ==================== PAGE 1: COVER SLIDE ====================
-    story.append(Spacer(1, 40))
+    story.append(Spacer(1, 20))
     
     # Badge
     badge_data = [[
-        Paragraph("<font color='#1e40af'><b>ACADEMIC PROJECT PRESENTATION • 2026</b></font>", 
+        Paragraph("<font color='#1e40af'><b>FIRST YEAR PROJECT PRESENTATION • ACADEMIC DEFENSE 2026</b></font>", 
                   ParagraphStyle('Badge', alignment=1, fontSize=9, fontName='Helvetica-Bold'))
     ]]
-    badge_table = Table(badge_data, colWidths=[280])
+    badge_table = Table(badge_data, colWidths=[360])
     badge_table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor("#dbeafe")),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
@@ -147,7 +147,7 @@ def build_pdf(filename="GTU_Project_Presentation.pdf"):
         ('LINEBELOW', (0, 0), (-1, -1), 1, colors.HexColor("#93c5fd")),
     ]))
     story.append(badge_table)
-    story.append(Spacer(1, 20))
+    story.append(Spacer(1, 15))
 
     # Main Title
     cover_title_p = Paragraph(
@@ -155,47 +155,51 @@ def build_pdf(filename="GTU_Project_Presentation.pdf"):
         ParagraphStyle('CoverTitle', alignment=1, fontSize=24, leading=28, fontName='Helvetica-Bold')
     )
     story.append(cover_title_p)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
 
     cover_sub_p = Paragraph(
         "<font color='#475569'>Real-Time University Notice Broadcast with Zero-Latency &amp; Direct 1-Click Official PDF Links</font>",
         ParagraphStyle('CoverSub', alignment=1, fontSize=11, leading=15, fontName='Helvetica')
     )
     story.append(cover_sub_p)
-    story.append(Spacer(1, 30))
+    story.append(Spacer(1, 20))
 
     # Metadata Card
     meta_data = [
         [
-            Paragraph("<b>PROJECT DOMAIN:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
-            Paragraph("Web Automation &amp; Cloud Messaging", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
+            Paragraph("<b>PROJECT SCOPE:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
+            Paragraph("First Year Engineering Project (Computer / IT Dept)", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
+        ],
+        [
+            Paragraph("<b>TEAM LEADER:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
+            Paragraph("<b>Muhammad Sambhyana</b> (Lead Developer &amp; System Architect)", ParagraphStyle('M2', fontSize=9, fontName='Helvetica-Bold', textColor=colors.HexColor("#1e3a8a")))
+        ],
+        [
+            Paragraph("<b>TEAM MEMBERS:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
+            Paragraph("Saad Mansuri, Zakwan Nawab, Sunny Gondaliya, Prit Patel,<br/>Ved Patel, Shivans Tiwari, Anmol Varma, Khushi Gohil", ParagraphStyle('M2', fontSize=8.5, leading=12, fontName='Helvetica', textColor=text_color))
         ],
         [
             Paragraph("<b>CORE TECH STACK:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
-            Paragraph("Python 3, BeautifulSoup4, SQLite3, Telegram API", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
-        ],
-        [
-            Paragraph("<b>TARGET BENEFICIARIES:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
-            Paragraph("GTU Engineering / Diploma / Degree Students &amp; Faculty", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
+            Paragraph("Python 3, BeautifulSoup4, SQLite3, Telegram API, Web PWA", ParagraphStyle('M2', fontSize=8.5, fontName='Helvetica', textColor=text_color))
         ],
         [
             Paragraph("<b>DATA PRIVACY POLICY:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=colors.HexColor("#15803d"))),
-            Paragraph("<b>100% Public Notice Board Only • Zero Student Data Access</b>", ParagraphStyle('M2', fontSize=9, fontName='Helvetica-Bold', textColor=colors.HexColor("#15803d")))
+            Paragraph("<b>100% Public Notice Board Only • Zero Student Data Access</b>", ParagraphStyle('M2', fontSize=8.5, fontName='Helvetica-Bold', textColor=colors.HexColor("#15803d")))
         ]
     ]
-    meta_table = Table(meta_data, colWidths=[150, 330])
+    meta_table = Table(meta_data, colWidths=[130, 350])
     meta_table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor("#f8fafc")),
         ('BOX', (0, 0), (-1, -1), 1, colors.HexColor("#cbd5e1")),
         ('INNERGRID', (0, 0), (-1, -1), 0.5, colors.HexColor("#e2e8f0")),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('TOPPADDING', (0, 0), (-1, -1), 8),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+        ('TOPPADDING', (0, 0), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
         ('LEFTPADDING', (0, 0), (-1, -1), 12),
         ('RIGHTPADDING', (0, 0), (-1, -1), 12),
     ]))
     story.append(meta_table)
-    story.append(Spacer(1, 35))
+    story.append(Spacer(1, 25))
 
     # Privacy Banner on Cover
     priv_box_data = [[
