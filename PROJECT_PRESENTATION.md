@@ -38,7 +38,7 @@
 Team Leader : Muhammad Sambhyana (Lead Developer & System Architect)
 Team Members: Saad Mansuri, Zakwan Nawab, Sunny Gondaliya, Prit Patel,
               Ved Patel, Shivans Tiwari, Anmol Varma, Khushi Gohil
-Department  : Department of Computer / IT Engineering
+Department  : Department of ICT (Information & Communication Technology)
 Institute   : Gujarat Technological University Affiliated College
 ```
 

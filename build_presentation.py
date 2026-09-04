@@ -88,7 +88,7 @@ def create_presentation():
         f_box_l = slide.shapes.add_textbox(Inches(0.65), Inches(7.12), Inches(8.8), Inches(0.35))
         tf_fl = f_box_l.text_frame
         p_fl = tf_fl.paragraphs[0]
-        p_fl.text = "GTU Circular & Notification Alert System  |  Department of Computer / IT Engineering"
+        p_fl.text = "GTU Circular & Notification Alert System  |  Department of ICT (Information & Communication Technology)"
         p_fl.font.size = Pt(10.5)
         p_fl.font.color.rgb = TEXT_MUTED
 
@@ -201,7 +201,7 @@ def create_presentation():
     create_card(s1, Inches(0.65), c_top, c1_w, c_h, "Project Leadership & Details", [
         "Project Scope: First Year Project",
         "Team Leader: Muhammad Sambhyana",
-        "Department: Computer / IT Engineering",
+        "Department: ICT (Information & Communication Technology)",
         "Domain: University Automation & NLP Cloud System",
         "Target Base: 4,00,000+ GTU Students",
         "Coverage: 400+ Affiliated GTU Colleges",

@@ -168,7 +168,7 @@ def build_pdf(filename="GTU_Project_Presentation.pdf"):
     meta_data = [
         [
             Paragraph("<b>PROJECT SCOPE:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
-            Paragraph("First Year Engineering Project (Computer / IT Dept)", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
+            Paragraph("First Year Engineering Project (ICT - Information &amp; Communication Technology)", ParagraphStyle('M2', fontSize=9, fontName='Helvetica', textColor=text_color))
         ],
         [
             Paragraph("<b>TEAM LEADER:</b>", ParagraphStyle('M1', fontSize=8, fontName='Helvetica-Bold', textColor=primary_color)),
