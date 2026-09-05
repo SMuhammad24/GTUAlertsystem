@@ -1,18 +1,40 @@
 {
   "stats": {
-    "total": 105,
-    "today": 4,
+    "total": 106,
+    "today": 1,
     "categories": {
       "Result": 78,
-      "Exam & Timetable": 14,
+      "Exam & Timetable": 15,
       "General Circular": 10,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-03 11:14:20"
+    "last_updated": "2026-09-05 09:17:37"
   },
   "circulars": [
+    {
+      "id": "bb555b2ad9590523b5bbad501108e3a46b1c0b20e26847025467e330bc50a91f",
+      "title": "INSTRUCTIONS FOR FILLING THE TERM EXTENSION EXAM FORMS OF WINTER-2026 B.PHARM Sem-7 (Regular) & B.PHARM Sem- 5 to 8 (REMEDIAL)",
+      "date": "05-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Term Extension W26_955782.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-05 09:17:35",
+      "tags": "#GTU, #BPharm, #Sem5, #Sem6, #Sem7, #Sem8, #Regular, #Remedial, #Winter",
+      "summary": "Official examination schedule / timetable release for BPharm (Sem 5, 6, 7, 8 (Regular/Remedial/Winter). Check exam dates and instructions.",
+      "courses": [
+        "BPharm"
+      ],
+      "semesters": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "4570872b1544bba0187d6b91b83f8957749e0096edd77549b4b0efc14de226ab",
       "title": "Instructions for filling the Term Extension Remedial Exam Forms of Winter-2026 Examination DIPLOMA IN ENGINEERING (DE) SEM-1 TO 8 DIPLOMA IN ENGINEERING (DE) SEM-1 & 2 (C2D) DIPLOMA IN VOCATION (DV) SEM-1 TO 6 DIPLOMA IN ARCHITECTURE (DA) SEM-1 TO 6",
