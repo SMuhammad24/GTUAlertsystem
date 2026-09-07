@@ -1,18 +1,35 @@
 {
   "stats": {
-    "total": 106,
+    "total": 107,
     "today": 1,
     "categories": {
       "Result": 78,
-      "Exam & Timetable": 15,
+      "Exam & Timetable": 16,
       "General Circular": 10,
       "Admission & Enrollment": 2,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-05 09:17:37"
+    "last_updated": "2026-09-07 19:46:10"
   },
   "circulars": [
+    {
+      "id": "65948467f6254936748f9dc2c80f2e144d1ebc8da7af48b7b5e41c17e7b7b745",
+      "title": "Instructions for filling the REGULAR/ REMEDIAL Exam Forms of Bachelor of Science (Honours/ Honours with Research) PG Diploma in Bioinformatics, Master of Science (Industrial Biotechnology), Master of Science (Integrated) Biotechnology, Master of Arts (Hindu Studies) & PG Diploma in Intellectual Property Rights for Winter – 2026 Examination",
+      "date": "07-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260907_16581753_345470.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-07 19:46:09",
+      "tags": "#GTU, #Diploma, #Regular, #Remedial, #Winter",
+      "summary": "Official examination schedule / timetable release for Diploma (Regular/Remedial/Winter). Check exam dates and instructions.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "bb555b2ad9590523b5bbad501108e3a46b1c0b20e26847025467e330bc50a91f",
       "title": "INSTRUCTIONS FOR FILLING THE TERM EXTENSION EXAM FORMS OF WINTER-2026 B.PHARM Sem-7 (Regular) & B.PHARM Sem- 5 to 8 (REMEDIAL)",
