@@ -1,18 +1,89 @@
 {
   "stats": {
-    "total": 107,
-    "today": 1,
+    "total": 111,
+    "today": 4,
     "categories": {
       "Result": 78,
-      "Exam & Timetable": 16,
+      "Exam & Timetable": 19,
       "General Circular": 10,
-      "Admission & Enrollment": 2,
+      "Admission & Enrollment": 3,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-07 19:46:10"
+    "last_updated": "2026-09-08 10:00:41"
   },
   "circulars": [
+    {
+      "id": "f6eb2c1e15000d17199605d57c1d2706413375b9d436b158b8de36835797e2fd",
+      "title": "INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER 2026 EXAMINATION Diploma in Engineering (DE) Sem- 5 & 7 (Regular/Term Extension Regular) Diploma in Engineering (DE) Sem- 3 (Regular) Diploma in Engineering (Working Professional) Sem- 5 & 7 (Regular) Diploma in Architecture (DA) Sem- 5 (Regular/Term Extension Regular) Diploma in Architecture (DA) Sem-3 (Regular) Diploma in Vocation (DV) Sem-5 (Reg",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260908172142_693235.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-08 10:00:39",
+      "tags": "#GTU, #Diploma, #Sem3, #Sem5, #Sem6, #Sem7, #Regular, #Winter",
+      "summary": "Official examination schedule / timetable release for Diploma (Sem 3, 5, 6, 7 (Regular/Winter). Check exam dates and instructions.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "9bb1feac024e0e1bd5511b4d9afb56fd631a880b4fb20aa479aed95b065f4a62",
+      "title": "Round for filling up vacant seats at UG/PG level for admission Year 2026-27 through GCAS",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular_Vacant Seats UG-PG _Admission Year 2026-27_405892.pdf",
+      "category": "Admission & Enrollment",
+      "is_important": 0,
+      "created_at": "2026-09-08 10:00:37",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Notice concerning admission, student enrollment, or registration procedure.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "cb98ec1c1044bd8a4bd8263ac6b4144f88c0fac0823fcc70b5a3c41bc1755b5f",
+      "title": "INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER-2026 D.PHARM. YEAR – 1 & 2 (REMEDIAL & TERM EXTENSION REMEDIAL STUDENTS)",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER-2026_906116.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-08 10:00:34",
+      "tags": "#GTU, #Remedial, #Winter",
+      "summary": "Official examination schedule / timetable release for Remedial/Winter. Check exam dates and instructions.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "d93c8725bafe620ca1b60c2bce876926da4c6e1ff45351d2ae5fedecc8100e8f",
+      "title": "Specialization & Elective Subject Entry of MBA Semester 3 (Regular) for Winter 2026 Examination",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260908140554_577216.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-08 10:00:32",
+      "tags": "#GTU, #MBA, #Sem3, #Regular, #Winter",
+      "summary": "Official examination schedule / timetable release for MBA (Sem 3 (Regular/Winter). Check exam dates and instructions.",
+      "courses": [
+        "MBA"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "65948467f6254936748f9dc2c80f2e144d1ebc8da7af48b7b5e41c17e7b7b745",
       "title": "Instructions for filling the REGULAR/ REMEDIAL Exam Forms of Bachelor of Science (Honours/ Honours with Research) PG Diploma in Bioinformatics, Master of Science (Industrial Biotechnology), Master of Science (Integrated) Biotechnology, Master of Arts (Hindu Studies) & PG Diploma in Intellectual Property Rights for Winter – 2026 Examination",
