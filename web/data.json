@@ -1,18 +1,102 @@
 {
   "stats": {
-    "total": 111,
-    "today": 4,
+    "total": 116,
+    "today": 9,
     "categories": {
-      "Result": 78,
-      "Exam & Timetable": 19,
+      "Result": 82,
+      "Exam & Timetable": 20,
       "General Circular": 10,
       "Admission & Enrollment": 3,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-08 10:00:41"
+    "last_updated": "2026-09-08 14:34:46"
   },
   "circulars": [
+    {
+      "id": "f47af5b8af951fa84090495a5c86000e989bd93e96aa44fcb24d04246797492a",
+      "title": "Notification for result declaration of Bachelor of Engineering Semester - 01 Remedial (Summer 2026) Exam",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem - 1 Rem. (1)_541978.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-08 14:34:44",
+      "tags": "#GTU, #BE, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BE (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "8309edf56a60e09425984f0cbded24605933322b5485604f11fbd6eae7a762d0",
+      "title": "Notification for result declaration of Bachelor of Engineering Semester - 02 Remedial (Summer 2026) Exam",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem - 2 Rem. (1)_588059.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-08 14:34:42",
+      "tags": "#GTU, #BE, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BE (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "5ecc1b88cc10af82015466eccc45492415ff5d808591fe2fcad5849f99b04a14",
+      "title": "Notification for result declaration of Bachelor of Engineering Semester - 02 Regular (Summer 2026) Exam",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BE Sem - 2 Reg._662809.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-08 14:34:39",
+      "tags": "#GTU, #BE, #Regular, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for BE (Regular/Summer). Check online result portal.",
+      "courses": [
+        "BE"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "54bd41df2dad667205630325151bd8bda2619e3b5411f26a36efd5fc26503d33",
+      "title": "Instructions for filling the REGULAR/ REMEDIAL Exam Forms of Master of Engineering (ME) & Master of Architecture (M. Arch) for Winter – 2026 Examination",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/img20260908_17272536_862959.pdf",
+      "category": "Exam & Timetable",
+      "is_important": 0,
+      "created_at": "2026-09-08 14:34:37",
+      "tags": "#GTU, #ME, #MArch, #Regular, #Remedial, #Winter",
+      "summary": "Official examination schedule / timetable release for ME/MArch (Regular/Remedial/Winter). Check exam dates and instructions.",
+      "courses": [
+        "ME",
+        "MArch"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "fdf538ebb1f0a81d74960ae9be0b079fb4bd6aeba87ce1daed3edccf2f95228a",
+      "title": "Notification for Result Declaration of Bachelor of Business Administration Sem-01 (Remedial) of Summer-2026 Examination",
+      "date": "08-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/BB-1 (Remedial) S-26_479564.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-08 14:34:34",
+      "tags": "#GTU, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Remedial/Summer. Check online result portal.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f6eb2c1e15000d17199605d57c1d2706413375b9d436b158b8de36835797e2fd",
       "title": "INSTRUCTIONS FOR FILLING THE EXAM FORMS OF WINTER 2026 EXAMINATION Diploma in Engineering (DE) Sem- 5 & 7 (Regular/Term Extension Regular) Diploma in Engineering (DE) Sem- 3 (Regular) Diploma in Engineering (Working Professional) Sem- 5 & 7 (Regular) Diploma in Architecture (DA) Sem- 5 (Regular/Term Extension Regular) Diploma in Architecture (DA) Sem-3 (Regular) Diploma in Vocation (DV) Sem-5 (Reg",
