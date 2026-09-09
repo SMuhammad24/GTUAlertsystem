@@ -1,18 +1,67 @@
 {
   "stats": {
-    "total": 116,
-    "today": 9,
+    "total": 119,
+    "today": 3,
     "categories": {
-      "Result": 82,
+      "Result": 83,
       "Exam & Timetable": 20,
-      "General Circular": 10,
+      "General Circular": 12,
       "Admission & Enrollment": 3,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-08 14:34:46"
+    "last_updated": "2026-09-09 21:52:32"
   },
   "circulars": [
+    {
+      "id": "4b2aec3928e6c557f11280c55245e9fd1daa9ad42a85cbdf1433f59c98e98459",
+      "title": "Circular - UFM Hearing of student SUMMER-2026 (Phase-III)",
+      "date": "09-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/O-W-No 6888 Dtd 09-09-26 UFM Circular Phase-3 S-26_351723.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-09 21:52:31",
+      "tags": "#GTU, #Summer",
+      "summary": "Official notification released by Gujarat Technological University for Summer.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "653126de87d46cdaace4fe2ac0b88eb6ab411c84227ac01a4ae83984acc9800c",
+      "title": "Notification for Result Declaration of Master of Business Administration (International Business) [Delivered In Online Mode] Sem-01 Regular of Winter-2025 Examination",
+      "date": "09-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260909170615_688168.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-09 21:52:28",
+      "tags": "#GTU, #Regular, #Winter",
+      "summary": "GTU has declared examination results / rechecking schedule for Regular/Winter. Check online result portal.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "ac440a0f073ad2ce64ac298a9d9bc48882281aee44e9f1af7823c8741ba389c7",
+      "title": "Introduction of “Co-curricular Activities” Subject in Semester-4 of M.Pharm. Programme",
+      "date": "09-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/M.Pharm. Co-Curricular Activity Subject Circular_601184.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-09 21:52:26",
+      "tags": "#GTU, #MPharm, #Sem4",
+      "summary": "Official notification released by Gujarat Technological University for MPharm (Sem 4).",
+      "courses": [
+        "MPharm"
+      ],
+      "semesters": [
+        4
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f47af5b8af951fa84090495a5c86000e989bd93e96aa44fcb24d04246797492a",
       "title": "Notification for result declaration of Bachelor of Engineering Semester - 01 Remedial (Summer 2026) Exam",
