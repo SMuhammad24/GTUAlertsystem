@@ -1,18 +1,33 @@
 {
   "stats": {
-    "total": 119,
-    "today": 3,
+    "total": 120,
+    "today": 1,
     "categories": {
       "Result": 83,
       "Exam & Timetable": 20,
-      "General Circular": 12,
+      "General Circular": 13,
       "Admission & Enrollment": 3,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-09 21:52:32"
+    "last_updated": "2026-09-11 09:45:48"
   },
   "circulars": [
+    {
+      "id": "58e88a5855703221261a92689a174b77dbea9ea2ba736c2b644a2f3c54d70b2e",
+      "title": "Discontinuation of Problem-Based Learning (PBL) Portal",
+      "date": "10-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260910105315_112758.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-11 09:45:47",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "4b2aec3928e6c557f11280c55245e9fd1daa9ad42a85cbdf1433f59c98e98459",
       "title": "Circular - UFM Hearing of student SUMMER-2026 (Phase-III)",
