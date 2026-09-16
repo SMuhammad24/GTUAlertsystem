@@ -1,18 +1,52 @@
 {
   "stats": {
-    "total": 120,
-    "today": 1,
+    "total": 122,
+    "today": 2,
     "categories": {
-      "Result": 83,
+      "Result": 84,
       "Exam & Timetable": 20,
-      "General Circular": 13,
+      "General Circular": 14,
       "Admission & Enrollment": 3,
       "Academics & Syllabus": 1
     },
     "status": "online",
-    "last_updated": "2026-09-11 09:45:48"
+    "last_updated": "2026-09-16 06:07:29"
   },
   "circulars": [
+    {
+      "id": "bb23c7af86842474c4b3641b374cc5d3b419a688878379751e107a45cc482c40",
+      "title": "Team Formation for GTU Motorsports",
+      "date": "16-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular- GTU Motor Sports_900712.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-16 06:07:27",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "0d7222edc7d713d9e63292bec27121d316da00b481ad4995ecddbd37b600c8fe",
+      "title": "Notification for Result Declaration of Diploma in Architecture Sem-3 (Remedial) Recheck/Reassessment of Summer-2026 Examination",
+      "date": "14-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/20260914183137 (1)_112097.pdf",
+      "category": "Result",
+      "is_important": 0,
+      "created_at": "2026-09-16 06:07:25",
+      "tags": "#GTU, #Diploma, #Sem3, #Remedial, #Summer",
+      "summary": "GTU has declared examination results / rechecking schedule for Diploma (Sem 3 (Remedial/Summer). Check online result portal.",
+      "courses": [
+        "Diploma"
+      ],
+      "semesters": [
+        3
+      ],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "58e88a5855703221261a92689a174b77dbea9ea2ba736c2b644a2f3c54d70b2e",
       "title": "Discontinuation of Problem-Based Learning (PBL) Portal",
