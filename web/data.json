@@ -1,18 +1,66 @@
 {
   "stats": {
-    "total": 122,
-    "today": 2,
+    "total": 125,
+    "today": 3,
     "categories": {
       "Result": 84,
       "Exam & Timetable": 20,
-      "General Circular": 14,
+      "General Circular": 16,
       "Admission & Enrollment": 3,
-      "Academics & Syllabus": 1
+      "Academics & Syllabus": 1,
+      "Student Support": 1
     },
     "status": "online",
-    "last_updated": "2026-09-16 06:07:29"
+    "last_updated": "2026-09-23 06:43:40"
   },
   "circulars": [
+    {
+      "id": "f6a8535e0344c737e56b9cebb074fd819b5b0bcb7c4d485e97af30dcab0e04e8",
+      "title": "Government to Government Institute Transfer Order A.Y. 2026-27",
+      "date": "19-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Govt. Institute Transfer-Phase-2_605113.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-23 06:43:38",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "2547419ab2d02cd68722a4f07de9f859e1a59a52e41006f21de940216783af73",
+      "title": "GTU-GISC Startup Gold Medal Award 2027",
+      "date": "19-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular - GTU Student Startup Gold Medal Annual Convocation 2027_553807.pdf",
+      "category": "Student Support",
+      "is_important": 0,
+      "created_at": "2026-09-23 06:43:36",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "b8f5ce14018f4e105011bee2ce74b1ae71a9a20b40bcb5c01dc81c8b4bddb5a7",
+      "title": "ATAL - FDP on Emerging AI Technologies for Civil Engineering Professionals from 12th - 17th October 2026",
+      "date": "17-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/ATAL FDP Brochure SET Oct 2026_253875.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-09-23 06:43:33",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [
+        "17 October 2026"
+      ],
+      "penalties": []
+    },
     {
       "id": "bb23c7af86842474c4b3641b374cc5d3b419a688878379751e107a45cc482c40",
       "title": "Team Formation for GTU Motorsports",
