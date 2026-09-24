@@ -1,19 +1,35 @@
 {
   "stats": {
-    "total": 125,
-    "today": 3,
+    "total": 126,
+    "today": 1,
     "categories": {
       "Result": 84,
       "Exam & Timetable": 20,
       "General Circular": 16,
       "Admission & Enrollment": 3,
       "Academics & Syllabus": 1,
+      "Fee & Penalty": 1,
       "Student Support": 1
     },
     "status": "online",
-    "last_updated": "2026-09-23 06:43:40"
+    "last_updated": "2026-09-24 06:41:42"
   },
   "circulars": [
+    {
+      "id": "8c56d13215e6a1f221a4f1db9df6f6d8326d02713b9a63702e6070c5ab1fba2a",
+      "title": "Revision of Inspection (AIC) Fees for Re-Inspection in affiliated Institutes",
+      "date": "24-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Revised fees for Re-Inspection of Institute_228121.pdf",
+      "category": "Fee & Penalty",
+      "is_important": 0,
+      "created_at": "2026-09-24 06:41:41",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Notice regarding fee submission & schedule. Please check deadlines to avoid late fees.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "f6a8535e0344c737e56b9cebb074fd819b5b0bcb7c4d485e97af30dcab0e04e8",
       "title": "Government to Government Institute Transfer Order A.Y. 2026-27",
