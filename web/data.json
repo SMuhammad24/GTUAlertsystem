@@ -1,20 +1,82 @@
 {
   "stats": {
-    "total": 126,
-    "today": 1,
+    "total": 130,
+    "today": 4,
     "categories": {
       "Result": 84,
       "Exam & Timetable": 20,
-      "General Circular": 16,
+      "General Circular": 18,
       "Admission & Enrollment": 3,
+      "Student Support": 3,
       "Academics & Syllabus": 1,
-      "Fee & Penalty": 1,
-      "Student Support": 1
+      "Fee & Penalty": 1
     },
     "status": "online",
-    "last_updated": "2026-09-24 06:41:42"
+    "last_updated": "2026-10-01 14:31:01"
   },
   "circulars": [
+    {
+      "id": "33c2ff9273a9d85404767a349a108a25d24a757d0ac2fe882a836bb005d3aae1",
+      "title": "Invite Application for Full-Time Post-Doctoral Fellow under AICTE Post-Doctoral Fellowship",
+      "date": "01-Oct-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Advertisement_Application_AICTE_Post-Doctoral_Fellowship_984998.jpeg",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-10-01 14:30:59",
+      "tags": "#GTU, #PhD",
+      "summary": "Official notification released by Gujarat Technological University for PhD.",
+      "courses": [
+        "PhD"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "d0c649b497f7f8e7746e552a68e77f1114d9a2f2006d081e04e0a443691043d1",
+      "title": "Invitation for Sponsorship of Gold Medals for GTU Convocation Ceremony",
+      "date": "30-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular-Gold Medal Sponership_610776.pdf",
+      "category": "Student Support",
+      "is_important": 0,
+      "created_at": "2026-10-01 14:30:57",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "2b5c02c533283d86b193ee22c8ae3e926d363b11cad07151c7c319802f98e3c5",
+      "title": "Invitation for Sponsorship of Gold Medals for GTU Convocation Ceremony",
+      "date": "30-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circular-Gold Medal Sponership_342969.pdf",
+      "category": "Student Support",
+      "is_important": 0,
+      "created_at": "2026-10-01 14:30:54",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "ae0843c3506f850c4601ce5032dfd86697b01ac625046746ed41012fa3e9d0c4",
+      "title": "Student Associate Program 2026–27 - Invitation for Applications from Students of Gujarat Technological University",
+      "date": "28-Sep-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Circualar -Invitation for Expression of Interest(EoI) - Student Associateship Program(SAP) 2026-27 (2026SEPFMTS00046209)_300446.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-10-01 14:30:52",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "8c56d13215e6a1f221a4f1db9df6f6d8326d02713b9a63702e6070c5ab1fba2a",
       "title": "Revision of Inspection (AIC) Fees for Re-Inspection in affiliated Institutes",
