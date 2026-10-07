@@ -1,20 +1,52 @@
 {
   "stats": {
-    "total": 130,
-    "today": 4,
+    "total": 132,
+    "today": 2,
     "categories": {
       "Result": 84,
       "Exam & Timetable": 20,
-      "General Circular": 18,
+      "General Circular": 20,
       "Admission & Enrollment": 3,
       "Student Support": 3,
       "Academics & Syllabus": 1,
       "Fee & Penalty": 1
     },
     "status": "online",
-    "last_updated": "2026-10-01 14:31:01"
+    "last_updated": "2026-10-07 09:20:10"
   },
   "circulars": [
+    {
+      "id": "4c3267bb69910159782d8d25b6db40f33c128e3ef32fa5ba76b345d594ad47bb",
+      "title": "૧૪મો જી.ટી.યુ. “ક્ષિતિજ” યુવક મહોત્સવ – ૨૦૨૬ બાબત.",
+      "date": "07-Oct-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/Xitij - 2026 Circular_803951.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-10-07 09:20:08",
+      "tags": "#GTU, #CircularUpdate",
+      "summary": "Official notification released by Gujarat Technological University.",
+      "courses": [],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
+    {
+      "id": "0d5addc59963aa200088a311006d9c2462542493ed5d0ebf264b5d65b87f9820",
+      "title": "Implementation of Disaster Risk Reduction and Management (DRRM) initiatives and establishment of DRR Clubs in GTU affiliated institutions-Academic Year 2026-27",
+      "date": "06-Oct-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/DRRM Circular_203575.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-10-07 09:20:06",
+      "tags": "#GTU, #MBA",
+      "summary": "Official notification released by Gujarat Technological University for MBA.",
+      "courses": [
+        "MBA"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "33c2ff9273a9d85404767a349a108a25d24a757d0ac2fe882a836bb005d3aae1",
       "title": "Invite Application for Full-Time Post-Doctoral Fellow under AICTE Post-Doctoral Fellowship",
