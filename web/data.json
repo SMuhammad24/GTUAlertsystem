@@ -1,20 +1,39 @@
 {
   "stats": {
-    "total": 132,
-    "today": 2,
+    "total": 133,
+    "today": 1,
     "categories": {
       "Result": 84,
+      "General Circular": 21,
       "Exam & Timetable": 20,
-      "General Circular": 20,
       "Admission & Enrollment": 3,
       "Student Support": 3,
       "Academics & Syllabus": 1,
       "Fee & Penalty": 1
     },
     "status": "online",
-    "last_updated": "2026-10-07 09:20:10"
+    "last_updated": "2026-10-08 20:50:45"
   },
   "circulars": [
+    {
+      "id": "68d7cab14304b6c86285f961aa4b8e6a1a4ec3f29fc9c97ea91af1ccd38f693f",
+      "title": "Invite Applications from Affiliated Degree Engineering and Management Institutes for AICTE Post-Doctoral Fellowship (APDF) under Gujarat Technological University",
+      "date": "08-Oct-2026",
+      "link": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/uploads/GTUCIrcular_320981.pdf",
+      "category": "General Circular",
+      "is_important": 0,
+      "created_at": "2026-10-08 20:50:44",
+      "tags": "#GTU, #BE, #MBA, #PhD",
+      "summary": "Official notification released by Gujarat Technological University for BE/MBA/PhD.",
+      "courses": [
+        "BE",
+        "MBA",
+        "PhD"
+      ],
+      "semesters": [],
+      "deadlines": [],
+      "penalties": []
+    },
     {
       "id": "4c3267bb69910159782d8d25b6db40f33c128e3ef32fa5ba76b345d594ad47bb",
       "title": "૧૪મો જી.ટી.યુ. “ક્ષિતિજ” યુવક મહોત્સવ – ૨૦૨૬ બાબત.",
